@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Hello from Vs2</h1>
-        <div>hi</div>
+        <Button variant="contained">Contained</Button>
       </header>
     </div>
   );
