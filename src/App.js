@@ -18,21 +18,34 @@ const posts = [
     title: "Post title #2",
     subtitle: "Another Post Preview",
     content: "This is another example post content."
+  },
+  {
+    title: "Post title #3",
+    subtitle: "Another Post Preview",
+    content: "This is another example post content."
   }
 ];
 
 function App() {
   return (
 <body>
-<Container>
+
+<header>
+<Container style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#A4D6D3" }}>
+  will insert search bar here later
+</Container>
+</header>
+
+
+<Container style={{marginTop:"60px", marginBottom: "60px" }}>
 {posts.map((post, index) => (
-<Card key={index} className="mt-4" style={{ maxWidth: "90rem", backgroundColor: "lightblue" }}>
+<Card key={index} className="mt-4" style={{marginLeft:"100px",marginRight:"100px", backgroundColor: "#D7ECEC",borderRadius:"30px" }}>
   <Card.Body>
     <div className="row">
       <div className="col-sm-6">
-        <h1 className="card-title">{post.title}</h1>
-        <h6 className="card-subtitle mb-2 text-muted">{post.subtitle}</h6>
-        <p className="card-text">{post.content}</p>
+        <h1 className="card-title" style={{ marginTop: "30px",marginLeft: "25px",marginBottom:"5px" }}>{post.title}</h1>
+        <h6 className="card-subtitle mb-2 text-muted"  style={{marginTop: "0",marginLeft: "25px" ,marginBottom: "100px"}} >{post.subtitle}</h6>
+        <p className="card-text" style= {{marginLeft: "25px"}}>{post.content}</p>
       </div>
     </div>
   </Card.Body>
@@ -40,21 +53,23 @@ function App() {
 ))}
 </Container>
 <footer>
-<Container style={{ maxWidth: "100rem", backgroundColor: "lightblue" }}>
-<Form>
+<Container style={{ maxWidth: "100rem", backgroundColor: "#A4D6D3" }}>
+<div>
+<Form >
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
 
-        <Form.Control type="text" style={{ width: "80%" }} placeholder="New Post Title Here" />
+        <Form.Control type="text" style={{ width: "78%",marginTop: "1%",marginLeft: "7.5%",marginRight:"5%",height:"40px",fontSize: "15px" }} placeholder="New Post Title Here" />
         
       </Form.Group>
       <br />
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Control as="textarea" style={{ width: "80%" }}  placeholder="New Post Message Here" rows={10} />
+        <Form.Control as="textarea" style={{ width: "78%",marginLeft: "7.5%",marginRight:"5%",height:"100px" ,fontSize: "15px"}}  placeholder="New Post Message Here"  />
+       <Button style={{ marginTop: "-100%" , marginBottom:"1%" ,height:"120px",width:"150px",marginLeft:"-3%", borderRadius:"30px",borderColor:"#A4D6D3"}}> 
+       <SendIcon style={{fontSize: "50px",height:"120px",color: "#A4D6D3" }}> </SendIcon>
+       </Button>
       </Form.Group>
-      <Button variant="contained" endIcon={<SendIcon />}>
-  Send
-</Button>
     </Form>
+    </div>
   </Container>
 </footer>
 
