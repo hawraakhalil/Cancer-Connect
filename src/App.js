@@ -2,12 +2,10 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
 import Card from 'react-bootstrap/Card'  
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import SendIcon from '@mui/icons-material/Send'; 
 
 
 const posts = [
@@ -25,7 +23,7 @@ const posts = [
 
 function App() {
   return (
-
+<body>
 <Container>
 {posts.map((post, index) => (
 <Card key={index} className="mt-4" style={{ maxWidth: "90rem", backgroundColor: "lightblue" }}>
@@ -41,7 +39,26 @@ function App() {
 </Card>
 ))}
 </Container>
-     
+<footer>
+<Container style={{ maxWidth: "100rem", backgroundColor: "lightblue" }}>
+<Form>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+
+        <Form.Control type="text" style={{ width: "80%" }} placeholder="New Post Title Here" />
+        
+      </Form.Group>
+      <br />
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Control as="textarea" style={{ width: "80%" }}  placeholder="New Post Message Here" rows={10} />
+      </Form.Group>
+      <Button variant="contained" endIcon={<SendIcon />}>
+  Send
+</Button>
+    </Form>
+  </Container>
+</footer>
+
+</body>
   );
 }
 
