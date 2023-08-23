@@ -55,15 +55,15 @@ function App() {
 </header>
 
 
-<Container style={{marginTop:"50px", marginBottom: "50px"}}>
+<Container style={{marginTop:"3rem", marginBottom: "3rem"}}>
 {posts.map((post, index) => (
-<Card key={index} className="mt-4" style={{marginLeft:"100px",marginRight:"100px", backgroundColor: "#D7ECEC",borderRadius:"30px" }}>
+<Card key={index} className="mt-4" style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem" }}>
   <Card.Body>
     <div className="row">
       <div className="col-sm-6">
-        <h1 className="card-title" style={{ marginTop: "30px",marginLeft: "25px",marginBottom:"5px"}}>{post.title}</h1>
-        <h6 className="card-subtitle mb-2 text-muted"  style={{marginTop: "0",marginLeft: "25px" ,marginBottom: "120px"}} >{post.subtitle}</h6>
-        <p className="card-text" style= {{marginLeft: "25px"}}>{post.content}</p>
+        <h1 className="card-title" style={{ marginTop: "2rem",marginLeft: "2rem",marginBottom:"0.7rem"}}>{post.title}</h1>
+        <h6 className="card-subtitle mb-2 text-muted"  style={{marginTop: "0",marginLeft: "2rem" ,marginBottom: "7.5rem"}} >{post.subtitle}</h6>
+        <p className="card-text" style= {{marginLeft: "2rem"}}>{post.content}</p>
       </div>
     </div>
   </Card.Body>
@@ -76,14 +76,14 @@ function App() {
 <Form >
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
 
-        <Form.Control type="text" style={{ width: "78%",marginTop: "1%",marginLeft: "7.5%",marginRight:"5%",height:"40px",fontSize: "15px" }} placeholder="       New Post Title Here" />
+        <Form.Control type="text" style={{ width: "71.6rem",marginTop: "1rem",marginLeft: "7rem",marginRight:"5rem",height:"2.5rem",fontSize: "1rem" }} placeholder="       New Post Title Here" />
         
       </Form.Group>
       <br />
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Control as="textarea" style={{ width: "78%",marginLeft: "7.5%",marginRight:"5%",height:"100px" ,fontSize: "15px"}}  placeholder="    New Post Message Here"  />
-       <Button style={{ marginTop: "-100%" , marginBottom:"1%" ,marginTop:"-50px",height:"120px",width:"140px",marginLeft:"-3%", borderRadius:"30px",borderColor:"#A4D6D3",backgroundColor:"white"}}> 
-       <SendIcon style={{height:"120px",width:"75px",color: "#A4D6D3" ,marginLeft:"5px"}}> </SendIcon>
+        <Form.Control as="textarea" style={{ width: "71.6rem",marginLeft: "7rem",marginRight:"5rem",height:"6.5rem" ,fontSize: "1rem"}}  placeholder="   New Post Message Here"  />
+       <Button style={{ marginTop: "-100rem" , marginBottom:"1rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#A4D6D3",backgroundColor:"white"}}> 
+       <SendIcon style={{height:"7.3rem",width:"5.3rem",color: "#A4D6D3" ,marginLeft:"1rem"}}> </SendIcon>
        </Button>
       </Form.Group>
     </Form>
