@@ -35,7 +35,7 @@ function App() {
 
 <header>
 <Container style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#A4D6D3" }}>
-<img src={images} alt="Logo" className="rounded-circle" style={{ borderRadius: "50%",height: "9.7rem", width: "9.7rem",marginLeft:"1.9rem",marginTop:"0.5rem" }} />
+<img src={images} alt="Logo" className="rounded-circle" style={{ borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"1.9rem",marginTop:"0.5rem" }} />
 <TextField 
 
         id="search"
@@ -48,9 +48,7 @@ function App() {
           style={{width:"62rem", marginTop:"1.2rem", marginLeft:"3.5rem",backgroundColor:"white",borderRadius: "50rem", borderColor: "white"}}
           
       />
-            <Button style={{height:"3.3rem",width:"8.2rem",marginLeft:"4rem", borderRadius:"50rem",borderColor:"#A4D6D3",   position: "relative", top: "-6.95rem", color: "#4EA4F3",backgroundColor:"white",fontWeight:"bold"}}> 
-       View Account
-       </Button>
+  
 </Container>
 </header>
 
