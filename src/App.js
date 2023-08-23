@@ -5,7 +5,10 @@ import Container from '@mui/material/Container';
 import Card from 'react-bootstrap/Card'  
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send'; 
+import SearchIcon from '@mui/icons-material/Search';
+import images from './images.png';
 
 
 const posts = [
@@ -32,7 +35,20 @@ function App() {
 
 <header>
 <Container style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#A4D6D3" }}>
-  will insert search bar here later
+<img src={images} alt="Logo" className="rounded-circle" style={{ borderRadius: "50%",height: "9.7rem", width: "9.7rem",marginLeft:"30px",marginTop:"7px" }} />
+<TextField 
+
+        id="search"
+        variant="outlined"
+        label="search"
+        placeholder="  Search"
+        InputProps={{
+          startAdornment: <SearchIcon />}}
+          style={{width:"62rem", marginTop:"20px", marginLeft:"60px"}}
+      />
+            <Button style={{height:"50px",width:"130px",marginLeft:"4%", borderRadius:"30px",borderColor:"#A4D6D3",   position: "relative", top: "-110px", color: "#6495ED"}}> 
+       View Account
+       </Button>
 </Container>
 </header>
 
