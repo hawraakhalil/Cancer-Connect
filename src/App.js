@@ -35,25 +35,29 @@ function App() {
 
 <header>
 <Container fluid className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#A4D6D3" ,padding:"1.1rem"}}>
-<img src={images} alt="Logo" className="rounded-circle" style={{ borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"1.9rem",marginTop:"0.5rem" }} />
+<img src={images} alt="Logo" className="rounded-circle" style={{ borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"1.9%",marginBottom:"-0.5%",marginTop:"-0.3rem" }} />
 <TextField 
-
         id="search"
         variant="outlined"
         placeholder="  Search" 
         InputProps={{
           startAdornment: <SearchIcon style={{ color: "#4EA4F3" }} />,
-          style: { borderRadius: "50rem" } , 
-          inputProps: { style: { color: "#4EA4F3" ,fontSize: "1.15rem"} } }}
-          style={{width:"62rem", marginLeft:"3.5rem",backgroundColor:"white",borderRadius: "50rem", borderColor: "white"}}   
+          style: { borderRadius: "50rem"} , 
+          inputProps: { style: { color: "#4EA4F3" ,fontSize: "1.15rem"} }
+        }}
+          style={{backgroundColor:"white",borderRadius: "50rem", borderColor: "white",width:"66%",marginLeft:"5%"}}   
       />
+         <Button style={{height:"3.3rem",width:"8.2rem",marginLeft:"3rem", borderRadius:"50rem",borderColor:"#A4D6D3", color: "#4EA4F3",backgroundColor:"white",fontWeight:"bold", position: "relative", top: "-6.95rem"}}> 
+       View Account
+       </Button>
+
 </Container>
 </header>
 
 
 <Container style={{marginTop:"3rem", marginBottom: "3rem"}}>
 {posts.map((post, index) => (
-<Card key={index} className="mt-4" style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem" }}>
+<Card key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem" }}>
   <Card.Body>
     <div className="row">
       <div className="col-sm-6">
@@ -66,18 +70,18 @@ function App() {
 </Card>
 ))}
 </Container>
-<footer>
+<footer className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>
 <Container style={{ maxWidth: "100rem", backgroundColor: "#A4D6D3" }}>
 <div>
 <Form >
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
 
-        <Form.Control type="text" style={{ width: "71.6rem",marginTop: "1rem",marginLeft: "7rem",marginRight:"5rem",height:"2.5rem",fontSize: "1rem" }} placeholder="       New Post Title Here" />
+        <Form.Control type="text" style={{ width: "71.6rem",marginTop: "0.5rem",marginLeft: "7rem",marginRight:"5rem",height:"2.5rem",fontSize: "1rem",marginBottom:"-0.5rem" }} placeholder="       New Post Title Here" />
         
       </Form.Group>
       <br />
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Control as="textarea" style={{ width: "71.6rem",marginLeft: "7rem",marginRight:"5rem",height:"6.5rem" ,fontSize: "1rem"}}  placeholder="   New Post Message Here"  />
+        <Form.Control as="textarea" style={{ width: "71.6rem",marginLeft: "7rem",marginRight:"5rem",height:"6rem" ,fontSize: "1rem",marginTop:"-0.3rem",marginBottom:"-0.4rem"}}  placeholder="   New Post Message Here"  />
        <Button style={{ marginTop: "-100rem" , marginBottom:"1rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#A4D6D3",backgroundColor:"white"}}> 
        <SendIcon style={{height:"7.3rem",width:"5.3rem",color: "#A4D6D3" ,marginLeft:"1rem"}}> </SendIcon>
        </Button>
