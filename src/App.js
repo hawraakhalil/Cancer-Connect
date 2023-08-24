@@ -34,7 +34,7 @@ function App() {
 <>
 
 <header>
-<Container style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#A4D6D3" }}>
+<Container fluid className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#A4D6D3" ,padding:"1.1rem"}}>
 <img src={images} alt="Logo" className="rounded-circle" style={{ borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"1.9rem",marginTop:"0.5rem" }} />
 <TextField 
 
@@ -45,10 +45,8 @@ function App() {
           startAdornment: <SearchIcon style={{ color: "#4EA4F3" }} />,
           style: { borderRadius: "50rem" } , 
           inputProps: { style: { color: "#4EA4F3" ,fontSize: "1.15rem"} } }}
-          style={{width:"62rem", marginTop:"1.2rem", marginLeft:"3.5rem",backgroundColor:"white",borderRadius: "50rem", borderColor: "white"}}
-          
+          style={{width:"62rem", marginLeft:"3.5rem",backgroundColor:"white",borderRadius: "50rem", borderColor: "white"}}   
       />
-  
 </Container>
 </header>
 
