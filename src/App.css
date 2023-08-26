@@ -1,40 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.feed{
+  background-color: #610505; /* Replace this with your desired background color */
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.authentication {
+  background-color: #cc1b85; /* Replace this with your desired background color */
 }
-
-.App-header {
-  background-color: #feffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(44, 198, 228);
-}
-
 .App-link {
   color: #61dafb;
 }
 .last-post {
   margin-bottom: 13rem; /* Adjust the value as needed */
 }
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+body {
+    font-family: 'Quicksand';
+    font-size: 22px;
 }
