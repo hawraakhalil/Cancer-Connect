@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState, useEffect } from 'react';
 import '../App.css';
 import Container from '@mui/material/Container';
 import Card from 'react-bootstrap/Card'  
@@ -9,33 +9,33 @@ import SendIcon from '@mui/icons-material/Send';
 import SearchIcon from '@mui/icons-material/Search';
 import images from './images.png';
 
+function Feed() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('https://6o2k57kjivpml5yanhmtx42nau0cktug.lambda-url.eu-north-1.on.aws/');
+        const data = await response.json();
+        const dataArray = data.Items;
+        setPosts(dataArray);
+        console.log(typeof dataArray);
+        console.log(dataArray)
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
 
-const posts = [
-    {
-      title:"Post title #1",
-      subtitle: "Post Preview",
-      content: "Some quick example text to build on the card title and make up the bulk of the card's content."
-    },
-    {
-      title: "Post title #2",
-      subtitle: "Another Post Preview",
-      content: "This is another example post content."
-    },
-    {
-      title: "Post title #3",
-      subtitle: "Another Post Preview",
-      content: "This is another example post content."
-    }
-  ];
-  
-  function Feed() {
     return (
       
   <>
 
   <header>
-  <Container fluid className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#A4D6D3" ,padding:"1.1rem"}}>
+  <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#A4D6D3" ,padding:"1.1rem"}}>
   <img src={images} alt="Logo" className="rounded-circle" style={{ borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-0.3%",marginTop:"-0.4rem" }} />
   <TextField 
           id="search"
@@ -62,9 +62,8 @@ const posts = [
     <Card.Body>
       <div className="row">
         <div className="col-sm-6">
-          <h2 className="card-title" style={{ marginTop: "2rem",marginLeft: "2rem",marginBottom:"0.7rem",color:"#5E5E5E"}}>{post.title}</h2>
-          <h6 className="card-subtitle mb-2 text-muted"  style={{marginTop: "0",marginLeft: "2rem" ,marginBottom: "7.5rem"}} >{post.subtitle}</h6>
-          <p className="card-text" style= {{marginLeft: "2rem"}}>{post.content}</p>
+          <h2 className="card-title" style={{ marginTop: "3rem",marginLeft: "1rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
+          <p className="card-text" style= {{marginLeft: "1rem",paddingBottom: "1rem", paddingTop:"0rem"}}>{post.body}</p>
         </div>
       </div>
     </Card.Body>
