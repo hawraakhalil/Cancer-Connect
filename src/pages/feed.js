@@ -10,6 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import images from './images.png';
 
 function Feed() {
+  //we are calling the backend function to read the posts from the database
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -28,7 +29,42 @@ function Feed() {
 
     fetchPosts();
   }, []);
+//we are calling the backend function to create new posts
+  const [newPostTitle, setNewPostTitle] = useState('');
+  const [newPostBody, setNewPostBody] = useState('');
 
+  const createPost = async (newPost) => {
+    try {
+      const response = await fetch('https://3rwy23iemuqdcbph2gzvl5ytra0hxwpb.lambda-url.eu-north-1.on.aws/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newPost),
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data.message); // Logging the success message
+      } else {
+        throw new Error('Failed to create post');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handlePostSubmit = async () => {
+    try {
+      // Make the API call to create the new post
+      await createPost({ title: newPostTitle, body: newPostBody });
+  
+      // Clear the input fields after successful submission
+      setNewPostTitle('');
+      setNewPostBody('');
+    } catch (error) {
+      console.error('Error creating post:', error);
+    }
+  };
 
     return (
       
@@ -76,13 +112,18 @@ function Feed() {
   <Form >
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
   
-          <Form.Control type="text" style={{ fontFamily:"Quicksand",width: "71.6rem",marginTop: "0.5rem",marginLeft: "7rem",marginRight:"5rem",height:"2.5rem",fontSize: "1rem",marginBottom:"-0.5rem" }} placeholder="     New Post Title Here" />
-          
+          <Form.Control type="text" style={{ fontFamily:"Quicksand",width: "71.6rem",marginTop: "0.5rem",marginLeft: "7rem",marginRight:"5rem",height:"2.5rem",fontSize: "1rem",marginBottom:"-0.5rem" }} 
+          placeholder="     New Post Title Here" 
+          value={newPostTitle}
+          onChange={(e) => setNewPostTitle(e.target.value)}/>
         </Form.Group>
         <br />
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Control as="textarea" style={{ fontFamily:"Quicksand",width: "71.6rem",marginLeft: "7rem",marginRight:"5rem",height:"6rem" ,fontSize: "1rem",marginTop:"-0.3rem",marginBottom:"-0.4rem"}}  placeholder="    New Post Message Here"  />
-         <Button style={{ marginTop: "-100rem" , marginBottom:"1rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#A4D6D3",backgroundColor:"white"}}> 
+          <Form.Control as="textarea" style={{ fontFamily:"Quicksand",width: "71.6rem",marginLeft: "7rem",marginRight:"5rem",height:"6rem" ,fontSize: "1rem",marginTop:"-0.3rem",marginBottom:"-0.4rem"}}
+            placeholder="    New Post Message Here"
+            value={newPostBody}
+            onChange={(e) => setNewPostBody(e.target.value)}  />
+         <Button style={{ marginTop: "-100rem" , marginBottom:"1rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#A4D6D3",backgroundColor:"white"}}  onClick={handlePostSubmit} > 
          <SendIcon style={{height:"7.3rem",width:"5.3rem",color: "#A4D6D3" ,marginLeft:"1rem"}}> </SendIcon>
          </Button>
         </Form.Group>
