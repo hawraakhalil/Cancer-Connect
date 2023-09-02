@@ -12,11 +12,15 @@ import images from './images.png';
 function Feed() {
   //we are calling the backend function to read the posts from the database
   const [posts, setPosts] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await fetch('https://6o2k57kjivpml5yanhmtx42nau0cktug.lambda-url.eu-north-1.on.aws/');
+        if (!response.ok) {
+          throw new Error('Failed to fetch posts');
+        }
         const data = await response.json();
         const dataArray = data.Items;
         setPosts(dataArray);
@@ -24,6 +28,7 @@ function Feed() {
         console.log(dataArray)
       } catch (error) {
         console.error('Error fetching posts:', error);
+        setError('Failed to fetch posts. Please try again.');
       }
     };
 
@@ -92,7 +97,13 @@ function Feed() {
   </Container>
   </header>
   
-  
+    {error ? (
+      <div style={{ textAlign: "center" , marginTop: "10rem" }}>
+      <span style={{ fontSize: "2rem" }}>😢</span> {/* Sad face emoji */}
+      <p style={{ marginTop: "1rem" }}>Error: {error}</p> {/* Display the error message */}
+    </div>
+  ) : (
+
   <Container style={{marginTop:"3rem", marginBottom: "3rem"}}>
   {posts.map((post, index) => (
   <Card key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem" }}>
@@ -107,6 +118,7 @@ function Feed() {
   </Card>
   ))}
   </Container>
+    )}
   <footer className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>
   <Container style={{ maxWidth: "100rem", backgroundColor: "#A4D6D3" }}>
   <div>
