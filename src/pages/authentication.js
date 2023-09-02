@@ -16,12 +16,7 @@ function Authentication() {
 
   const handleClick = () => {
     if (username && password) {
-      if (password.length < 8) {
-        setErrorMessage("Error ! Password should have more than 7 characters.");
-      }
-      else {
       window.location.href = "/feed";
-      }
     } else if (!username && !password) {
       setErrorMessage("Error ! Please enter a username and password.");
     }
@@ -67,6 +62,10 @@ function Authentication() {
       />
       <Button onClick={handleClick} style ={{marginTop:"1rem",marginLeft:"6.2rem",width:"8rem",height:"3rem",backgroundColor:"#FFE3F4",borderColor:"#FFE3F4",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold"}}>Login</Button>
       {errorMessage && <p style ={{fontSize:"0.9rem",marginTop:"0.6rem"}}>{errorMessage}</p>}
+      <p style={{ fontSize: '0.9rem', marginTop: '1rem', textAlign: 'center' }}>
+        Don't have an account? Create a new one  
+        <Link to="/signup" style={{ color: '#FF00FF', textDecoration: 'underline' }}> here</Link>.
+      </p>
       </div>
       </Card.Body>
     </Card>
