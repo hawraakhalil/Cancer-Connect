@@ -7,7 +7,9 @@ import Button from 'react-bootstrap/Button'
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send'; 
 import SearchIcon from '@mui/icons-material/Search';
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import images from './images.png';
+
 
 function Feed() {
   //we are calling the backend function to read the posts from the database
@@ -72,6 +74,11 @@ function Feed() {
     }
   };
 
+  //When you click on the view acc, go to the profile page 
+  const handleClick = () => {
+    window.location.href = "/profile";
+  }; 
+
     return (
       
   <>
@@ -90,7 +97,9 @@ function Feed() {
           }}
             style={{backgroundColor:"white",borderRadius: "50rem", borderColor: "white",width:"66%",marginLeft:"4.5%"}}   
         />
-           <Button style={{height:"3.3rem",width:"8.2rem",marginLeft:"3rem", borderRadius:"50rem",borderColor:"#A4D6D3", color: "#4EA4F3",backgroundColor:"white",fontWeight:"bold", position: "relative", top: "-6.95rem",fontFamily:"Quicksand"}}> 
+           <Button onClick={handleClick} style={{height:"3.3rem",width:"8.2rem",marginLeft:"3rem", borderRadius:"50rem",borderColor:"#A4D6D3", color: "#4EA4F3",backgroundColor:"white",fontWeight:"bold", position: "relative", top: "-6.95rem",fontFamily:"Quicksand"}}
+           > 
+           <Link to="/profile" style={{ textDecoration: "none", color: "#4EA4F3" }}></Link>
          View Account
          </Button>
   
