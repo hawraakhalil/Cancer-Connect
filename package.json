@@ -18,6 +18,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.4",
+    "react-select-country-list": "^2.2.3",
     "styled-components": "^5.3.11",
     "web-vitals": "^2.1.4"
   },

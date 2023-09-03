@@ -7,6 +7,8 @@ import Avatar from '@mui/material/Avatar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import profile from './profile.png';
+import badge from './badge.png';
+import '../App.css';
 
 
 function Profile () {
@@ -62,10 +64,13 @@ function Profile () {
             style={{backgroundColor:"white",borderRadius: "50rem", borderColor: "white",width:"55%",marginLeft:"28%"}}   
         />
   </Container>
-  <Avatar src={profile} alt="Profile Pic" style={{ borderRadius: "50rem",height: "16rem", width: "16rem",marginLeft:"5%",marginBottom:"-1.8%",marginTop:"-4.5rem", border: "0.9rem solid #A4D3FF" }} />
+  <div class="avatar-container">
+  <img src={profile} alt="Avatar" class="avatar-image"></img>
+  <img src={badge} alt="badge" class="small-image"></img>
+</div>
   </header>
   <body>
-    <h1 style={{color:"#155A56", paddingLeft:"4rem",marginBottom:"0rem"}}>Name LastName</h1>
+    <h1 style={{color:"#155A56", paddingLeft:"4rem",marginBottom:"0rem",marginTop:"-0.5rem"}}>Name LastName</h1>
     <div style={{ display: "flex", alignItems: "center" }}>
         <h3 style={{ color: "#8C9898", paddingLeft: "4rem", margin: "0" }}>@username</h3>
 
