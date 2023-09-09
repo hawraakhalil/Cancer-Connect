@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from 'react';
+import React , { useState, useEffect,useContext } from 'react';
 import '../App.css';
 import Container from '@mui/material/Container';
 import Card from 'react-bootstrap/Card'  
@@ -9,12 +9,18 @@ import SendIcon from '@mui/icons-material/Send';
 import SearchIcon from '@mui/icons-material/Search';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import images from './images.png';
+import UsernameContext from '../usernameContext';
+
 
 
 function Feed() {
   //we are calling the backend function to read the posts from the database
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
+  const [refresh, setRefresh] = useState(false);
+  const usernameContext = useContext(UsernameContext);
+  const username = usernameContext.username;
+ 
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -25,8 +31,8 @@ function Feed() {
         }
         const data = await response.json();
         const dataArray = data.Items;
+
         setPosts(dataArray);
-        console.log(typeof dataArray);
         console.log(dataArray)
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -35,7 +41,7 @@ function Feed() {
     };
 
     fetchPosts();
-  }, []);
+  }, [refresh]);
 //we are calling the backend function to create new posts
   const [newPostTitle, setNewPostTitle] = useState('');
   const [newPostBody, setNewPostBody] = useState('');
@@ -64,11 +70,13 @@ function Feed() {
   const handlePostSubmit = async () => {
     try {
       // Make the API call to create the new post
-      await createPost({ title: newPostTitle, body: newPostBody });
+      await createPost({ title: newPostTitle, body: newPostBody, username });
   
       // Clear the input fields after successful submission
       setNewPostTitle('');
       setNewPostBody('');
+      //to refresh
+      setRefresh(true);
     } catch (error) {
       console.error('Error creating post:', error);
     }
@@ -79,10 +87,11 @@ function Feed() {
     window.location.href = "/profile";
   }; 
 
+  posts.sort((a ,b) => new Date(b.timestamp) - new Date(a.timestamp));
+
     return (
       
   <>
-
   <header>
   <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#A4D6D3" ,padding:"1.1rem"}}>
   <img src={images} alt="Logo" className="rounded-circle" style={{ borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-0.3%",marginTop:"-0.4rem" }} />
@@ -120,6 +129,7 @@ function Feed() {
       <div className="row">
         <div className="col-sm-6">
           <h2 className="card-title" style={{ marginTop: "3rem",marginLeft: "1rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
+          <h6 className="card-title" style={{marginTop:"-2rem", marginLeft: "1.3rem",color:"#5E5E5E",fontWeight:"bold"}}>{post.username}</h6>
           <p className="card-text" style= {{marginLeft: "1rem",paddingBottom: "1rem", paddingTop:"0rem"}}>{post.body}</p>
         </div>
       </div>
