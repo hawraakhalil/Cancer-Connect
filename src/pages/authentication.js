@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import UsernameContext from '../usernameContext';
 import '../App.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -16,7 +15,6 @@ function Authentication() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const usernameContext = useContext(UsernameContext);
 
   //call the function that checks if username and password are in the database
   const handleClick = async () => {
@@ -33,8 +31,8 @@ function Authentication() {
         }),
       });
       if (response.ok) {
-        usernameContext.setUsername(username);
-        window.location.href = '/feed';
+        const user = encodeURIComponent(username);
+        window.location.href = `/feed?user=${user}`;
       } else if (response.status === 404) {
         const data = await response.json(); 
         console.error(data.message);
@@ -60,10 +58,9 @@ const handleKeyDown = (event) => {
     handleClick();
   }
 };
-  
     return (
       <>
-      <style>{'body { background-color: #FFF0F9; }'}</style>
+       <style>{'body { background-color: #FFF0F9; }'}</style>
     <Container style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"   }}>
       <Card style={{ width: '35rem',height:"33rem", backgroundColor:"#A4D6D3" ,borderRadius:"5rem"}}>
       <img src={images} alt="Logo" className="rounded-circle" style={{ borderRadius: "50rem",height: "8rem", width: "8rem",marginLeft:"38%",marginTop:"1rem"}} />
@@ -78,9 +75,8 @@ const handleKeyDown = (event) => {
         style={{paddingLeft:"1rem",marginTop:"20%",width:"25rem",height:"3rem",marginBottom:"0.7rem",borderColor:"#FFFFFF",borderRadius:"2rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"0.95rem",marginLeft:"-3rem"}}
         onKeyDown={handleKeyDown}
       />
-      
-      
-      <Form.Control
+    
+    <Form.Control
         type="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
@@ -88,7 +84,7 @@ const handleKeyDown = (event) => {
         style ={{ paddingLeft:"1rem",width:"25rem",height:"3rem",borderRadius:"2rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontWeight:"bold",fontSize:"0.95rem",marginLeft:"-3rem"}}
         onKeyDown={handleKeyDown}
       />
-      <Link to="/signup" style={{ color: '#155A56', textDecoration: 'underline',fontSize:"0.88rem" ,fontFamily:"Lato",display: "flex", justifyContent: "center",marginTop:"0.8rem",fontWeight:"bold", fontStyle: "italic"}}> forgot password?</Link>
+      <Link to="/password" style={{ color: '#155A56', textDecoration: 'underline',fontSize:"0.88rem" ,fontFamily:"Lato",display: "flex", justifyContent: "center",marginTop:"0.8rem",fontWeight:"bold", fontStyle: "italic"}}> forgot password?</Link>
       <Button onClick={handleClick} style ={{marginTop:"0.8rem",marginLeft:"5rem",width:"10rem",height:"3.5rem",backgroundColor:"#FFE3F4",borderColor:"#FFE3F4",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold"}}>Login</Button>
       
       <p style={{ fontSize: '0.9rem', marginTop: '1rem', textAlign: 'center' ,marginBottom:'0.4rem'}}>

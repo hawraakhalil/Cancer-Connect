@@ -9,7 +9,7 @@ import SendIcon from '@mui/icons-material/Send';
 import SearchIcon from '@mui/icons-material/Search';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import images from './images.png';
-import UsernameContext from '../usernameContext';
+
 
 
 
@@ -18,9 +18,11 @@ function Feed() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [refresh, setRefresh] = useState(false);
-  const usernameContext = useContext(UsernameContext);
-  const username = usernameContext.username;
- 
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  const username = urlParams.get('user');
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -54,7 +56,7 @@ function Feed() {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        body: JSON.stringify(newPost),
+        body: JSON.stringify({ ...newPost, username }),
       });
       
       if (response.ok) {
@@ -86,8 +88,13 @@ function Feed() {
   const handleClick = () => {
     window.location.href = "/profile";
   }; 
+  const handleClick2 = (postTitle,postBody,postUser) => {
+  const title = encodeURIComponent(postTitle);
+  const body = encodeURIComponent(postBody);
+  const user = encodeURIComponent(postUser);
+  window.location.href = `/post?title=${title}&body=${body}&user=${user}`;
+  }; 
 
-  posts.sort((a ,b) => new Date(b.timestamp) - new Date(a.timestamp));
 
     return (
       
@@ -124,14 +131,18 @@ function Feed() {
 
   <Container style={{marginTop:"3rem", marginBottom: "3rem"}}>
   {posts.map((post, index) => (
-  <Card key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem" }}>
+  <Card  onClick={() => handleClick2(post.title,post.body,post.username)} key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem",marginTop:"-1rem" }}>
     <Card.Body>
       <div className="row">
         <div className="col-sm-6">
           <h2 className="card-title" style={{ marginTop: "3rem",marginLeft: "1rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
           <h6 className="card-title" style={{marginTop:"-2rem", marginLeft: "1.3rem",color:"#5E5E5E",fontWeight:"bold"}}>{post.username}</h6>
-          <p className="card-text" style= {{marginLeft: "1rem",paddingBottom: "1rem", paddingTop:"0rem"}}>{post.body}</p>
-        </div>
+          <p className="card-text" style= {{marginLeft: "1.3rem",paddingBottom: "0.7rem", paddingTop:"0rem",marginTop:"-1.8rem",fontSize:"1.05rem",fontWeight:"bold"}}>{post.body}</p>
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+        <p className="card-text" style={{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>x likes</p>
+        <p className="card-text" style = {{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>x comments</p>
+      </div>
       </div>
     </Card.Body>
   </Card>
