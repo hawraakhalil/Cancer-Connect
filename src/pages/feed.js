@@ -88,11 +88,13 @@ function Feed() {
   const handleClick = () => {
     window.location.href = "/profile";
   }; 
-  const handleClick2 = (postTitle,postBody,postUser) => {
+  const handleClick2 = (postTitle,postBody,postUser,postID,posttime) => {
   const title = encodeURIComponent(postTitle);
   const body = encodeURIComponent(postBody);
   const user = encodeURIComponent(postUser);
-  window.location.href = `/post?title=${title}&body=${body}&user=${user}`;
+  const ID = encodeURIComponent(postID);
+  const timestamp= encodeURIComponent(posttime);
+  window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}`;
   }; 
 
 
@@ -131,7 +133,7 @@ function Feed() {
 
   <Container style={{marginTop:"3rem", marginBottom: "3rem"}}>
   {posts.map((post, index) => (
-  <Card  onClick={() => handleClick2(post.title,post.body,post.username)} key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem",marginTop:"-1rem" }}>
+  <Card  onClick={() => handleClick2(post.title,post.body,post.username,post.ID,post.timestamp)} key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem",marginTop:"-1rem" }}>
     <Card.Body>
       <div className="row">
         <div className="col-sm-6">
