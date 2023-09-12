@@ -68,12 +68,10 @@ const comments = [
       const [loading, setLoading] = useState(true);
     
       useEffect(() => {
-        // Replace 'your-lambda-endpoint-url' with the actual URL of your Lambda function
-        fetch('https://cniwk2kqhbb5cyvwh4smrufsgy0trsdq.lambda-url.eu-north-1.on.aws/')
+        fetch('https://cniwk2kqhbb5cyvwh4smrufsgy0trsdq.lambda-url.eu-north-1.on.aws/'+ID)
           .then(response => response.json())
           .then(data => {
-            setPost(data.Items[0]); // Assuming you expect a single post in the response
-            setLoading(false);
+            setPost(data.Items[0]);
           })
           .catch(error => {
             console.error('Error fetching data:', error);
