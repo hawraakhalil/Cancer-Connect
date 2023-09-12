@@ -12,6 +12,9 @@ function Post() {
         window.location.href = "/feed";
       }; 
 
+    const [refresh, setRefresh] = useState(false);
+    const [post, setPost] = useState({});
+    const [comments, setComments] = useState([]);
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
@@ -20,70 +23,34 @@ function Post() {
     const user = urlParams.get('user');
     const ID = urlParams.get('ID');
     const timestamp = urlParams.get("timestamp");
+    const likes= urlParams.get("likes");
+    const commCount= urlParams.get("commCount");
 
- /*   
-const comments = [
-    {
-      input:"Comment comment comment comment",
-      usern: "User y",
-      likes: "x"
-    },
-    {
-        input:"Comment comment comment comment",
-        usern: "User y",
-        likes: "x"
-    },
-    {
-        input:"Comment comment comment comment",
-        usern: "User y",
-        likes: "x"
-    }
-  ];*/
-/*
-    //reads comments
-    useEffect(() => {
-      const fetchComments = async () => {
-        try {
-          const response = await fetch(`https://cniwk2kqhbb5cyvwh4smrufsgy0trsdq.lambda-url.eu-north-1.on.aws/?postId=${ID}`);
-  
-          if (response.ok) {
-            const data = await response.json();
-            setComments(data.Items.map(comment => ({
-              body: comment.M.body.S,
-              user: comment.M.user.S
-            })));
-          } else {
-            console.error('Error fetching comments:', response.statusText);
-          }
-        } catch (error) {
-          console.error('Error fetching comments:', error);
-        }
-      };
-  
-      fetchComments();
-    }, [postId]);
-    */
-   
-      const [post, setPost] = useState({});
-      const [loading, setLoading] = useState(true);
-    
+    //reads comments 
       useEffect(() => {
         fetch('https://cniwk2kqhbb5cyvwh4smrufsgy0trsdq.lambda-url.eu-north-1.on.aws/'+ID)
           .then(response => response.json())
           .then(data => {
-            setPost(data.Items[0]);
+            console.log(data)
+            console.log(data.Items[0].comments_dictionary)
+            save(data.Items[0].comments_dictionary); // Save the comments array
+            setPost(data); 
           })
           .catch(error => {
             console.error('Error fetching data:', error);
           });
-      }, []);
+      }, [refresh]);
+      const save = (commentsArray) => {
+        console.log(commentsArray);
+        localStorage.setItem('comments', JSON.stringify(commentsArray));
+        setComments(commentsArray);
     
+      };
+      console.log(comments);
 
   //writes comments
   function submitComment() {
     const commentText = document.getElementById('commentText').value; // Get the comment from the textarea
-  
-    // Perform any necessary validation or data formatting before sending the comment to the Lambda function
   
     // Make a fetch request to send the comment to the Lambda function
     fetch('https://atjp55wjrqu66gndwgzxrrr7ke0ecsip.lambda-url.eu-north-1.on.aws/', {
@@ -102,15 +69,14 @@ const comments = [
     .then(data => {
       // Handle the response from the Lambda function
       console.log('Response from the Lambda function:', data);
-      // Optionally, update the UI or perform any other necessary actions after submitting the comment
+      document.getElementById('commentText').value = '';
+      setRefresh(true);
     })
     .catch(error => {
       // Handle any error that occurred
       console.error('Error calling the Lambda function:', error);
     });
-  
-    // Optionally, you can clear the textarea after submitting the comment
-    // document.getElementById('commentText').value = '';
+ 
   }
 
     return (
@@ -126,8 +92,8 @@ const comments = [
           <h6 className="card-title" style={{marginTop:"-2.5rem", marginLeft: "1.2rem",color:"white"}}>by {user} </h6>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
-        <p className="card-text" style={{marginLeft: "1.2rem",marginTop:"-2rem",fontSize:"1rem",fontWeight:"bold",color:"#3B9B95"}}>x likes</p>
-        <p className="card-text" style = {{marginLeft: "1.2rem", paddingTop:"0rem",marginTop:"-2rem",fontSize:"1rem",fontWeight:"bold",color:"#3B9B95"}}>x comments</p>
+        <p className="card-text" style={{marginLeft: "1.2rem",marginTop:"-2rem",fontSize:"1rem",fontWeight:"bold",color:"#3B9B95"}}>{likes} likes</p>
+        <p className="card-text" style = {{marginLeft: "1.2rem", paddingTop:"0rem",marginTop:"-2rem",fontSize:"1rem",fontWeight:"bold",color:"#3B9B95"}}>{commCount} comments</p>
       </div>
       </div>
         </Container>
@@ -144,19 +110,19 @@ const comments = [
   </Card>
 
   <Container  style ={{marginTop:"2rem"}}>
-
- <Card style={{marginLeft:"-5.5rem",marginRight:"6.2rem", backgroundColor: "#DAEFEF",borderRadius:"2rem",marginTop:"-1.3rem",width:"83rem"}}>
+  {comments.map((comment, index) => (
+ <Card key={index}  className={`mt-4 ${index === comments.length - 1 ? 'last-post' : ''}`} style={{marginLeft:"-5.5rem",marginRight:"6.2rem", backgroundColor: "#DAEFEF",borderRadius:"2rem",marginTop:"-1.3rem",width:"83rem"}}>
     <Card.Body>
       <div className="row">
         <div className="col-sm-6">
-        <h6 className="card-title" style={{ marginLeft: "1.3rem",color:"#5E5E5E",fontWeight:"bold",paddingTop:"1rem",marginBottom:"-1rem"}}>comment.user</h6>
-          <p className="card-text" style= {{marginLeft: "1.3rem",fontSize:"1rem",fontWeight:"bold"}}>comment.body</p>
-        <p className="card-text" style={{marginLeft: "1.3rem",fontSize:"0.8rem",fontWeight:"bold",color:"#000000",paddingBottom: "1.3rem",marginTop:"-0.9rem"}}>comment.likes likes</p>
+        <h6 className="card-title" style={{ marginLeft: "1.3rem",color:"#5E5E5E",fontWeight:"bold",paddingTop:"1rem",marginBottom:"-1rem"}}>{comment.user}</h6>
+          <p className="card-text" style= {{marginLeft: "1.3rem",fontSize:"1rem",fontWeight:"bold"}}>{comment.body}</p>
+        <p className="card-text" style={{marginLeft: "1.3rem",fontSize:"0.8rem",fontWeight:"bold",color:"#000000",paddingBottom: "1.3rem",marginTop:"-0.9rem"}}>{comment.likes} likes</p>
           </div>
       </div>
     </Card.Body>
   </Card>
-
+))}
 </Container>
 
 <footer className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>

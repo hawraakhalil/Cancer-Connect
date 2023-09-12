@@ -9,6 +9,8 @@ import SendIcon from '@mui/icons-material/Send';
 import SearchIcon from '@mui/icons-material/Search';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import images from './images.png';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import IconButton from '@mui/material/IconButton';
 
 
 
@@ -47,6 +49,7 @@ function Feed() {
 //we are calling the backend function to create new posts
   const [newPostTitle, setNewPostTitle] = useState('');
   const [newPostBody, setNewPostBody] = useState('');
+  const [likes, setLikes] = useState({});
 
   const createPost = async (newPost) => {
     try {
@@ -84,17 +87,44 @@ function Feed() {
     }
   };
 
+  //calling function that adds likes
+  const handleLikeClick = (postId) => {
+    console.log("hi")
+    // Call the Lambda function to increment the like counter
+    fetch('https://y5doj3ikh4jauvp6b5dx7qw6t40vnjpm.lambda-url.eu-north-1.on.aws/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ postId }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to update likes');
+        }
+        // Handle the success response, e.g. update UI or show a message
+      })
+      .catch((error) => {
+        console.error('Error updating likes:', error);
+        // Handle the error, e.g., show an error message to the user
+      });
+  };
+
   //When you click on the view acc, go to the profile page 
   const handleClick = () => {
     window.location.href = "/profile";
   }; 
-  const handleClick2 = (postTitle,postBody,postUser,postID,posttime) => {
+
+
+  const handleClick2 = (postTitle,postBody,postUser,postID,posttime,postLikes,postComments) => {
   const title = encodeURIComponent(postTitle);
   const body = encodeURIComponent(postBody);
   const user = encodeURIComponent(postUser);
   const ID = encodeURIComponent(postID);
   const timestamp= encodeURIComponent(posttime);
-  window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}`;
+  const likes = encodeURIComponent(postLikes);
+  const commCount = encodeURIComponent(postComments);
+  window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}&likes=${likes}&commCount=${commCount}`;
   }; 
 
 
@@ -132,18 +162,21 @@ function Feed() {
   ) : (
 
   <Container style={{marginTop:"3rem", marginBottom: "3rem"}}>
+    
   {posts.map((post, index) => (
-  <Card  onClick={() => handleClick2(post.title,post.body,post.username,post.ID,post.timestamp)} key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem",marginTop:"-1rem" }}>
+    
+  <Card  onClick={() => handleClick2(post.title,post.body,post.username,post.ID,post.timestamp,post.likes,post.comment_count)} key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem",marginTop:"-1rem" }}>
     <Card.Body>
       <div className="row">
         <div className="col-sm-6">
-          <h2 className="card-title" style={{ marginTop: "3rem",marginLeft: "1rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
+          <h2 className="card-title" style={{ marginTop: "3rem",marginLeft: "1.3rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
           <h6 className="card-title" style={{marginTop:"-2rem", marginLeft: "1.3rem",color:"#5E5E5E",fontWeight:"bold"}}>{post.username}</h6>
           <p className="card-text" style= {{marginLeft: "1.3rem",paddingBottom: "0.7rem", paddingTop:"0rem",marginTop:"-1.8rem",fontSize:"1.05rem",fontWeight:"bold"}}>{post.body}</p>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
-        <p className="card-text" style={{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>x likes</p>
-        <p className="card-text" style = {{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>x comments</p>
+          <IconButton onClick={() => handleLikeClick(post.ID)} style={{marginLeft: "1.3rem",marginTop:"-1.1rem",fontSize:"2.2rem",fontWeight:"bold",color:"#EFBCDB"}}><FavoriteIcon/>  </IconButton>
+        <p className="card-text" style={{marginLeft: "0.6rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>{post.likes} likes</p>
+        <p className="card-text" style = {{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>{post.comment_count} comments</p>
       </div>
       </div>
     </Card.Body>
