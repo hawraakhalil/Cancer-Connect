@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send'; 
 import Container from '@mui/material/Container';
@@ -7,11 +7,79 @@ import Avatar from '@mui/material/Avatar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import profile from './profile.png';
+import Card from 'react-bootstrap/Card'
 import badge from './badge.png';
 import '../App.css';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import IconButton from '@mui/material/IconButton';
+
 
 
 function Profile () {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const username = urlParams.get('user');
+  const [userInfo, setUserInfo] = useState({});
+
+
+//calling function that adds likes
+const handleLikeClick = (postId,timestamp) => {
+  console.log("hi")
+  // Call the Lambda function to increment the like counter
+  fetch('https://y5doj3ikh4jauvp6b5dx7qw6t40vnjpm.lambda-url.eu-north-1.on.aws/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ postId ,timestamp}),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to update likes');
+      }
+      // Handle the success response, e.g. update UI or show a message
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.error('Error updating likes:', error);
+      // Handle the error, e.g., show an error message to the user
+    });
+};
+
+//When you click on the view acc, go to the profile page 
+
+
+
+const handleClick2 = (postTitle,postBody,postUser,postID,posttime,postLikes,postComments) => {
+const title = encodeURIComponent(postTitle);
+const body = encodeURIComponent(postBody);
+const user = encodeURIComponent(postUser);
+const ID = encodeURIComponent(postID);
+const timestamp= encodeURIComponent(posttime);
+const likes = encodeURIComponent(postLikes);
+const commCount = encodeURIComponent(postComments);
+window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}&likes=${likes}&commCount=${commCount}`;
+}; 
+
+
+
+
+    //fetching user info:
+    useEffect(() => {
+      fetch('https://ocgkhxrto7csva35z5eyklkjvy0ahxnz.lambda-url.eu-north-1.on.aws/?username=' + username)
+      .then(response => response.json())
+      .then(data => {
+        {
+          // Store the user information in state
+          setUserInfo(data);
+
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }, [username]);
+    console.log(userInfo)
 
     //handleClick takes you to the feed page
     const handleClick = () => {
@@ -70,13 +138,13 @@ function Profile () {
 </div>
   </header>
   <body>
-    <h1 style={{color:"#155A56", paddingLeft:"4rem",marginBottom:"0rem",marginTop:"-0.5rem"}}>Name LastName</h1>
+    <h1 style={{color:"#155A56", paddingLeft:"4rem",marginBottom:"0rem",marginTop:"-0.5rem"}}>{userInfo.First_name} {userInfo.Last_name}</h1>
     <div style={{ display: "flex", alignItems: "center" }}>
-        <h3 style={{ color: "#8C9898", paddingLeft: "4rem", margin: "0" }}>@username</h3>
+        <h3 style={{ color: "#8C9898", paddingLeft: "4rem", margin: "0" }}>@{userInfo.username}</h3>
 
     </div>
     <h5 style={{color:"#EFBCDB", paddingLeft: "5.6rem",margin:"0",paddingTop:"0.4rem"}}>Status</h5>
-    <h5 style={{color:"#EFBCDB", paddingLeft: "5.6rem",margin:"0",paddingTop:"0.1rem"}}>DD Mon Year</h5>
+    <h5 style={{color:"#EFBCDB", paddingLeft: "5.6rem",margin:"0",paddingTop:"0.1rem"}}>{userInfo.Day} {userInfo.Month} {userInfo.Year}</h5>
     <h5 style={{color:"#EFBCDB", paddingLeft: "5.6rem",margin:"0",paddingTop:"0.1rem"}}>Location</h5>
     <div>
       {textFieldsData.map((textField) => (
@@ -95,6 +163,7 @@ function Profile () {
       ))}
     </div>
   </body>
+  
   </>
     );
 

@@ -14,11 +14,10 @@ function SignUp () {
     password: "",
     confirm_password:"",
     email : "",
-    DOB: "",
     Phone_Number: "",
-    day:"",
-    month:"",
-    year:"",
+    Day:"",
+    Month:"",
+    Year:"",
     areaCode:"",
 
   });
@@ -41,9 +40,9 @@ function SignUp () {
       else if (!formData.Last_name ) {setErrorMessage('Please enter your last name.');}
       else if (!formData.email ) {setErrorMessage('Please enter your email.');}
       else if (!formData.areaCode ) {setErrorMessage('Please enter your area code.');}
-      else if (!formData.day ) {setErrorMessage('Please enter your date of birth.');}
-      else if (!formData.month ) {setErrorMessage('Please enter your date of birth..');}
-      else if (!formData.year ) {setErrorMessage('Please enter your date of birth..');}
+      else if (!formData.Day ) {setErrorMessage('Please enter your date of birth.');}
+      else if (!formData.Month ) {setErrorMessage('Please enter your date of birth..');}
+      else if (!formData.Year ) {setErrorMessage('Please enter your date of birth..');}
       else if (!formData.Phone_Number ) {setErrorMessage('Please enter your phone number.');}
       else if (!formData.username ) {setErrorMessage('Please enter your username.');}
       else if (!formData.password ) {setErrorMessage('Please enter your password.');}
@@ -61,7 +60,8 @@ function SignUp () {
   
       if (response.ok) {
         // Handle successful API response
-        window.location.href = '/feed';
+        const user = encodeURIComponent(formData.username);
+        window.location.href = `/feed?user=${user}`;
         console.log("API request successful");
       } else {
         // Handle error API response
@@ -135,9 +135,9 @@ function SignUp () {
       </Card.Body>
       <Card.Body style={{ display: "flex", alignItems: "center" }}>
       <select
-    id="day"
-    name="day"
-    value={formData.day}
+    id="Day"
+    name="Day"
+    value={formData.Day}
     onChange={handleInputChange}
     style={{
       marginLeft: "2rem",
@@ -158,9 +158,9 @@ function SignUp () {
     {/* Generate day options dynamically using JavaScript */}
   </select>
   <select
-    id="month"
-    name="month"
-    value={formData.month}
+    id="Month"
+    name="Month"
+    value={formData.Month}
     onChange={handleInputChange}
     style={{
       marginLeft: "1rem",
@@ -188,9 +188,9 @@ function SignUp () {
   </select>
 
   <select
-    id="year"
-    name="year"
-    value={formData.year}
+    id="Year"
+    name="Year"
+    value={formData.Year}
     onChange={handleInputChange}
     style={{
       marginLeft: "1rem",
