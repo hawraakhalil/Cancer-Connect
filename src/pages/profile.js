@@ -80,10 +80,12 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
       });
   }, [username]);
     console.log(userInfo)
-
+    const Posts= userInfo.Posts;
+    console.log(Posts)
     //handleClick takes you to the feed page
     const handleClick = () => {
-        window.location.href = "/feed";
+        const user = encodeURIComponent(username);
+        window.location.href = `/feed?user=${user}`;
       }; 
       //te badges text fields
       const textFieldsData = [

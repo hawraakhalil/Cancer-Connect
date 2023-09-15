@@ -20,10 +20,10 @@ function Feed() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [refresh, setRefresh] = useState(false);
+
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-
-  const username = urlParams.get('user')
+  const username = urlParams.get('user');
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -123,7 +123,8 @@ function Feed() {
   const timestamp= encodeURIComponent(posttime);
   const likes = encodeURIComponent(postLikes);
   const commCount = encodeURIComponent(postComments);
-  window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}&likes=${likes}&commCount=${commCount}`;
+  const username2 = encodeURIComponent(username);
+  window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}&likes=${likes}&commCount=${commCount}&username2=${username2}`;
   }; 
 
   const handleClick3 = (postUser) => {
@@ -172,7 +173,7 @@ function Feed() {
       <div className="row">
         <div className="col-sm-6">
           <h2 className="card-title" style={{ marginTop: "3rem",marginLeft: "1.3rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
-          <h6 className="card-title" style={{marginTop:"-2rem", marginLeft: "1.3rem",color:"#5E5E5E",fontWeight:"bold"}}>{post.username}</h6>
+          <h6 className="card-title" style={{marginTop:"-2rem", marginLeft: "1.3rem",color:"#5E5E5E",fontWeight:"bold"}}>by {post.username}</h6>
           <p className="card-text" style= {{marginLeft: "1.3rem",paddingBottom: "0.7rem", paddingTop:"0rem",marginTop:"-1.8rem",fontSize:"1.05rem",fontWeight:"bold"}}>{post.body}</p>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>

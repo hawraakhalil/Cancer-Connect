@@ -8,9 +8,6 @@ import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
 function Post() {
 
-  const handleClick = () => {
-    window.location.href = "/feed";
-  };
 
   const [refresh, setRefresh] = useState(false);
   const [post, setPost] = useState({});
@@ -20,11 +17,17 @@ function Post() {
 
   const title = urlParams.get('title');
   const body = urlParams.get('body');
-  const user = urlParams.get('user');
+  const username = urlParams.get('user');
   const ID = urlParams.get('ID');
   const timestamp = urlParams.get("timestamp");
   const likes = urlParams.get("likes");
   const commCount = urlParams.get("commCount");
+  const username2 = urlParams.get("username2");
+ 
+  const handleClick = () => {
+    const user = encodeURIComponent(username2);
+    window.location.href = `/feed?user=${user}`;
+  };
 
   //reads comments 
   useEffect(() => {
@@ -60,7 +63,7 @@ function Post() {
       },
       body: JSON.stringify({
         ID: ID,
-        user: user,
+        user: username,
         body: commentText, // Pass the comment in the request body
         timestamp: timestamp
       })
@@ -89,7 +92,7 @@ function Post() {
           <div className="row">
             <div className="col-sm-6">
               <h2 className="card-title" style={{ marginTop: "-0.5rem", marginLeft: "1rem", color: "white", paddingTop: "0rem", paddingBottom: "0rem", fontSize: "2.7rem" }}>{title}</h2>
-              <h6 className="card-title" style={{ marginTop: "-2.5rem", marginLeft: "1.2rem", color: "white" }}>by {user} </h6>
+              <h6 className="card-title" style={{ marginTop: "-2.5rem", marginLeft: "1.2rem", color: "white" }}>by {username} </h6>
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
               <p className="card-text" style={{ marginLeft: "1.2rem", marginTop: "-2rem", fontSize: "1rem", fontWeight: "bold", color: "#3B9B95" }}>{likes} likes</p>

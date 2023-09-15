@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route,Navigate, Link} from "react-router-dom";
 import Authentication from "./pages/authentication"
 import Feed from './pages/feed';
 import Signup from './pages/signup';
@@ -14,12 +14,13 @@ function App() {
     <>
     <Router>
       <Routes>
-      <Route path="/" exact element={<Authentication />} />
+        <Route path="/" exact element={<Authentication />} />
         <Route path="/feed" exact element={<Feed />} />
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/profile" exact element={<Profile />} />
         <Route path="/post" exact element={<Post />} />
         <Route path="/password" exact element={<Password />} />
+        <Route path="*" exact element={<Navigate to="/" />} />
         </Routes>
     </Router>
   </>
