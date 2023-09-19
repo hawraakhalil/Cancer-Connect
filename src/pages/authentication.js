@@ -88,8 +88,8 @@ const handleKeyDown = (event) => {
       <Button onClick={handleClick} style ={{marginTop:"0.8rem",marginLeft:"5rem",width:"10rem",height:"3.5rem",backgroundColor:"#FFE3F4",borderColor:"#FFE3F4",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold"}}>Login</Button>
       
       <p style={{ fontSize: '0.9rem', marginTop: '1rem', textAlign: 'center' ,marginBottom:'0.4rem'}}>
-        Don't have an account? Create a new one  
-        <Link to="/signup" style={{ color: '#FF00FF', textDecoration: 'underline' }}> here</Link>.
+        Don't have an account? Create a new one&nbsp;   
+        <Link to="/signup" style={{ color: '#FF00FF', textDecoration: 'underline' }}>here</Link>.
       </p>
       {errorMessage && <p style ={{fontSize:"0.9rem",marginTop:"0.1rem",textAlign: 'center'}}>{errorMessage}</p>}
       </div>

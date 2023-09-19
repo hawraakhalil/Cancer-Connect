@@ -206,7 +206,7 @@ function SignUp () {
   >
     <option value="" disabled selected> Year</option>
     {Array.from({ length: 104 }, (_, i) => (
-      <option key={i} value={1920 + i}>{1920 + i}</option>
+      <option key={i} value={2023 - i}>{2023 - i}</option>
     ))}
   </select>
         </Card.Body>
