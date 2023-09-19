@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/bootstrap.css";
 import Container from '@mui/material/Container';
 import Card from 'react-bootstrap/Card'  
 import Form from 'react-bootstrap/Form';
@@ -6,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 
 
 function SignUp () {
-  
+  const [phone, setPhone] = useState("");
   const [formData, setFormData] = useState({
     First_name: "",
     Last_name: "",
@@ -116,13 +118,17 @@ function SignUp () {
       />
       </Card.Body>
       <Card.Body style={{ display: "flex", alignItems: "center" }}>
-      <Form.Control
+      <PhoneInput
         type="text"
         placeholder="  Area Code"
         name="areaCode"
-        value={formData.areaCode}
-        onChange={handleInputChange}
-        style ={{ paddingLeft:"1rem",marginLeft:"2rem",width:"10rem",height:"2.8rem",borderRadius:"1.5rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem"}}
+        country={"lb"}
+        enableSearch={true}
+        value={phone}
+        onChange={(phone) => setPhone(phone)}
+        inputStyle = {{width:"10rem",borderRadius:"2rem",height:"3.1rem",paddingLeft:"3.8rem"}}
+        buttonStyle={{paddingLeft:"0.5rem"}}
+        style ={{ paddingLeft:"1rem",marginLeft:"1rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem",marginRight:"-27rem"}}
       />
        <Form.Control
         type="tel"
@@ -130,7 +136,7 @@ function SignUp () {
         name="Phone_Number"
         value={formData.Phone_Number}
         onChange={handleInputChange}
-        style ={{paddingLeft:"1rem", marginLeft:"1rem",width:"19.2rem",height:"2.8rem",borderRadius:"1.5rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem"}}
+        style ={{paddingLeft:"1rem", marginLeft:"1rem",width:"20rem",height:"2.8rem",borderRadius:"1.5rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem"}}
       />
       </Card.Body>
       <Card.Body style={{ display: "flex", alignItems: "center" }}>

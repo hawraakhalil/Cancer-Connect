@@ -88,7 +88,7 @@ function Feed() {
   };
 
   //calling function that adds likes
-  const handleLikeClick = (postId,timestamp) => {
+  const handleLikeClick = (postId,timestamp,username) => {
     console.log("hi")
     // Call the Lambda function to increment the like counter
     fetch('https://y5doj3ikh4jauvp6b5dx7qw6t40vnjpm.lambda-url.eu-north-1.on.aws/', {
@@ -96,7 +96,7 @@ function Feed() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ postId ,timestamp}),
+      body: JSON.stringify({ postId ,timestamp,username}),
     })
       .then((response) => {
         if (!response.ok) {

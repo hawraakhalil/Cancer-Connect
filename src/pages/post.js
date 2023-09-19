@@ -79,7 +79,6 @@ function Post() {
         // Handle any error that occurred
         console.error('Error calling the Lambda function:', error);
       });
-
   }
 
   return (
