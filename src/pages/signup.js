@@ -252,18 +252,18 @@ function SignUp () {
         </Card.Body>
         <Card.Body style={{ display: "flex",flexDirection: "column", alignItems: "center" }}>
        <div style={{ display: "flex", marginBottom: "1.5rem" }}>
-       <div style={{ marginRight: "1.5rem" }}>
+       <div style={{ marginRight: "0.5rem" }}>
          <PasswordChecklist
             rules = {["capital", "specialChar","number", "minLength" , "match"]}
             minLength = {7}
             value = {formData.password}
             valueAgain = {formData.confirm_password}
-            style ={{fontSize:"0.9rem",marginLeft:"1rem",fontWeight:"bold",marginTop:"2.5rem",marginRight:"0.1rem"}}
-            iconSize="10"
+            style ={{fontSize:"0.9rem",marginLeft:"0.1rem",fontWeight:"bold",marginTop:"2.5rem",marginRight:"1rem"}}
+            iconSize="17"
          />
       </div>
       <div>
-       <Button onClick={handleSubmit} type="submit" style ={{marginTop:"3rem",width:"14rem",height:"5rem",backgroundColor:"#FFE3F4",borderColor:"#FFE3F4",borderRadius:"2.3rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}>Create Account</Button>
+       <Button onClick={handleSubmit} type="submit" style ={{marginTop:"3.7rem",width:"14rem",height:"5rem",backgroundColor:"#FFE3F4",borderColor:"#FFE3F4",borderRadius:"2.3rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}>Create Account</Button>
        </div>
        </div>
        {errorMessage && <p style ={{fontSize:"0.9rem",marginTop:"-2rem",marginLeft:"18rem"}}>{errorMessage}</p>}
