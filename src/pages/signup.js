@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button'
 import PasswordChecklist from "react-password-checklist";
 
 
+
 function SignUp () {
   const [password, setPassword] = useState("Abc.@678");
   const [matchPassword, setMatchPassword] = useState("ABC.@678");
@@ -120,6 +121,7 @@ function SignUp () {
       />
       </Card.Body>
       <Card.Body style={{ display: "flex", alignItems: "center" }}>
+        <div style={{width:"30px"}}>
       <PhoneInput
         type="text"
         placeholder="  Area Code"
@@ -130,15 +132,17 @@ function SignUp () {
         onChange={(phone) => setPhone(phone)}
         inputStyle = {{width:"10rem",borderRadius:"2rem",height:"3.1rem",paddingLeft:"3.8rem"}}
         buttonStyle={{paddingLeft:"0.5rem"}}
+        containerStyle={{width:"1rem"}}
         style ={{ paddingLeft:"1rem",marginLeft:"1rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem",marginRight:"-27rem"}}
-      ></PhoneInput>
+      />
+      </div>
        <Form.Control
         type="tel"
         placeholder="  Phone Number"
         name="Phone_Number"
         value={formData.Phone_Number}
         onChange={handleInputChange}
-        style ={{paddingLeft:"1rem", marginLeft:"1rem",width:"20rem",height:"2.8rem",borderRadius:"1.5rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem"}}
+        style ={{paddingLeft:"1rem", marginLeft:"11.6rem",width:"20rem",height:"2.8rem",borderRadius:"1.5rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem"}}
       />
       </Card.Body>
       <Card.Body style={{ display: "flex", alignItems: "center" }}>
@@ -254,7 +258,7 @@ function SignUp () {
             minLength = {7}
             value = {formData.password}
             valueAgain = {formData.confirm_password}
-            style ={{fontSize:"0.9rem",marginLeft:"1rem",fontWeight:"bold",marginTop:"2.5rem",marginRight:"0.4rem"}}
+            style ={{fontSize:"0.9rem",marginLeft:"1rem",fontWeight:"bold",marginTop:"2.5rem",marginRight:"0.1rem"}}
             iconSize="10"
          />
       </div>
