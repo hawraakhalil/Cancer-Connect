@@ -5,9 +5,12 @@ import Container from '@mui/material/Container';
 import Card from 'react-bootstrap/Card'  
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
+import PasswordChecklist from "react-password-checklist";
 
 
 function SignUp () {
+  const [password, setPassword] = useState("Abc.@678");
+  const [matchPassword, setMatchPassword] = useState("ABC.@678");
   const [phone, setPhone] = useState("");
   const [formData, setFormData] = useState({
     First_name: "",
@@ -41,7 +44,7 @@ function SignUp () {
       if (!formData.First_name ) {setErrorMessage('Please enter your first name.');}
       else if (!formData.Last_name ) {setErrorMessage('Please enter your last name.');}
       else if (!formData.email ) {setErrorMessage('Please enter your email.');}
-      else if (!formData.areaCode ) {setErrorMessage('Please enter your area code.');}
+   
       else if (!formData.Day ) {setErrorMessage('Please enter your date of birth.');}
       else if (!formData.Month ) {setErrorMessage('Please enter your date of birth..');}
       else if (!formData.Year ) {setErrorMessage('Please enter your date of birth..');}
@@ -78,7 +81,6 @@ function SignUp () {
     }
   };
   
-
 
 
     return (
@@ -129,7 +131,7 @@ function SignUp () {
         inputStyle = {{width:"10rem",borderRadius:"2rem",height:"3.1rem",paddingLeft:"3.8rem"}}
         buttonStyle={{paddingLeft:"0.5rem"}}
         style ={{ paddingLeft:"1rem",marginLeft:"1rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem",marginRight:"-27rem"}}
-      />
+      ></PhoneInput>
        <Form.Control
         type="tel"
         placeholder="  Phone Number"
@@ -233,20 +235,36 @@ function SignUp () {
         onChange={handleInputChange}
         style ={{paddingLeft:"1rem", marginLeft:"2rem",width:"31.5rem",height:"2.8rem",borderRadius:"1.5rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem"}}
       />
+      
+      
         <Form.Control
         type="password"
         placeholder="  Confirm Password"
         name="confirm_password"
         value={formData.confirm_password}
         onChange={handleInputChange}
-        style ={{paddingLeft:"1rem", marginLeft:"2rem",width:"31.5rem",height:"2.8rem",borderRadius:"1.5rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem"}}
+        style ={{paddingLeft:"1rem", marginLeft:"2rem",width:"31.5rem",height:"2.8rem",borderRadius:"1.5rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"0.9rem",marginBottom:"-8rem"}}
       />
-      <h1 style={{color:"black", paddingLeft:"6rem",paddingRight:"6rem",marginBottom:"-5rem", fontSize:"0.9rem",textAlign: 'center',marginTop:'0.75rem' }}>Your password must include at least 8 characters, and of which at least one has to be a lowercase letter, one uppercase letter, a number, and a special character. </h1>
-       <Button onClick={handleSubmit} type="submit" style ={{marginTop:"5.5rem",marginLeft:"11rem",width:"14rem",height:"5rem",backgroundColor:"#FFE3F4",borderColor:"#FFE3F4",borderRadius:"2.3rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}>Create Account</Button>
-       <div style={{ display: "flex", justifyContent: "center", marginTop: "0.4rem"}}>
-       {errorMessage && <p style ={{fontSize:"0.9rem",marginTop:"0rem"}}>{errorMessage}</p>}
+        </Card.Body>
+        <Card.Body style={{ display: "flex",flexDirection: "column", alignItems: "center" }}>
+       <div style={{ display: "flex", marginBottom: "1.5rem" }}>
+       <div style={{ marginRight: "1.5rem" }}>
+         <PasswordChecklist
+            rules = {["capital", "specialChar","number", "minLength" , "match"]}
+            minLength = {7}
+            value = {formData.password}
+            valueAgain = {formData.confirm_password}
+            style ={{fontSize:"0.9rem",marginLeft:"1rem",fontWeight:"bold",marginTop:"2.5rem",marginRight:"0.4rem"}}
+            iconSize="10"
+         />
+      </div>
+      <div>
+       <Button onClick={handleSubmit} type="submit" style ={{marginTop:"3rem",width:"14rem",height:"5rem",backgroundColor:"#FFE3F4",borderColor:"#FFE3F4",borderRadius:"2.3rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}>Create Account</Button>
        </div>
+       </div>
+       {errorMessage && <p style ={{fontSize:"0.9rem",marginTop:"-2rem",marginLeft:"18rem"}}>{errorMessage}</p>}
       </Card.Body>
+     
       </Card>
       </Form>
       </Container>
