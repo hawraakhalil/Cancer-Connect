@@ -103,7 +103,7 @@ function Feed() {
           console.error(error);
         }
         // Handle the success response, e.g. update UI or show a message
-        window.location.reload();
+        //window.location.reload();
       })
       .catch((error) => {
         console.error('Error updating likes:', error);
