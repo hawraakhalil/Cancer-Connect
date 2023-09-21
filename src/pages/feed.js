@@ -168,7 +168,7 @@ function Feed() {
     
   {posts.map((post, index) => (
   
-  <Card  onClick={() => handleClick2(post.title,post.body,post.username,post.ID,post.timestamp,post.likes,post.comment_count)} key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem",marginTop:"-1rem" }}>
+  <Card  onClick={() => handleClick2(post.title,post.body,post.username,post.ID,post.timestamp,post.likes,post.comment_count)} key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem",marginTop:"-1rem" }}>
     <Card.Body>
       <div className="row">
         <div className="col-sm-6">

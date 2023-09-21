@@ -6,6 +6,8 @@ import Signup from './pages/signup';
 import Profile from './pages/profile';
 import Post from './pages/post';
 import Password from './pages/password';
+import Avatar from './pages/avatar';
+
 
 import './App.css'
 
@@ -19,6 +21,7 @@ function App() {
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/profile" exact element={<Profile />} />
         <Route path="/post" exact element={<Post />} />
+        <Route path="/avatar" exact element={<Avatar />} />
         <Route path="/password" exact element={<Password />} />
         <Route path="*" exact element={<Navigate to="/" />} />
         </Routes>

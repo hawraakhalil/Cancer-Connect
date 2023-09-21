@@ -9,6 +9,10 @@ import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import profile from './profile.png';
 import Card from 'react-bootstrap/Card'
 import badge from './badge.png';
+import avatar1 from './avatar1.png';
+import avatar2 from './avatar2.png';
+import avatar3 from './avatar3.png';
+import avatar4 from './avatar4.png';
 import '../App.css';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
@@ -135,8 +139,8 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
         />
   </Container>
   <div class="avatar-container">
-  <img src={profile} alt="Avatar" class="avatar-image"></img>
-  <img src={badge} alt="badge" class="small-image"></img>
+  <img src={avatar3} alt="Avatar" class="avatar-image" style = {{marginLeft:"4.9rem"}}></img>
+
 </div>
   </header>
   <body>

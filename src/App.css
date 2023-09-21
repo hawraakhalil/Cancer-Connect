@@ -25,7 +25,7 @@ body {
 .avatar-container {
   position: relative;
   display: inline-flex;
-  flex-direction: column;
+ 
   align-items: center;
 }
 
@@ -34,10 +34,19 @@ body {
   border-radius: 50rem;
   height: 16rem;
    width: 16rem;
-   margin-left:55%;
+   margin-left:5%;
    margin-bottom:-0.7rem;
    margin-top:-4.5rem;
    border: 0.9rem solid #A4D3FF;
+}
+.avatar-image:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.post-card:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  transition: box-shadow 0.3s, background-color 0.3s;
 }
 
 .small-image {
