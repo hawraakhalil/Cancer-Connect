@@ -13,6 +13,10 @@ import avatar1 from './avatar1.png';
 import avatar2 from './avatar2.png';
 import avatar3 from './avatar3.png';
 import avatar4 from './avatar4.png';
+import avatar5 from './avatar5.png';
+import avatar6 from './avatar6.png';
+import avatar7 from './avatar7.png';
+import avatar8 from './avatar8.png';
 import '../App.css';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
@@ -25,6 +29,18 @@ function Profile () {
   const username = urlParams.get('user');
   const [userInfo, setUserInfo] = useState({});
 
+  const avatars = [
+    profile,
+    avatar1,
+    avatar2,
+    avatar3,
+    avatar4,
+    avatar5,
+    avatar6,
+    avatar7,
+    avatar8
+  ];
+  const selectedAvatar = avatars[userInfo.avatar];
 
 //calling function that adds likes
 const handleLikeClick = (postId,timestamp) => {
@@ -118,6 +134,7 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
           readOnly: true,
         },
       ];
+      
 
     return (
         <>
@@ -139,22 +156,22 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
         />
   </Container>
   <div class="avatar-container">
-  <img src={avatar3} alt="Avatar" class="avatar-image" style = {{marginLeft:"4.9rem"}}></img>
+  <img src={selectedAvatar} class="avatar-image" style = {{marginLeft:"4.9rem"}}></img>
 
 </div>
   </header>
   <body>
-    <h1 style={{color:"#155A56", paddingLeft:"4rem",marginBottom:"0rem",marginTop:"-0.5rem"}}>{userInfo.First_name} {userInfo.Last_name}</h1>
+    <h1 style={{color:"#155A56", paddingLeft:"5.5rem",marginBottom:"0rem",marginTop:"-0.5rem"}}>{userInfo.First_name} {userInfo.Last_name}</h1>
     <div style={{ display: "flex", alignItems: "center" }}>
-        <h3 style={{ color: "#8C9898", paddingLeft: "4rem", margin: "0" }}>@{userInfo.username}</h3>
+        <h3 style={{ color: "#8C9898", paddingLeft: "5.5rem", margin: "0" }}>@{userInfo.username}</h3>
 
     </div>
-    <h5 style={{color:"#EFBCDB", paddingLeft: "5.6rem",margin:"0",paddingTop:"0.4rem"}}>Status</h5>
-    <h5 style={{color:"#EFBCDB", paddingLeft: "5.6rem",margin:"0",paddingTop:"0.1rem"}}>{userInfo.Day} {userInfo.Month} {userInfo.Year}</h5>
-    <h5 style={{color:"#EFBCDB", paddingLeft: "5.6rem",margin:"0",paddingTop:"0.1rem"}}>Location</h5>
+    <h5 style={{color:"#EFBCDB", paddingLeft: "7rem",margin:"0",paddingTop:"0.4rem"}}>Status</h5>
+    <h5 style={{color:"#EFBCDB", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>{userInfo.Day} {userInfo.Month} {userInfo.Year}</h5>
+    <h5 style={{color:"#EFBCDB", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>Location</h5>
     <div>
       {textFieldsData.map((textField) => (
-        <div key={textField.id} style={{ paddingLeft: "4rem",paddingTop:"0.5rem",paddingBottom:"0.1rem"}}>
+        <div key={textField.id} style={{ paddingLeft: "5.5rem",paddingTop:"0.5rem",paddingBottom:"0.1rem"}}>
           <TextField
             id={`standard-read-only-input${textField.id}`}
             label={textField.label}

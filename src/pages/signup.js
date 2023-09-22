@@ -37,7 +37,7 @@ function SignUp () {
     });
   };
 
-  //call the function to store the input entered
+  //sends user info to create acc
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -67,7 +67,7 @@ function SignUp () {
       if (response.ok) {
         // Handle successful API response
         const user = encodeURIComponent(formData.username);
-        window.location.href = `/feed?user=${user}`;
+        window.location.href = `/avatar?user=${user}`;
         console.log("API request successful");
       } else {
         // Handle error API response
@@ -81,6 +81,8 @@ function SignUp () {
       console.error("Error:", error);
     }
   };
+
+
   
 
 
