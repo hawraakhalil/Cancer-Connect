@@ -11,11 +11,33 @@ import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import images from './images.png';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
-
+import profile from './profile.png';
+import avatar1 from './avatar1.png';
+import avatar2 from './avatar2.png';
+import avatar3 from './avatar3.png';
+import avatar4 from './avatar4.png';
+import avatar5 from './avatar5.png';
+import avatar6 from './avatar6.png';
+import avatar7 from './avatar7.png';
+import avatar8 from './avatar8.png';
 
 
 
 function Feed() {
+  const avatars = [
+    profile,
+    avatar1,
+    avatar2,
+    avatar3,
+    avatar4,
+    avatar5,
+    avatar6,
+    avatar7,
+    avatar8
+  ];
+
+
+
   //we are calling the backend function to read the posts from the database
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
@@ -168,13 +190,19 @@ function Feed() {
     
   {posts.map((post, index) => (
   
-  <Card  onClick={() => handleClick2(post.title,post.body,post.username,post.ID,post.timestamp,post.likes,post.comment_count)} key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem",marginTop:"-1rem" }}>
+  <Card  onClick={() => handleClick2(post.title,post.body,post.username,post.ID,post.timestamp,post.likes,post.comment_count)} key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem",marginTop:"1rem" }}>
     <Card.Body>
       <div className="row">
         <div className="col-sm-6">
-          <h2 className="card-title" style={{ marginTop: "3rem",marginLeft: "1.3rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
-          <h6 className="card-title" style={{marginTop:"-2rem", marginLeft: "1.3rem",color:"#5E5E5E",fontWeight:"bold"}}>by {post.username}</h6>
-          <p className="card-text" style= {{marginLeft: "1.3rem",paddingBottom: "0.7rem", paddingTop:"0rem",marginTop:"-1.8rem",fontSize:"1.05rem",fontWeight:"bold"}}>{post.body}</p>
+        <div style={{ display: "flex", alignItems: "center" }}>
+        <img src={avatars[post.avatar]} class="avatar-image" style = {{marginLeft:"1.2rem",width:"4rem",height:"4rem",borderWidth:"0.3rem",marginTop:"-1rem"}}></img>
+        <div>
+          <h2 className="card-title" style={{ marginTop: "0.5rem",marginLeft: "1rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
+          <h6 className="card-title" style={{marginTop:"-1.7rem", marginLeft: "1rem",color:"#5E5E5E",fontWeight:"bold"}}>by {post.username}</h6>
+          </div>
+          </div>
+          
+          <p className="card-text" style= {{marginLeft: "2.1rem",paddingBottom: "0.7rem", paddingTop:"0rem",marginTop:"0.1rem",fontSize:"1.05rem",fontWeight:"bold"}}>{post.body}</p>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
           <IconButton onClick={(e) => { e.stopPropagation();  handleLikeClick(post.ID, post.timestamp,username);}} style={{marginLeft: "1.3rem",marginTop:"-1.1rem",fontSize:"2.2rem",fontWeight:"bold",color:"#EFBCDB"}}><FavoriteIcon/>  </IconButton>

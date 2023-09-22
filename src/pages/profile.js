@@ -87,20 +87,25 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
 
     //fetching user info:
     useEffect(() => {
-      fetch('https://ocgkhxrto7csva35z5eyklkjvy0ahxnz.lambda-url.eu-north-1.on.aws/?username=' + username)
-        .then(response => response.json())
-        .then(data => {
+      const fetchPosts = async () => {
+      try{
+      const response = await fetch('https://ocgkhxrto7csva35z5eyklkjvy0ahxnz.lambda-url.eu-north-1.on.aws/?username=' + username);
+      if (!response.ok) {
+        throw new Error('Failed to fetch posts');
+      }
+      const data = await response.json();
           // Store the user information in state
           console.log(data)
           setUserInfo(data);
-          console.log(userInfo);
+          console.log(userInfo)
           console.log(data.Posts)
-          setPosts(data.Posts)
+          setPosts(data.Posts);
           console.log(posts)
-        })
-        .catch(error => {
+      }catch(error)  {
           console.error('Error:', error);
-        });
+      }
+        };
+        fetchPosts();
     }, [username]);
    
 
