@@ -5,12 +5,15 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import TextField from '@mui/material/TextField';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
 function Post() {
 
 
   const [refresh, setRefresh] = useState(false);
   const [post, setPost] = useState({});
+  const [error, setError] = useState(null);
   const [comments, setComments] = useState([]);
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -28,6 +31,32 @@ function Post() {
     const user = encodeURIComponent(username2);
     window.location.href = `/feed?user=${user}`;
   };
+
+//calling function that adds likes
+const handleLikeClick = (postId,timestamp,username) => {
+  console.log("hi")
+  // Call the Lambda function to increment the like counter
+  fetch('https://y5doj3ikh4jauvp6b5dx7qw6t40vnjpm.lambda-url.eu-north-1.on.aws/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ postId ,timestamp,username}),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        console.error(error);
+      }
+      // Handle the success response, e.g. update UI or show a message
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.error('Error updating likes:', error);
+      // Handle the error, e.g., show an error message to the user
+    });
+};
+
+
 
   //reads comments 
   useEffect(() => {
@@ -94,8 +123,9 @@ function Post() {
               <h6 className="card-title" style={{ marginTop: "-2.5rem", marginLeft: "1.2rem", color: "white" }}>by {username} </h6>
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <p className="card-text" style={{ marginLeft: "1.2rem", marginTop: "-2rem", fontSize: "1rem", fontWeight: "bold", color: "#3B9B95" }}>{likes} likes</p>
-              <p className="card-text" style={{ marginLeft: "1.2rem", paddingTop: "0rem", marginTop: "-2rem", fontSize: "1rem", fontWeight: "bold", color: "#3B9B95" }}>{commCount} comments</p>
+            <IconButton onClick={(e) => { e.stopPropagation();  handleLikeClick(ID,timestamp,username);}} style={{marginLeft: "0.8rem",marginTop:"-2.5rem",fontSize:"4rem",fontWeight:"bold",color:"#EFBCDB"}}><FavoriteIcon/>  </IconButton>
+              <p className="card-text" style={{ marginLeft: "0.5rem", marginTop: "-1.55rem", fontSize: "1rem", fontWeight: "bold", color: "#3B9B95" }}>{likes} likes</p>
+              <p className="card-text" style={{ marginLeft: "1.2rem", paddingTop: "0rem", marginTop: "-1.55rem", fontSize: "1rem", fontWeight: "bold", color: "#3B9B95" }}>{commCount} comments</p>
             </div>
           </div>
         </Container>

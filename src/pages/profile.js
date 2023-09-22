@@ -195,7 +195,6 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
     </div>
   </body>
   <div>
-
   {posts.map((post, index) => (
 <Card key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`}  style={{width:"65rem",marginLeft:"28rem",marginTop:"-38rem",backgroundColor: "#D7ECEC",borderRadius:"30px" }}>
   <Card.Body>
