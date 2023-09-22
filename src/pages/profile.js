@@ -28,6 +28,7 @@ function Profile () {
   const urlParams = new URLSearchParams(queryString);
   const username = urlParams.get('user');
   const [userInfo, setUserInfo] = useState({});
+  const [posts, setPosts] = useState([]);
 
   const avatars = [
     profile,
@@ -40,7 +41,7 @@ function Profile () {
     avatar7,
     avatar8
   ];
-  const selectedAvatar = avatars[userInfo.avatar];
+ 
 
 //calling function that adds likes
 const handleLikeClick = (postId,timestamp) => {
@@ -87,21 +88,23 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
     //fetching user info:
     useEffect(() => {
       fetch('https://ocgkhxrto7csva35z5eyklkjvy0ahxnz.lambda-url.eu-north-1.on.aws/?username=' + username)
-      .then(response => response.json())
-      .then(data => {
-        {
+        .then(response => response.json())
+        .then(data => {
           // Store the user information in state
+          console.log(data)
           setUserInfo(data);
+          console.log(userInfo);
+          console.log(data.Posts)
+          setPosts(data.Posts)
+          console.log(posts)
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }, [username]);
+   
 
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }, [username]);
-    console.log(userInfo)
-    const Posts= userInfo.Posts;
-    console.log(Posts)
+  
     //handleClick takes you to the feed page
     const handleClick = () => {
         const user = encodeURIComponent(username);
@@ -134,7 +137,7 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
           readOnly: true,
         },
       ];
-      
+      const selectedAvatar = avatars[userInfo.avatar];
 
     return (
         <>
@@ -186,7 +189,27 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
       ))}
     </div>
   </body>
-  
+  <div>
+
+  {posts.map((post, index) => (
+<Card key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`}  style={{width:"65rem",marginLeft:"28rem",marginTop:"-38rem",backgroundColor: "#D7ECEC",borderRadius:"30px" }}>
+  <Card.Body>
+      <div className="row">
+        <div className="col-sm-6">
+          <h2 className="card-title" style={{ marginTop: "3rem",marginLeft: "1.3rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
+          <h6 className="card-title" style={{marginTop:"-2rem", marginLeft: "1.3rem",color:"#5E5E5E",fontWeight:"bold"}}>by {post.username}</h6>
+          <p className="card-text" style= {{marginLeft: "1.3rem",paddingBottom: "0.7rem", paddingTop:"0rem",marginTop:"-1.8rem",fontSize:"1.05rem",fontWeight:"bold"}}>{post.body}</p>
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+          <IconButton onClick={(e) => { e.stopPropagation();}} style={{marginLeft: "1.3rem",marginTop:"-1.1rem",fontSize:"2.2rem",fontWeight:"bold",color:"#EFBCDB"}}><FavoriteIcon/>  </IconButton>
+        <p className="card-text" style={{marginLeft: "0rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>{post.likes} likes</p>
+        <p className="card-text" style = {{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>{post.comment_count} comments</p>
+      </div>
+      </div>
+    </Card.Body>
+</Card>
+ ))}
+  </div>
   </>
     );
 
