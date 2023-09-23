@@ -8,13 +8,34 @@ import TextField from '@mui/material/TextField';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
+import profile from './profile.png';
+import avatar1 from './avatar1.png';
+import avatar2 from './avatar2.png';
+import avatar3 from './avatar3.png';
+import avatar4 from './avatar4.png';
+import avatar5 from './avatar5.png';
+import avatar6 from './avatar6.png';
+import avatar7 from './avatar7.png';
+import avatar8 from './avatar8.png';
 function Post() {
-
+ 
+  const avatars = [
+    profile,
+    avatar1,
+    avatar2,
+    avatar3,
+    avatar4,
+    avatar5,
+    avatar6,
+    avatar7,
+    avatar8
+  ];
 
   const [refresh, setRefresh] = useState(false);
   const [post, setPost] = useState({});
   const [error, setError] = useState(null);
   const [comments, setComments] = useState([]);
+
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
@@ -26,6 +47,7 @@ function Post() {
   const likes = urlParams.get("likes");
   const commCount = urlParams.get("commCount");
   const username2 = urlParams.get("username2");
+  const avatar=urlParams.get("avatar")
  
   const handleClick = () => {
     const user = encodeURIComponent(username2);
@@ -113,25 +135,30 @@ const handleLikeClick = (postId,timestamp,username) => {
   return (
     <>
       <header>
-        <Container fluid="true" className="p-3" style={{ height: "7.5rem", maxWidth: "100rem", backgroundColor: "#A4D6D3", padding: "1.1rem", display: "flex" }}>
-          <ArrowBackIosIcon style={{ height: "5rem", width: "6rem", cursor: "pointer", color: "#FFE3F4" }}
+        <Container fluid="true" className="p-3" style={{ height: "7.5rem", maxWidth: "100rem", backgroundColor: "#5785C0", padding: "1.1rem", display: "flex" }}>
+          <ArrowBackIosIcon style={{ height: "5rem", width: "6rem", cursor: "pointer", color: "#FADA5E" }}
             onClick={handleClick}>
           </ArrowBackIosIcon>
           <div className="row">
             <div className="col-sm-6">
+            <div style={{ display: "flex", alignItems: "center" }}>
+            <img src={avatars[avatar]} class="avatar-image" style = {{marginLeft:"-1rem",width:"5.5rem",height:"5.5rem",borderWidth:"0.3rem",marginTop:"-1.8rem"}}></img>
+              <div>
               <h2 className="card-title" style={{ marginTop: "-0.5rem", marginLeft: "1rem", color: "white", paddingTop: "0rem", paddingBottom: "0rem", fontSize: "2.7rem" }}>{title}</h2>
               <h6 className="card-title" style={{ marginTop: "-2.5rem", marginLeft: "1.2rem", color: "white" }}>by {username} </h6>
             </div>
+            </div>
+            </div>
             <div style={{ display: "flex", alignItems: "center" }}>
-            <IconButton onClick={(e) => { e.stopPropagation();  handleLikeClick(ID,timestamp,username);}} style={{marginLeft: "0.8rem",marginTop:"-2.5rem",fontSize:"4rem",fontWeight:"bold",color:"#EFBCDB"}}><FavoriteIcon/>  </IconButton>
-              <p className="card-text" style={{ marginLeft: "0.5rem", marginTop: "-1.55rem", fontSize: "1rem", fontWeight: "bold", color: "#3B9B95" }}>{likes} likes</p>
-              <p className="card-text" style={{ marginLeft: "1.2rem", paddingTop: "0rem", marginTop: "-1.55rem", fontSize: "1rem", fontWeight: "bold", color: "#3B9B95" }}>{commCount} comments</p>
+            <IconButton onClick={(e) => { e.stopPropagation();  handleLikeClick(ID,timestamp,username);}} style={{marginLeft: "5.5rem",marginTop:"-2.5rem",fontSize:"4rem",fontWeight:"bold",color:"#EFBCDB"}}><FavoriteIcon/>  </IconButton>
+              <p className="card-text" style={{ marginLeft: "0.5rem", marginTop: "-1.55rem", fontSize: "1rem", fontWeight: "bold", color: "#FFFFFF" }}>{likes} likes</p>
+              <p className="card-text" style={{ marginLeft: "1.2rem", paddingTop: "0rem", marginTop: "-1.55rem", fontSize: "1rem", fontWeight: "bold", color: "#FFFFFF" }}>{comments.length} comments</p>
             </div>
           </div>
         </Container>
       </header>
 
-      <Card style={{ marginLeft: "6.2rem", marginRight: "6.2rem", backgroundColor: "#FFE3F4", borderRadius: "1.7rem", marginTop: "2rem" }}>
+      <Card style={{ marginLeft: "6.2rem", marginRight: "6.2rem", backgroundColor: "#FADA5E", borderRadius: "1.7rem", marginTop: "2rem" }}>
         <Card.Body>
           <div className="row">
             <div className="col-sm-6">
@@ -143,7 +170,7 @@ const handleLikeClick = (postId,timestamp,username) => {
 
       <Container style={{ marginTop: "2rem" }}>
         {comments.map((comment, index) => (
-          <Card key={index} className={`mt-4 ${index === comments.length - 1 ? 'last-post' : ''}`} style={{ marginLeft: "-5.5rem", marginRight: "6.2rem", backgroundColor: "#DAEFEF", borderRadius: "2rem", marginTop: "-1.3rem", width: "83rem" }}>
+          <Card key={index} className={`mt-4 ${index === comments.length - 1 ? 'last-post' : ''}`} style={{ marginLeft: "-5.5rem", marginRight: "6.2rem", backgroundColor: "#8CC4FF", borderRadius: "2rem", marginTop: "-1.3rem", width: "83rem" }}>
             <Card.Body>
               <div className="row">
                 <div className="col-sm-6">
@@ -158,14 +185,14 @@ const handleLikeClick = (postId,timestamp,username) => {
       </Container>
 
       <footer className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>
-        <Container style={{ height: "10rem", maxWidth: "100rem", backgroundColor: "#A4D6D3" }}>
+        <Container style={{ height: "10rem", maxWidth: "100rem", backgroundColor: "#5785C0" }}>
           <div>
             <Form >
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Control id="commentText" as="textarea" style={{ broderRadius: "100rem", fontFamily: "Quicksand", width: "68rem", marginLeft: "6rem", marginRight: "5rem", height: "6rem", fontSize: "1rem", marginTop: "2rem", marginBottom: "-0.4rem" }}
                   placeholder="    New Comment Here" />
-                <Button style={{ width: "9.3rem", marginLeft: "-3rem", borderRadius: "2rem", borderColor: "#A4D6D3", backgroundColor: "white" }} onClick={submitComment} >
-                  <SendIcon style={{ height: "5.8rem", width: "5rem", color: "#A4D6D3", marginLeft: "1rem" }}> </SendIcon>
+                <Button style={{ width: "9.3rem", marginLeft: "-3rem", borderRadius: "2rem", borderColor: "#5785C0", backgroundColor: "white" }} onClick={submitComment} >
+                  <SendIcon style={{ height: "5.8rem", width: "5rem", color: "#5785C0", marginLeft: "1rem" }}> </SendIcon>
                 </Button>
               </Form.Group>
             </Form>

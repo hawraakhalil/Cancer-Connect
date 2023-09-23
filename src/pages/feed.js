@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send'; 
 import SearchIcon from '@mui/icons-material/Search';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
-import images from './images.png';
+import yellow from './yellow.png';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import profile from './profile.png';
@@ -35,6 +35,20 @@ function Feed() {
     avatar7,
     avatar8
   ];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    'October',
+    "November",
+    'December'
+  ];
 
 
 
@@ -50,15 +64,17 @@ function Feed() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch('https://6o2k57kjivpml5yanhmtx42nau0cktug.lambda-url.eu-north-1.on.aws/');
+        const response = await fetch('https://6o2k57kjivpml5yanhmtx42nau0cktug.lambda-url.eu-north-1.on.aws/' + username);
         if (!response.ok) {
           throw new Error('Failed to fetch posts');
         }
         const data = await response.json();
         const dataArray = data.Items;
+        const likedArray = data.liked_posts;
+        console.log(likedArray)
 
         setPosts(dataArray);
-        console.log(dataArray)
+  
       } catch (error) {
         console.error('Error fetching posts:', error);
         setError('Failed to fetch posts. Please try again.');
@@ -137,7 +153,7 @@ function Feed() {
 
 
 
-  const handleClick2 = (postTitle,postBody,postUser,postID,posttime,postLikes,postComments) => {
+  const handleClick2 = (postTitle,postBody,postUser,postID,posttime,postLikes,postComments,postAvatar) => {
   const title = encodeURIComponent(postTitle);
   const body = encodeURIComponent(postBody);
   const user = encodeURIComponent(postUser);
@@ -146,7 +162,8 @@ function Feed() {
   const likes = encodeURIComponent(postLikes);
   const commCount = encodeURIComponent(postComments);
   const username2 = encodeURIComponent(username);
-  window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}&likes=${likes}&commCount=${commCount}&username2=${username2}`;
+  const avatar = encodeURIComponent(postAvatar);
+  window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}&likes=${likes}&commCount=${commCount}&username2=${username2}&avatar=${avatar}`;
   }; 
 
   const handleClick3 = (postUser) => {
@@ -158,8 +175,8 @@ function Feed() {
       
   <>
   <header>
-  <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#A4D6D3" ,padding:"1.1rem"}}>
-  <img src={images} alt="Logo" className="rounded-circle" style={{ borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-0.3%",marginTop:"-0.4rem" }} />
+  <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#5785C0" ,padding:"1.1rem"}}>
+  <img src={yellow} alt="Logo" className="rounded-circle" style={{ borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-0.3%",marginTop:"-0.4rem" }} />
   <TextField 
           id="search"
           variant="outlined"
@@ -171,7 +188,7 @@ function Feed() {
           }}
             style={{backgroundColor:"white",borderRadius: "50rem", borderColor: "white",width:"66%",marginLeft:"4.5%"}}   
         />
-           <Button  onClick={() => handleClick3(username)} style={{height:"3.3rem",width:"8.2rem",marginLeft:"3rem", borderRadius:"50rem",borderColor:"#A4D6D3", color: "#4EA4F3",backgroundColor:"white",fontWeight:"bold", position: "relative", top: "-6.95rem",fontFamily:"Quicksand"}}
+           <Button  onClick={() => handleClick3(username)} style={{height:"3.3rem",width:"8.2rem",marginLeft:"3rem", borderRadius:"50rem", color: "black",backgroundColor:"#FADA5E",borderColor:"#FADA5E",fontWeight:"bold", position: "relative", top: "-6.95rem",fontFamily:"Quicksand"}}
            > 
          View Account
          </Button>
@@ -190,7 +207,7 @@ function Feed() {
     
   {posts.map((post, index) => (
   
-  <Card  onClick={() => handleClick2(post.title,post.body,post.username,post.ID,post.timestamp,post.likes,post.comment_count)} key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#D7ECEC",borderRadius:"2rem",marginTop:"1rem" }}>
+  <Card  onClick={() => handleClick2(post.title,post.body,post.username,post.ID,post.timestamp,post.likes,post.comment_count,post.avatar)} key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#8CC4FF",borderRadius:"2rem",marginTop:"1rem" }}>
     <Card.Body>
       <div className="row">
         <div className="col-sm-6">
@@ -206,8 +223,9 @@ function Feed() {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
           <IconButton onClick={(e) => { e.stopPropagation();  handleLikeClick(post.ID, post.timestamp,username);}} style={{marginLeft: "1.3rem",marginTop:"-1.1rem",fontSize:"2.2rem",fontWeight:"bold",color:"#EFBCDB"}}><FavoriteIcon/>  </IconButton>
-        <p className="card-text" style={{marginLeft: "0rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>{post.likes} likes</p>
-        <p className="card-text" style = {{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>{post.comment_count} comments</p>
+        <p className="card-text" style={{marginLeft: "0rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.likes} likes</p>
+        <p className="card-text" style = {{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.comment_count} comments</p>
+        <p className="card-text" style = {{marginLeft: "38rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.timestamp.slice(6,8)} - {post.timestamp.slice(4,6)} - {post.timestamp.slice(0,4)} </p>
       </div>
       </div>
     </Card.Body>
@@ -217,7 +235,7 @@ function Feed() {
   </Container>
     )}
   <footer className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>
-  <Container style={{ maxWidth: "100rem", backgroundColor: "#A4D6D3" }}>
+  <Container style={{ maxWidth: "100rem", backgroundColor: "#5785C0" }}>
   <div>
   <Form >
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -233,8 +251,8 @@ function Feed() {
             placeholder="    New Post Message Here"
             value={newPostBody}
             onChange={(e) => setNewPostBody(e.target.value)}  />
-         <Button style={{ marginTop: "-100rem" , marginBottom:"1rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#A4D6D3",backgroundColor:"white"}}  onClick={handlePostSubmit} > 
-         <SendIcon style={{height:"7.3rem",width:"5.3rem",color: "#A4D6D3" ,marginLeft:"1rem"}}> </SendIcon>
+         <Button style={{ marginTop: "-100rem" , marginBottom:"1rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#5785C0",backgroundColor:"white"}}  onClick={handlePostSubmit} > 
+         <SendIcon style={{height:"7.3rem",width:"5.3rem",color: "#5785C0" ,marginLeft:"1rem"}}> </SendIcon>
          </Button>
         </Form.Group>
       </Form>

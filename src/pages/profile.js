@@ -67,10 +67,6 @@ const handleLikeClick = (postId,timestamp) => {
     });
 };
 
-//When you click on the view acc, go to the profile page 
-
-
-
 const handleClick2 = (postTitle,postBody,postUser,postID,posttime,postLikes,postComments) => {
 const title = encodeURIComponent(postTitle);
 const body = encodeURIComponent(postBody);
@@ -81,8 +77,6 @@ const likes = encodeURIComponent(postLikes);
 const commCount = encodeURIComponent(postComments);
 window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}&likes=${likes}&commCount=${commCount}`;
 }; 
-
-
 
 
     //fetching user info:
@@ -115,7 +109,7 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
         const user = encodeURIComponent(username);
         window.location.href = `/feed?user=${user}`;
       }; 
-      //te badges text fields
+      //the badges text fields
       const textFieldsData = [
         {
           id: "1",
@@ -147,8 +141,8 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
     return (
         <>
 <header>
-  <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#A4D6D3" ,padding:"1.1rem"}}>
-    <ArrowBackIosIcon style={{height:"4rem",width:"5rem",cursor: "pointer", color:"#FFE3F4" }}
+  <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#5785C0" ,padding:"1.1rem"}}>
+    <ArrowBackIosIcon style={{height:"4rem",width:"5rem",cursor: "pointer", color:"#FADA5E" }}
     onClick={handleClick}>
      </ArrowBackIosIcon>
     <TextField 
@@ -174,9 +168,9 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
         <h3 style={{ color: "#8C9898", paddingLeft: "5.5rem", margin: "0" }}>@{userInfo.username}</h3>
 
     </div>
-    <h5 style={{color:"#EFBCDB", paddingLeft: "7rem",margin:"0",paddingTop:"0.4rem"}}>Status</h5>
-    <h5 style={{color:"#EFBCDB", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>{userInfo.Day} {userInfo.Month} {userInfo.Year}</h5>
-    <h5 style={{color:"#EFBCDB", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>Location</h5>
+    <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.4rem"}}>Status</h5>
+    <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>{userInfo.Day} {userInfo.Month} {userInfo.Year}</h5>
+    <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>Location</h5>
     <div>
       {textFieldsData.map((textField) => (
         <div key={textField.id} style={{ paddingLeft: "5.5rem",paddingTop:"0.5rem",paddingBottom:"0.1rem"}}>
@@ -196,7 +190,7 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
   </body>
   <div>
   {posts.map((post, index) => (
-<Card key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`}  style={{width:"65rem",marginLeft:"28rem",marginTop:"-38rem",backgroundColor: "#D7ECEC",borderRadius:"30px" }}>
+<Card key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`}  style={{width:"65rem",marginLeft:"28rem",marginTop:"-38rem",backgroundColor: "#8CC4FF",borderRadius:"30px" }}>
   <Card.Body>
       <div className="row">
         <div className="col-sm-6">
@@ -206,8 +200,8 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
           <IconButton onClick={(e) => { e.stopPropagation();}} style={{marginLeft: "1.3rem",marginTop:"-1.1rem",fontSize:"2.2rem",fontWeight:"bold",color:"#EFBCDB"}}><FavoriteIcon/>  </IconButton>
-        <p className="card-text" style={{marginLeft: "0rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>{post.likes} likes</p>
-        <p className="card-text" style = {{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#7BB7B3"}}>{post.comment_count} comments</p>
+        <p className="card-text" style={{marginLeft: "0rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.likes} likes</p>
+        <p className="card-text" style = {{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.comment_count} comments</p>
       </div>
       </div>
     </Card.Body>

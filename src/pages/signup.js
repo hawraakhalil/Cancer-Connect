@@ -88,11 +88,11 @@ function SignUp () {
 
     return (
         <>
-    
+      <style>{'body { background-color: #FFFFE0; }'}</style>
       <Container style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
       <Form onSubmit={handleSubmit}>
 
-        <Card style={{ width: '37rem',height:"42rem", backgroundColor:"#A4D6D3" ,borderRadius:"5rem"}}>
+        <Card style={{ width: '37rem',height:"42rem", backgroundColor:"#5785C0" ,borderRadius:"5rem"}}>
         <Card.Body style={{ display: "flex", alignItems: "center" }} >
         <Form.Control
         type="text"
@@ -265,7 +265,7 @@ function SignUp () {
          />
       </div>
       <div>
-       <Button onClick={handleSubmit} type="submit" style ={{marginTop:"3.7rem",width:"14rem",height:"5rem",backgroundColor:"#FFE3F4",borderColor:"#FFE3F4",borderRadius:"2.3rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}>Create Account</Button>
+       <Button onClick={handleSubmit} type="submit" style ={{marginTop:"3.7rem",width:"14rem",height:"5rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"2.3rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}>Create Account</Button>
        </div>
        </div>
        {errorMessage && <p style ={{fontSize:"0.9rem",marginTop:"-2rem",marginLeft:"18rem"}}>{errorMessage}</p>}

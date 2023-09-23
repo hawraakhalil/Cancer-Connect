@@ -6,8 +6,8 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
-    "@mui/icons-material": "^5.14.3",
-    "@mui/material": "^5.14.5",
+    "@mui/icons-material": "^5.14.9",
+    "@mui/material": "^5.14.10",
     "@mui/styled-engine-sc": "^5.12.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -23,6 +23,7 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.7.4",
     "react-select-country-list": "^2.2.3",
+    "react-slideshow-image": "^4.2.1",
     "styled-components": "^5.3.11",
     "web-vitals": "^2.1.4"
   },
