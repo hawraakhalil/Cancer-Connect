@@ -175,8 +175,7 @@ const handleLikeClick = (postId,timestamp,username) => {
               <div className="row">
                 <div className="col-sm-6">
                   <h6 className="card-title" style={{ marginLeft: "1.3rem", color: "#5E5E5E", fontWeight: "bold", paddingTop: "1rem", marginBottom: "-1rem" }}>{comment.user}</h6>
-                  <p className="card-text" style={{ marginLeft: "1.3rem", fontSize: "1rem", fontWeight: "bold" }}>{comment.body}</p>
-                  <p className="card-text" style={{ marginLeft: "1.3rem", fontSize: "0.8rem", fontWeight: "bold", color: "#000000", paddingBottom: "1.3rem", marginTop: "-0.9rem" }}>{comment.likes} likes</p>
+                  <p className="card-text" style={{ marginLeft: "1.3rem", fontSize: "1rem", fontWeight: "bold" ,paddingBottom:"1rem"}}>{comment.body}</p>
                 </div>
               </div>
             </Card.Body>

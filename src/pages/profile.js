@@ -190,12 +190,11 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
   </body>
   <div>
   {posts.map((post, index) => (
-<Card key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`}  style={{width:"65rem",marginLeft:"28rem",marginTop:"-38rem",backgroundColor: "#8CC4FF",borderRadius:"30px" }}>
+<Card key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`}  style={{width:"65rem",marginLeft:"28rem", marginBottom: index === posts.length - 1 ? "3rem" : "39rem",marginTop:"-38rem",backgroundColor: "#8CC4FF",borderRadius:"30px" }}>
   <Card.Body>
       <div className="row">
         <div className="col-sm-6">
           <h2 className="card-title" style={{ marginTop: "3rem",marginLeft: "1.3rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
-          <h6 className="card-title" style={{marginTop:"-2rem", marginLeft: "1.3rem",color:"#5E5E5E",fontWeight:"bold"}}>by {post.username}</h6>
           <p className="card-text" style= {{marginLeft: "1.3rem",paddingBottom: "0.7rem", paddingTop:"0rem",marginTop:"-1.8rem",fontSize:"1.05rem",fontWeight:"bold"}}>{post.body}</p>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
