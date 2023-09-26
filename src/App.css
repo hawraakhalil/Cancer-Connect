@@ -59,8 +59,8 @@ body {
   position: absolute;
   border-radius: 50rem;
   bottom: 0;
-  left: 50%;
-  margin-left:27.7%;
+  left: 40%;
+  margin-left:22.7%;
   transform: translateX(-50%);
   width: 3.9rem; /* adjust the width of the smaller image */
   height: 3.9rem; /* adjust the height of the smaller image */

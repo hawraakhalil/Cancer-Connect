@@ -48,7 +48,10 @@ function Profile () {
     avatar7,
     avatar8
   ];
- 
+  const Status = [
+   "Cancer Patient","Cancer Survivor","Family or Friend"
+ ]
+
   const badgess = [
     badge1,
     badge1,
@@ -177,6 +180,7 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
   </Container>
   <div class="avatar-container">
   <img src={selectedAvatar} class="avatar-image" style = {{marginLeft:"4.9rem"}}></img>
+  <img src={badgess[badges[0]]} alt="badge" class="small-image"></img>
 
 </div>
   </header>
@@ -186,7 +190,7 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
         <h3 style={{ color: "#8C9898", paddingLeft: "5.5rem", margin: "0" }}>@{userInfo.username}</h3>
 
     </div>
-    <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.4rem"}}>Status</h5>
+    <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.4rem"}}>Status: {Status[badges]}</h5>
     <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>{userInfo.Day} {userInfo.Month} {userInfo.Year}</h5>
     <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>Location</h5>
     <div>
