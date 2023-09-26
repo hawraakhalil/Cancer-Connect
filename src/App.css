@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 @import url('https://fonts.googleapis.com/css2?family=Avenir:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 
 .App {
   text-align: center;
@@ -22,6 +24,7 @@
 
 
 body {
+  font-family: 'Pacifico', cursive;
     font-family: 'Quicksand';
     font-size: 22px;
 }
@@ -62,4 +65,47 @@ body {
   width: 3.9rem; /* adjust the width of the smaller image */
   height: 3.9rem; /* adjust the height of the smaller image */
 
+}
+
+.container1 {
+  display: flex;
+  height: 84.5vh;
+  position: relative;
+}
+.section1 {
+  width: 50%;
+  background-color: white;
+  height: 100%; /* Adjust the height of the section */
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arc {
+  position: absolute;
+  top: 0;
+  left: 30.33%;
+  width: 33.34%;
+  height: 100%; /* Adjust the height of the arc */
+  background: white; /* background color of arc */
+  border-radius: 0 100% 100% 0;
+  z-index: 2;
+}
+
+.section2 {
+  width: 66.67%;
+  background-color: #F2CB2E;
+  height: 100%; /* Adjust the height of the section */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
+
+.image-container {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
 }

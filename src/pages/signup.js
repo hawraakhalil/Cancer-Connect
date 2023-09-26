@@ -25,6 +25,7 @@ function SignUp () {
     Month:"",
     Year:"",
     areaCode:"",
+    Badge:"",
 
   });
   const [errorMessage, setErrorMessage] = useState('');
@@ -92,7 +93,7 @@ function SignUp () {
       <Container style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
       <Form onSubmit={handleSubmit}>
 
-        <Card style={{ width: '37rem',height:"42rem", backgroundColor:"#5785C0" ,borderRadius:"5rem"}}>
+        <Card style={{ width: '37rem',height:"42rem", backgroundColor:"#0F52BA" ,borderRadius:"5rem"}}>
         <Card.Body style={{ display: "flex", alignItems: "center" }} >
         <Form.Control
         type="text"
@@ -225,14 +226,43 @@ function SignUp () {
   </select>
         </Card.Body>
         <Card.Body>
+          <div style={{ display: "flex", alignItems: "center" }}>
       <Form.Control
         type="text"
         placeholder="  Username"
         name="username"
         value={formData.username}
         onChange={handleInputChange}
-        style ={{ paddingLeft:"1rem",marginLeft:"2rem",width:"13rem",height:"2.8rem",borderRadius:"1.5rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem"}}
+        style ={{ paddingLeft:"1rem",marginLeft:"2rem",width:"14rem",height:"2.8rem",borderRadius:"1.5rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontSize:"0.95rem",marginTop:"1rem"}}
       />
+       <select
+    id="Badge"
+    name="Badge"
+    value={formData.Badge}
+    onChange={handleInputChange}
+    style={{
+      marginLeft: "2rem",
+      width: "15rem",
+      height: "3rem",
+      borderRadius: "1.5rem",
+      borderColor: "#FFFFFF",
+      fontFamily: "Lato",
+      fontSize: "0.95rem",
+      marginTop: "1rem",
+      paddingLeft:"1rem",
+    }}
+  >       <option value="" disabled selected>
+  I am a 
+  </option>
+{[
+    "Cancer Patient", "Cancer Survivor", "Family member or friend"
+  ].map((month, index) => (
+    <option key={index + 1} value={index + 1}>
+      {month}
+    </option>
+  ))}
+</select>
+      </div>
        <Form.Control
         type="password"
         placeholder="  Password"
@@ -260,7 +290,7 @@ function SignUp () {
             minLength = {7}
             value = {formData.password}
             valueAgain = {formData.confirm_password}
-            style ={{fontSize:"0.9rem",marginLeft:"0.1rem",fontWeight:"bold",marginTop:"2.5rem",marginRight:"1rem"}}
+            style ={{fontSize:"0.9rem",marginLeft:"0.1rem",fontWeight:"bold",marginTop:"2.5rem",marginRight:"1rem",color:"#000000"}}
             iconSize="17"
          />
       </div>

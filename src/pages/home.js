@@ -1,19 +1,17 @@
 import React, { useState, useRef } from 'react';
 import Container from '@mui/material/Container';
-import images from './images.png';
+import logo1 from './logo1.png';
 import Button from 'react-bootstrap/Button'
-import { Zoom } from 'react-slideshow-image';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import slide1 from './slide1.png';
 import slide2 from './slide2.png';
 import slide3 from './slide3.png';
-import slide5 from './slide5.png';
+import slide4 from './slide4.png';
 import news from './news.png';
-import yellow from './yellow.png';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+
 
 function Home() {
     const [firstName, setFirstName] = useState('');
@@ -52,10 +50,10 @@ function Home() {
 
 
     const slideImages = [
+        slide3,
         slide2,
         slide1,
-        slide5,
-        slide3
+        slide4
       ];
 
       const handleClick1 = () => {
@@ -80,13 +78,13 @@ function Home() {
     return (
         <>
         <header>
-  <Container fluid="true" className="p-3" style={{ height: "6.8rem",maxWidth: "100rem", backgroundColor: "#295e9b" ,padding:"1.1rem"}}>
-  <img src={yellow} alt="Logo" className="rounded-circle" style={{ borderRadius: "50rem",height: "13rem", width: "13rem",marginLeft:"1%",marginBottom:"-12%",marginTop:"-20rem" , position: "relative", zIndex: "2" }} />
-  <p style={{color:"black", paddingLeft: "0rem",margin:"0",fontWeight:"800",fontSize:"2.8rem",paddingRight:"0rem",paddingBottom:"-10rem",marginLeft:"15rem",marginBottom:"-5.3rem"}}>Cancer Connect</p>
-  <Button onClick={handleClick1} style ={{marginTop:"0.8rem",marginLeft:"40rem",width:"11rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}>About us</Button>
-  <Button onClick={handleClick2} style ={{marginTop:"0.8rem",marginLeft:"2rem",width:"11rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}> Donate</Button>
-  <Button onClick={handleClick4} style ={{marginTop:"0.8rem",marginLeft:"2rem",width:"11rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}>Sign in</Button>
-  <Button onClick={handleClick3} style ={{marginTop:"0.8rem",marginLeft:"2rem",width:"11rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}>Sign up</Button>
+  <Container fluid="true" className="p-3" style={{ height: "6.8rem",maxWidth: "100rem", backgroundColor: "#0F52BA" ,padding:"1.1rem"}}>
+  <img src={logo1} alt="Logo" className="rounded-circle" style={{ border: "1px solid black" ,borderRadius: "50rem",height: "13rem", width: "13rem",marginLeft:"1%",marginBottom:"-11.5rem",marginTop:"-20rem" , position: "relative", zIndex: "2" }} />
+  <p style={{fontFamily:"Pacifico",marginTop:"-1rem",color:"black", paddingLeft: "0rem",fontWeight:"800",fontSize:"3rem",paddingRight:"0rem",paddingBottom:"0rem",marginLeft:"16rem",marginBottom:"-5.7rem"}}>Cancer Connect</p>
+  <Button onClick={handleClick2} style ={{marginTop:"0.8rem",marginLeft:"43rem",width:"10rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Donate</Button>
+  <Button onClick={handleClick1} style ={{marginTop:"0.8rem",marginLeft:"2rem",width:"10rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}> About us</Button>
+  <Button onClick={handleClick4} style ={{marginTop:"0.8rem",marginLeft:"2rem",width:"10rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Sign in</Button>
+  <Button onClick={handleClick3} style ={{marginTop:"0.8rem",marginLeft:"2rem",width:"10rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Sign up</Button>
   </Container>
   
   </header>

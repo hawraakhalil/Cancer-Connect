@@ -135,7 +135,7 @@ const handleLikeClick = (postId,timestamp,username) => {
   return (
     <>
       <header>
-        <Container fluid="true" className="p-3" style={{ height: "7.5rem", maxWidth: "100rem", backgroundColor: "#5785C0", padding: "1.1rem", display: "flex" }}>
+        <Container fluid="true" className="p-3" style={{ height: "7.5rem", maxWidth: "100rem", backgroundColor: "#0F52BA", padding: "1.1rem", display: "flex" }}>
           <ArrowBackIosIcon style={{ height: "5rem", width: "6rem", cursor: "pointer", color: "#FADA5E" }}
             onClick={handleClick}>
           </ArrowBackIosIcon>
@@ -184,14 +184,14 @@ const handleLikeClick = (postId,timestamp,username) => {
       </Container>
 
       <footer className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>
-        <Container style={{ height: "10rem", maxWidth: "100rem", backgroundColor: "#5785C0" }}>
+        <Container style={{ height: "10rem", maxWidth: "100rem", backgroundColor: "#0F52BA" }}>
           <div>
             <Form >
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Control id="commentText" as="textarea" style={{ broderRadius: "100rem", fontFamily: "Quicksand", width: "68rem", marginLeft: "6rem", marginRight: "5rem", height: "6rem", fontSize: "1rem", marginTop: "2rem", marginBottom: "-0.4rem" }}
                   placeholder="    New Comment Here" />
-                <Button style={{ width: "9.3rem", marginLeft: "-3rem", borderRadius: "2rem", borderColor: "#5785C0", backgroundColor: "white" }} onClick={submitComment} >
-                  <SendIcon style={{ height: "5.8rem", width: "5rem", color: "#5785C0", marginLeft: "1rem" }}> </SendIcon>
+                <Button style={{ width: "9.3rem", marginLeft: "-3rem", borderRadius: "2rem", borderColor: "#0F52BA", backgroundColor: "white" }} onClick={submitComment} >
+                  <SendIcon style={{ height: "5.8rem", width: "5rem", color: "#0F52BA", marginLeft: "1rem" }}> </SendIcon>
                 </Button>
               </Form.Group>
             </Form>

@@ -17,6 +17,12 @@ import avatar5 from './avatar5.png';
 import avatar6 from './avatar6.png';
 import avatar7 from './avatar7.png';
 import avatar8 from './avatar8.png';
+import badge1 from './badge1.png';
+import badge2 from './badge2.png';
+import badge3 from './badge3.png';
+import badge4 from './badge4.png';
+import badge5 from './badge5.png';
+import badge6 from './badge6.png';
 import '../App.css';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
@@ -29,6 +35,7 @@ function Profile () {
   const username = urlParams.get('user');
   const [userInfo, setUserInfo] = useState({});
   const [posts, setPosts] = useState([]);
+  const [badges, setBadges] = useState([]);
 
   const avatars = [
     profile,
@@ -42,6 +49,15 @@ function Profile () {
     avatar8
   ];
  
+  const badgess = [
+    badge1,
+    badge1,
+    badge2,
+    badge3,
+    badge4,
+    badge5,
+    badge6
+  ];
 
 //calling function that adds likes
 const handleLikeClick = (postId,timestamp) => {
@@ -94,7 +110,9 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
           console.log(userInfo)
           console.log(data.Posts)
           setPosts(data.Posts);
-          console.log(posts)
+          console.log(posts);
+          setBadges(data.badges);
+          console.log(badges)
       }catch(error)  {
           console.error('Error:', error);
       }
@@ -141,7 +159,7 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
     return (
         <>
 <header>
-  <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#5785C0" ,padding:"1.1rem"}}>
+  <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#0F52BA" ,padding:"1.1rem"}}>
     <ArrowBackIosIcon style={{height:"4rem",width:"5rem",cursor: "pointer", color:"#FADA5E" }}
     onClick={handleClick}>
      </ArrowBackIosIcon>
