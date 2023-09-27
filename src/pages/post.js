@@ -196,15 +196,17 @@ const handleLikeClick = (postId,timestamp,username) => {
 
       <footer className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>
         <Container style={{ height: "10rem", maxWidth: "100rem", backgroundColor: "#0F52BA" }}>
-          <div>
-            <Form >
-              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Control id="commentText" as="textarea" style={{ broderRadius: "100rem", fontFamily: "Quicksand", width: "68rem", marginLeft: "6rem", marginRight: "5rem", height: "6rem", fontSize: "1rem", marginTop: "2rem", marginBottom: "-0.4rem" }}
-                  placeholder="    New Comment Here" />
-                <Button style={{ width: "9.3rem", marginLeft: "-3rem", borderRadius: "2rem", borderColor: "#0F52BAA", backgroundColor: "white" }} onClick={submitComment} >
-                  <SendIcon style={{ height: "5.8rem", width: "5rem", color: "#0F52BA", marginLeft: "1rem" }}> </SendIcon>
+          <div  style={{ display: "flex", alignItems: "center" }}>
+            <Form>
+              <div>
+                <Form.Control type="text" id="commentText" style={{ paddingLeft:"1rem",borderRadius:"1.2rem", fontFamily: "Quicksand", width: "68rem", marginLeft: "6rem", marginRight: "5rem", height: "6rem", fontSize: "1rem", marginTop: "2.5rem", marginBottom: "-1.85rem" }}
+                  placeholder="New Comment Here" />
+              </div>
+              <div>
+                <Button style={{ width: "9.3rem", marginLeft: "76.5rem", borderRadius: "2rem", borderColor: "#0F52BAA", backgroundColor: "white" ,marginTop:"-7rem"}} onClick={submitComment} >
+                  <SendIcon style={{ height: "5.8rem", width: "5rem", color: "#0F52BA", marginLeft: "1rem",marginTop:"0.2rem" }}> </SendIcon>
                 </Button>
-              </Form.Group>
+                </div>
             </Form>
           </div>
         </Container>

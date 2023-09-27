@@ -20,6 +20,8 @@ import avatar5 from './avatar5.png';
 import avatar6 from './avatar6.png';
 import avatar7 from './avatar7.png';
 import avatar8 from './avatar8.png';
+import CheckIcon from '@mui/icons-material/Check';
+import Alert from '@mui/material/Alert';
 
 
 
@@ -51,7 +53,7 @@ const badgess =[
   const [newPostBody, setNewPostBody] = useState('');
   const [likedPosts, setLikedPosts] = useState([]);
   const [likes, setLikes] = useState([]);
-  const [isHoverable, setIsHoverable] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
 
   //recieve user from login page
   const queryString = window.location.search;
@@ -101,6 +103,7 @@ const badgess =[
       if (response.ok) {
         const data = await response.json();
         console.log(data.message); // Logging the success message
+        setAlertOpen(true);
       } else {
         throw new Error('Failed to create post');
       }
@@ -170,6 +173,10 @@ const badgess =[
     const user = encodeURIComponent(postUser);
     window.location.href = `/profile?user=${user}`;
   };
+  //function that closes alert
+  const handleCloseAlert = () => {
+    setAlertOpen(false);
+  };
 
     return (
     <>
@@ -192,7 +199,7 @@ const badgess =[
         </Button>
       </Container>
     </header>
-
+    
     {error ? (
     <div style={{ textAlign: "center" , marginTop: "10rem" }}>
       <span style={{ fontSize: "2rem" }}>😢</span> {/* Sad face emoji */}
@@ -215,7 +222,7 @@ const badgess =[
               <p className="card-text" style= {{marginLeft: "2.1rem",paddingBottom: "0.7rem", paddingTop:"0rem",marginTop:"0.1rem",fontSize:"1.05rem",fontWeight:"bold"}}>{post.body}</p>
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <FavoriteIcon onClick={(e) => { e.stopPropagation();  handleLikeClick(post.ID, post.timestamp,username);}} style={{marginLeft: "1.3rem",marginTop:"-1.1rem",fontSize:"1.5rem",fontWeight:"bold",color: likedPosts.includes(post.ID) ?  "#DC143C" : "grey "}}></FavoriteIcon>  
+            <IconButton onClick={(e) => { e.stopPropagation();  handleLikeClick(post.ID, post.timestamp,username);}} style={{marginLeft: "1.3rem",marginTop:"-1.1rem",fontSize:"1.5rem",fontWeight:"bold",color: likedPosts.includes(post.ID) ?  "#DC143C" : "grey "}}><FavoriteIcon/>  </IconButton>
               <p className="card-text" style={{marginLeft: "0.5rem",paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.likes} likes</p>
               <p className="card-text" style = {{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.comment_count} comments</p>
               <p className="card-text" style = {{marginLeft: "38rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.timestamp.slice(6,8)} - {post.timestamp.slice(4,6)} - {post.timestamp.slice(0,4)} </p>
@@ -226,13 +233,25 @@ const badgess =[
       ))}
     </Container>
     )}
+   
     <footer className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
+    <Alert
+    icon={<CheckIcon fontSize="inherit" />}
+  onClose={handleCloseAlert}
+  severity="success" // or "error" for an error alert
+  variant="filled"
+  style={{ display: alertOpen ? 'block' : 'none' ,height:"5rem",marginBottom:"-35rem",width:"11rem"}}
+>
+ Post created Successfully
+</Alert>
+</div>
       <Container style={{ maxWidth: "100rem", backgroundColor: "#0F52BA" }}>
         <div>
           <Form >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Control type="text" style={{ fontFamily:"Quicksand",borderColor:"#FFFFFF",borderRadius:"1.2rem",width: "71.6rem",marginTop: "0.5rem",marginLeft: "7rem",marginRight:"5rem",height:"2.5rem",fontSize: "1rem",marginBottom:"-0.5rem" }} 
-            placeholder="     New Post Title Here" 
+            <Form.Control type="text" style={{ paddingLeft:"1rem",fontFamily:"Quicksand",borderColor:"#FFFFFF",borderRadius:"1.2rem",width: "71.6rem",marginTop: "0.5rem",marginLeft: "7rem",marginRight:"5rem",height:"2.5rem",fontSize: "1rem",marginBottom:"-0.5rem" }} 
+            placeholder="New Post Title Here" 
             value={newPostTitle}
             onChange={(e) => setNewPostTitle(e.target.value)}/>
             </Form.Group>
@@ -241,11 +260,11 @@ const badgess =[
             <div style={{ display: "flex", alignItems: "center" }}>
               <Form.Control
                   type="text"
-                  style={{ fontFamily:"Quicksand",borderColor:"#FFFFFF",borderRadius:"1.2rem",width: "71.6rem",marginLeft: "7rem",marginRight:"5rem",height:"6rem" ,fontSize: "1rem",marginTop:"-0.3rem",marginBottom:"0.8rem"}}
-                  placeholder="    New Post Message Here"
+                  style={{ paddingLeft:"1rem",paddingTop:"-2rem",fontFamily:"Quicksand",borderColor:"#FFFFFF",borderRadius:"1.2rem",width: "71.6rem",marginLeft: "7rem",marginRight:"5rem",height:"6rem" ,fontSize: "1rem",marginTop:"-0.3rem",marginBottom:"0.8rem"}}
+                  placeholder="New Post Message Here"
                   value={newPostBody}
                   onChange={(e) => setNewPostBody(e.target.value)}  />
-              <Button  className={`button ${isHoverable ? "hover" : ""}`} style={{cursor: "pointer", marginTop: "-4rem" ,paddingBottom:"3rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#0F52BA",backgroundColor:"white"}}  onClick={handlePostSubmit} > 
+              <Button  className="button" style={{cursor: "pointer", marginTop: "-4rem" ,paddingBottom:"3rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#0F52BA",backgroundColor:"white"}}  onClick={handlePostSubmit} > 
                 <SendIcon style={{height:"7.3rem",width:"5.3rem",color: "#0F52BA" ,marginLeft:"1rem"}}> </SendIcon>
               </Button>
               </div>
