@@ -43,27 +43,49 @@ body {
    margin-left:5%;
    margin-bottom:-0.7rem;
    margin-top:-4.5rem;
-   border: 0.9rem solid #A4D3FF;
+   border: 0.9rem solid var(--avatar-image-border-color);
 }
 .avatar-image:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
+.button {
+  cursor: pointer;
+  margin-top: -4rem;
+  padding-bottom: 3rem;
+  height: 7.6rem;
+  width: 9.3rem;
+  margin-left: -3rem;
+  border-radius: 2rem;
+  border-color: #0F52BA;
+  background-color: white;
+  transition: background-color 0.3s, box-shadow 0.3s; /* Add transitions for color change and box-shadow */
+}
+
+.button:hover {
+  background-color: #0F52BA; /* Change the background color on hover */
+  color: white; /* Change the text color on hover */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add a box-shadow for the glow effect on hover */
+}
+
 
 .post-card:hover {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   background-color: #ffffff;
   transition: box-shadow 0.3s, background-color 0.3s;
 }
+:root {
+  --small-image-border-color: black; /* Default border color */
+}
 
 .small-image {
-  position: absolute;
+  position: relative;
   border-radius: 50rem;
   bottom: 0;
-  left: 40%;
-  margin-left:22.7%;
+  left: 22.5%;
+  border: 3px solid var(--small-image-border-color);
   transform: translateX(-50%);
-  width: 3.9rem; /* adjust the width of the smaller image */
-  height: 3.9rem; /* adjust the height of the smaller image */
+  width: 3.4rem; /* adjust the width of the smaller image */
+  height: 3.4rem; /* adjust the height of the smaller image */
 
 }
 
@@ -108,4 +130,22 @@ body {
   background-position: center;
   width: 100%;
   height: 100%;
+}
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Adjust alignment as needed */
+  margin-top: 20.5rem;
+  margin-bottom: -30rem;
+}
+
+.user-info {
+  flex: 1; /* Adjust to control the width of the user info section */
+  margin-left: 0rem; /* Add margin or adjust as needed */
+  margin-top:-24rem;
+}
+
+.posts {
+  flex: 2; /* Adjust to control the width of the posts section */
+  margin-right: 2rem; /* Add margin or adjust as needed */
 }

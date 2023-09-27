@@ -35,6 +35,8 @@ function Post() {
   const [post, setPost] = useState({});
   const [error, setError] = useState(null);
   const [comments, setComments] = useState([]);
+  const [likes,setLikes] = useState([])
+  const [liked,setLiked] = useState([])
 
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -44,11 +46,14 @@ function Post() {
   const username = urlParams.get('user');
   const ID = urlParams.get('ID');
   const timestamp = urlParams.get("timestamp");
-  const likes = urlParams.get("likes");
+  const likes2 = urlParams.get("likes");
   const commCount = urlParams.get("commCount");
   const username2 = urlParams.get("username2");
-  const avatar=urlParams.get("avatar")
+  const avatar=urlParams.get("avatar");
+  const badge = urlParams.get("badge");
  
+  const [likes1, setLikes1] = useState(likes2);
+
   const handleClick = () => {
     const user = encodeURIComponent(username2);
     window.location.href = `/feed?user=${user}`;
@@ -68,9 +73,11 @@ const handleLikeClick = (postId,timestamp,username) => {
     .then((response) => {
       if (!response.ok) {
         console.error(error);
+      }else {
+        // Trigger a refresh after the like operation is successful
+        setRefresh(true);
       }
       // Handle the success response, e.g. update UI or show a message
-      window.location.reload();
     })
     .catch((error) => {
       console.error('Error updating likes:', error);
@@ -87,18 +94,22 @@ const handleLikeClick = (postId,timestamp,username) => {
       .then(data => {
         console.log(data)
         console.log(data.Items[0].comments_dictionary)
-        save(data.Items[0].comments_dictionary); // Save the comments array
+        save(data.Items[0].comments_dictionary,data.Items[0].likes,data.Items[0].liked_or_no); // Save the comments arra
         setPost(data);
+        setRefresh(false);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
   }, [refresh]);
-  const save = (commentsArray) => {
+    const save = (commentsArray,likes,liked_or_no) => {
     console.log(commentsArray);
     localStorage.setItem('comments', JSON.stringify(commentsArray));
+    localStorage.setItem('likes', likes.toString());
+    localStorage.setItem('liked_or_no', liked_or_no.toString());
     setComments(commentsArray);
-
+    setLikes(likes);
+    setLiked(liked_or_no);
   };
   console.log(comments);
 
@@ -114,7 +125,7 @@ const handleLikeClick = (postId,timestamp,username) => {
       },
       body: JSON.stringify({
         ID: ID,
-        user: username,
+        user: username2,
         body: commentText, // Pass the comment in the request body
         timestamp: timestamp
       })
@@ -142,7 +153,7 @@ const handleLikeClick = (postId,timestamp,username) => {
           <div className="row">
             <div className="col-sm-6">
             <div style={{ display: "flex", alignItems: "center" }}>
-            <img src={avatars[avatar]} class="avatar-image" style = {{marginLeft:"-1rem",width:"5.5rem",height:"5.5rem",borderWidth:"0.3rem",marginTop:"-1.8rem"}}></img>
+            <img src={avatars[avatar]} class="avatar-image" style = {{'--avatar-image-border-color': badge,marginLeft:"-1rem",width:"5.5rem",height:"5.5rem",borderWidth:"0.3rem",marginTop:"-1.8rem"}}></img>
               <div>
               <h2 className="card-title" style={{ marginTop: "-0.5rem", marginLeft: "1rem", color: "white", paddingTop: "0rem", paddingBottom: "0rem", fontSize: "2.7rem" }}>{title}</h2>
               <h6 className="card-title" style={{ marginTop: "-2.5rem", marginLeft: "1.2rem", color: "white" }}>by {username} </h6>
@@ -150,7 +161,7 @@ const handleLikeClick = (postId,timestamp,username) => {
             </div>
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
-            <IconButton onClick={(e) => { e.stopPropagation();  handleLikeClick(ID,timestamp,username);}} style={{marginLeft: "5.5rem",marginTop:"-2.5rem",fontSize:"4rem",fontWeight:"bold",color:"#EFBCDB"}}><FavoriteIcon/>  </IconButton>
+            <IconButton onClick={(e) => { e.stopPropagation();  handleLikeClick(ID,timestamp,username2);}} style={{marginLeft: "5.5rem",marginTop:"-2.5rem",fontSize:"4rem",fontWeight:"bold",color: liked === '0' ? 'grey'  : "#DC143C"}}><FavoriteIcon/>  </IconButton>
               <p className="card-text" style={{ marginLeft: "0.5rem", marginTop: "-1.55rem", fontSize: "1rem", fontWeight: "bold", color: "#FFFFFF" }}>{likes} likes</p>
               <p className="card-text" style={{ marginLeft: "1.2rem", paddingTop: "0rem", marginTop: "-1.55rem", fontSize: "1rem", fontWeight: "bold", color: "#FFFFFF" }}>{comments.length} comments</p>
             </div>
@@ -190,7 +201,7 @@ const handleLikeClick = (postId,timestamp,username) => {
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Control id="commentText" as="textarea" style={{ broderRadius: "100rem", fontFamily: "Quicksand", width: "68rem", marginLeft: "6rem", marginRight: "5rem", height: "6rem", fontSize: "1rem", marginTop: "2rem", marginBottom: "-0.4rem" }}
                   placeholder="    New Comment Here" />
-                <Button style={{ width: "9.3rem", marginLeft: "-3rem", borderRadius: "2rem", borderColor: "#0F52BA", backgroundColor: "white" }} onClick={submitComment} >
+                <Button style={{ width: "9.3rem", marginLeft: "-3rem", borderRadius: "2rem", borderColor: "#0F52BAA", backgroundColor: "white" }} onClick={submitComment} >
                   <SendIcon style={{ height: "5.8rem", width: "5rem", color: "#0F52BA", marginLeft: "1rem" }}> </SendIcon>
                 </Button>
               </Form.Group>

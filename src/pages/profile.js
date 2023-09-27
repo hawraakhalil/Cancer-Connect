@@ -36,6 +36,8 @@ function Profile () {
   const [userInfo, setUserInfo] = useState({});
   const [posts, setPosts] = useState([]);
   const [badges, setBadges] = useState([]);
+  const [error, setError] = useState(null);
+  const [refresh, setRefresh] = useState(false);
 
   const avatars = [
     profile,
@@ -49,21 +51,21 @@ function Profile () {
     avatar8
   ];
   const Status = [
-   "Cancer Patient","Cancer Survivor","Family or Friend"
+   "","Cancer Patient","Cancer Survivor","Family or Friend","Health Professional"
  ]
 
   const badgess = [
-    badge1,
-    badge1,
-    badge2,
-    badge3,
-    badge4,
-    badge5,
-    badge6
+    [badge1,"Fighter",'#940C0C'],
+    [badge1,"Fighter",'#FF3131'],
+    [badge2,"Survivor",'#A6A6A6'],
+    [badge3, "Supporter",'#FFBD59'],
+    [badge4, "Expert Contributor",'#7ED957'],
+    [badge5, "Milestone",'#38B6FF'],
+    [badge6,"Caregiver",'#8C52FF']
   ];
 
 //calling function that adds likes
-const handleLikeClick = (postId,timestamp) => {
+const handleLikeClick = (postId,timestamp,username) => {
   console.log("hi")
   // Call the Lambda function to increment the like counter
   fetch('https://y5doj3ikh4jauvp6b5dx7qw6t40vnjpm.lambda-url.eu-north-1.on.aws/', {
@@ -71,18 +73,18 @@ const handleLikeClick = (postId,timestamp) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ postId ,timestamp}),
+    body: JSON.stringify({ postId ,timestamp,username}),
   })
     .then((response) => {
       if (!response.ok) {
-        throw new Error('Failed to update likes');
+        console.error(error);
+      }else {
+        // Trigger a refresh after the like operation is successful
+        setRefresh(true);
       }
-      // Handle the success response, e.g. update UI or show a message
-      window.location.reload();
     })
     .catch((error) => {
       console.error('Error updating likes:', error);
-      // Handle the error, e.g., show an error message to the user
     });
 };
 
@@ -115,13 +117,14 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
           setPosts(data.Posts);
           console.log(posts);
           setBadges(data.badges);
-          console.log(badges)
+          console.log(data.badges)
+          setRefresh(false);
       }catch(error)  {
           console.error('Error:', error);
       }
         };
         fetchPosts();
-    }, [username]);
+    }, [refresh]);
    
 
   
@@ -131,32 +134,6 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
         window.location.href = `/feed?user=${user}`;
       }; 
       //the badges text fields
-      const textFieldsData = [
-        {
-          id: "1",
-          label: "Reactions",
-          defaultValue: " ",
-          readOnly: true,
-        },
-        {
-          id: "2",
-          label: "Badge #1",
-          defaultValue: " ",
-          readOnly: true,
-        },
-        {
-          id: "3",
-          label: "Badge #2",
-          defaultValue: " ",
-          readOnly: true,
-        },
-        {
-          id: "4",
-          label: "Badge #3",
-          defaultValue: " ",
-          readOnly: true,
-        },
-      ];
       const selectedAvatar = avatars[userInfo.avatar];
 
     return (
@@ -179,56 +156,51 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
         />
   </Container>
   <div class="avatar-container">
-  <img src={selectedAvatar} class="avatar-image" style = {{marginLeft:"4.9rem"}}></img>
-  <img src={badgess[badges[0]]} alt="badge" class="small-image"></img>
-
+  <img fixed src={selectedAvatar} class="avatar-image" style = {{'--avatar-image-border-color': '#4EA4F3',marginLeft:"4.9rem",marginBottom:"3rem"}}></img>
 </div>
   </header>
-  <body>
-    <h1 style={{color:"#155A56", paddingLeft:"5.5rem",marginBottom:"0rem",marginTop:"-0.5rem"}}>{userInfo.First_name} {userInfo.Last_name}</h1>
-    <div style={{ display: "flex", alignItems: "center" }}>
+  <div className="content-container">
+  <div className="user-info">
+      <h1 style={{color:"#155A56", paddingLeft:"5.5rem",margin:"0"}}>{userInfo.First_name} {userInfo.Last_name}</h1>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <h3 style={{ color: "#8C9898", paddingLeft: "5.5rem", margin: "0" }}>@{userInfo.username}</h3>
-
-    </div>
-    <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.4rem"}}>Status: {Status[badges]}</h5>
-    <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>{userInfo.Day} {userInfo.Month} {userInfo.Year}</h5>
-    <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>Location</h5>
-    <div>
-      {textFieldsData.map((textField) => (
-        <div key={textField.id} style={{ paddingLeft: "5.5rem",paddingTop:"0.5rem",paddingBottom:"0.1rem"}}>
-          <TextField
-            id={`standard-read-only-input${textField.id}`}
-            label={textField.label}
-            defaultValue={textField.defaultValue}
-            InputProps={{
-              readOnly: textField.readOnly,
-            }}
-            variant="standard"
-            InputLabelProps={{ style: { fontSize: "1.2rem", color: "black" , fontWeight: "bold"  } }}
-          />
-        </div>
-      ))}
-    </div>
-  </body>
-  <div>
+      </div>
+      <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.4rem"}}> {Status[badges[0]]}</h5>
+      <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>{userInfo.Day} {userInfo.Month} {userInfo.Year}</h5>
+      <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>Location</h5>
+      <div>
+        <h3 style={{color:"black", paddingLeft: "5.9rem",margin:"0",paddingTop:"0.1rem",marginBottom:"1rem"}}>Badges:</h3>
+        {badges.map((badge) => (
+          <div style={{ display: "flex", alignItems: "center" , marginTop:"-1.3rem",marginLeft:"1rem"}} >
+            <img src={badgess[badge][0]} alt="badge" className="small-image"  style={{ '--small-image-border-color': badgess[badge][2] }} ></img>
+            <h4 style={{color:"black", marginLeft: "5.5rem"}}>{badgess[badge][1]} </h4>
+          </div>
+        ))}
+      </div>
+      </div>
+  <div className="posts" >
+  <Container fixed >
   {posts.map((post, index) => (
-<Card key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`}  style={{width:"65rem",marginLeft:"28rem", marginBottom: index === posts.length - 1 ? "3rem" : "39rem",marginTop:"-38rem",backgroundColor: "#8CC4FF",borderRadius:"30px" }}>
+<Card key={index} className={`mt-4 ${index === posts.length - 1 ? 'last-post' : ''}`}  style={{width:"65rem",cursor: "pointer", marginBottom: index === posts.length - 1 ? "3rem" : "39rem",marginTop:"-38rem",backgroundColor: "#8CC4FF",borderRadius:"30px" }}>
   <Card.Body>
       <div className="row">
         <div className="col-sm-6">
-          <h2 className="card-title" style={{ marginTop: "3rem",marginLeft: "1.3rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
+          <h2 className="card-title" style={{ marginTop: "3rem",marginLeft: "1.1rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
           <p className="card-text" style= {{marginLeft: "1.3rem",paddingBottom: "0.7rem", paddingTop:"0rem",marginTop:"-1.8rem",fontSize:"1.05rem",fontWeight:"bold"}}>{post.body}</p>
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
-          <IconButton onClick={(e) => { e.stopPropagation();}} style={{marginLeft: "1.3rem",marginTop:"-1.1rem",fontSize:"2.2rem",fontWeight:"bold",color:"#EFBCDB"}}><FavoriteIcon/>  </IconButton>
+          <IconButton onClick={(e) => { e.stopPropagation(); handleLikeClick(post.ID, post.timestamp,username);}} style={{marginLeft: "1rem",marginTop:"-1.1rem",fontSize:"2.2rem",fontWeight:"bold",color: post.liked_users.includes(username) ?  "#DC143C" : "grey "}}><FavoriteIcon/>  </IconButton>
         <p className="card-text" style={{marginLeft: "0rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.likes} likes</p>
-        <p className="card-text" style = {{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.comment_count} comments</p>
+        <p className="card-text" style = {{marginLeft: "1rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.comment_count} comments</p>
+        <p className="card-text" style = {{marginLeft: "43rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.timestamp.slice(6,8)} - {post.timestamp.slice(4,6)} - {post.timestamp.slice(0,4)} </p>
       </div>
       </div>
     </Card.Body>
 </Card>
  ))}
+ </Container>
   </div>
+</div>
   </>
     );
 

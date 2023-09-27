@@ -8,7 +8,6 @@ import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send'; 
 import SearchIcon from '@mui/icons-material/Search';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
-import yellow from './yellow.png';
 import logo1 from './logo1.png';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
@@ -36,6 +35,13 @@ function Feed() {
     avatar7,
     avatar8
   ];
+const badgess =[
+  ['#FF3131'],
+    ['#FF3131'],
+    ['#A6A6A6'],
+    ['#FFBD59'],
+    ['#7ED957'],
+]
 
   //declare variables that we will use
   const [posts, setPosts] = useState([]);
@@ -44,6 +50,8 @@ function Feed() {
   const [newPostTitle, setNewPostTitle] = useState('');
   const [newPostBody, setNewPostBody] = useState('');
   const [likedPosts, setLikedPosts] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const [isHoverable, setIsHoverable] = useState(false);
 
   //recieve user from login page
   const queryString = window.location.search;
@@ -60,15 +68,22 @@ function Feed() {
         }
         const data = await response.json();
         const dataArray = data.Items;
+        console.log(dataArray)
+        const LikesArray = data.likes;
         const likedArray = data.liked_posts;
         console.log(likedArray)
+        console.log(LikesArray)
         setPosts(dataArray);
+        setLikedPosts(likedArray);
+        setLikes(LikesArray);
+        setRefresh(false);
       } catch (error) {
         console.error('Error fetching posts:', error);
         setError('Failed to fetch posts. Please try again.');
       }
     };
     fetchPosts();
+    
   }, [refresh]);
 
   //we are calling the backend function to create new posts
@@ -96,6 +111,10 @@ function Feed() {
   const handlePostSubmit = async () => {
     try {
       // Make the API call to create the new post
+      if (!newPostBody || !newPostTitle) {
+        console.log("no body or title")
+      }
+      else {
       await createPost({ title: newPostTitle, body: newPostBody, username });
   
       // Clear the input fields after successful submission
@@ -103,6 +122,7 @@ function Feed() {
       setNewPostBody('');
       //to refresh
       setRefresh(true);
+    }
     } catch (error) {
       console.error('Error creating post:', error);
     }
@@ -122,9 +142,10 @@ function Feed() {
       .then((response) => {
         if (!response.ok) {
           console.error(error);
+        }else {
+          // Trigger a refresh after the like operation is successful
+          setRefresh(true);
         }
-        // Handle the success response
-        window.location.reload();
       })
       .catch((error) => {
         console.error('Error updating likes:', error);
@@ -132,7 +153,8 @@ function Feed() {
   };
 
   //When you click on the view acc, go to the profile page 
-  const handleClick2 = (postTitle,postBody,postUser,postID,posttime,postLikes,postComments,postAvatar) => {
+  const handleClick2 = (postBadge,postTitle,postBody,postUser,postID,posttime,postLikes,postComments,postAvatar) => {
+  const badge =  encodeURIComponent(postBadge)
   const title = encodeURIComponent(postTitle);
   const body = encodeURIComponent(postBody);
   const user = encodeURIComponent(postUser);
@@ -142,7 +164,7 @@ function Feed() {
   const commCount = encodeURIComponent(postComments);
   const username2 = encodeURIComponent(username);
   const avatar = encodeURIComponent(postAvatar);
-  window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}&likes=${likes}&commCount=${commCount}&username2=${username2}&avatar=${avatar}`;
+  window.location.href = `/post?badge=${badge}&title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}&likes=${likes}&commCount=${commCount}&username2=${username2}&avatar=${avatar}`;
   }; 
   const handleClick3 = (postUser) => {
     const user = encodeURIComponent(postUser);
@@ -165,7 +187,7 @@ function Feed() {
             }}
             style={{backgroundColor:"white",borderRadius: "50rem", borderColor: "white",width:"66%",marginLeft:"4.5%"}}   
         />
-        <Button  onClick={() => handleClick3(username)} style={{height:"3.3rem",width:"8.2rem",marginLeft:"3rem", borderRadius:"50rem", color: "black",backgroundColor:"#FADA5E",borderColor:"#FADA5E",fontWeight:"bold", position: "relative", top: "-6.95rem",fontFamily:"Quicksand"}}> 
+        <Button  onClick={() => handleClick3(username)} style={{height:"3.3rem",cursor: "pointer",width:"8.2rem",marginLeft:"3rem", borderRadius:"50rem", color: "black",backgroundColor:"#FADA5E",borderColor:"#FADA5E",fontWeight:"bold", position: "relative", top: "-6.95rem",fontFamily:"Quicksand"}}> 
           View Account
         </Button>
       </Container>
@@ -179,12 +201,12 @@ function Feed() {
     ) : (
     <Container style={{marginTop:"3rem", marginBottom: "3rem"}}>
       {posts.map((post, index) => (
-      <Card  onClick={() => handleClick2(post.title,post.body,post.username,post.ID,post.timestamp,post.likes,post.comment_count,post.avatar)} key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`} style={{marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#8CC4FF",borderRadius:"2rem",marginTop:"1rem" }}>
+      <Card  onClick={() => handleClick2(badgess[post.badges[0]],post.title,post.body,post.username,post.ID,post.timestamp,likedPosts.includes(post.ID) ? 1 : 0,post.comment_count,post.avatar)} key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`} style={{cursor: "pointer",marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#8CC4FF",borderRadius:"2rem",marginTop:"1rem" }}>
         <Card.Body>
           <div className="row">
             <div className="col-sm-6">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <img src={avatars[post.avatar]} class="avatar-image" style = {{marginLeft:"1.2rem",width:"4rem",height:"4rem",borderWidth:"0.3rem",marginTop:"-1rem"}}></img>
+                <img src={avatars[post.avatar]} className="avatar-image" style = {{'--avatar-image-border-color': badgess[post.badges[0]],marginLeft:"1.2rem",width:"4rem",height:"4rem",borderWidth:"0.3rem",marginTop:"-1rem"}}></img>
                 <div>
                   <h2 className="card-title" style={{ marginTop: "0.5rem",marginLeft: "1rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
                   <h6 className="card-title" style={{marginTop:"-1.7rem", marginLeft: "1rem",color:"#5E5E5E",fontWeight:"bold"}}>by {post.username}</h6>
@@ -193,8 +215,8 @@ function Feed() {
               <p className="card-text" style= {{marginLeft: "2.1rem",paddingBottom: "0.7rem", paddingTop:"0rem",marginTop:"0.1rem",fontSize:"1.05rem",fontWeight:"bold"}}>{post.body}</p>
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <IconButton onClick={(e) => { e.stopPropagation();  handleLikeClick(post.ID, post.timestamp,username);}} style={{marginLeft: "1.3rem",marginTop:"-1.1rem",fontSize:"2.2rem",fontWeight:"bold",color:"#EFBCDB"}}><FavoriteIcon/>  </IconButton>
-              <p className="card-text" style={{marginLeft: "0rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.likes} likes</p>
+              <FavoriteIcon onClick={(e) => { e.stopPropagation();  handleLikeClick(post.ID, post.timestamp,username);}} style={{marginLeft: "1.3rem",marginTop:"-1.1rem",fontSize:"1.5rem",fontWeight:"bold",color: likedPosts.includes(post.ID) ?  "#DC143C" : "grey "}}></FavoriteIcon>  
+              <p className="card-text" style={{marginLeft: "0.5rem",paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.likes} likes</p>
               <p className="card-text" style = {{marginLeft: "1.3rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.comment_count} comments</p>
               <p className="card-text" style = {{marginLeft: "38rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.timestamp.slice(6,8)} - {post.timestamp.slice(4,6)} - {post.timestamp.slice(0,4)} </p>
             </div>
@@ -223,7 +245,7 @@ function Feed() {
                   placeholder="    New Post Message Here"
                   value={newPostBody}
                   onChange={(e) => setNewPostBody(e.target.value)}  />
-              <Button style={{ marginTop: "-4rem" ,paddingBottom:"3rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#0F52BA",backgroundColor:"white"}}  onClick={handlePostSubmit} > 
+              <Button  className={`button ${isHoverable ? "hover" : ""}`} style={{cursor: "pointer", marginTop: "-4rem" ,paddingBottom:"3rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#0F52BA",backgroundColor:"white"}}  onClick={handlePostSubmit} > 
                 <SendIcon style={{height:"7.3rem",width:"5.3rem",color: "#0F52BA" ,marginLeft:"1rem"}}> </SendIcon>
               </Button>
               </div>
