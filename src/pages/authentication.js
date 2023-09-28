@@ -68,7 +68,7 @@ const handleKeyDown = (event) => {
           <Card style={{ width: '35rem',height:"33rem", backgroundColor:"#0F52BA" ,borderRadius:"5rem"}}>
             <img src={logo1} alt="Logo" className="rounded-circle" style={{ border: "1px solid black" ,borderRadius: "50rem",height: "8rem", width: "8rem",marginLeft:"38%",marginTop:"1rem"}} />
             <Card.Body style ={{marginTop:"-11rem"}}>
-              <Card.Header as="h5" style={{ fontFamily: 'Quicksand',color: '#000000', position: 'relative', top: '10rem', left: '4.7rem',fontSize:"3.5rem" ,fontWeight: "700" ,marginTop:"0.9rem"}}>Cancer Connect</Card.Header>
+              <Card.Header as="h5" style={{ fontFamily: 'Quicksand',color: 'white', position: 'relative', top: '10rem', left: '4.7rem',fontSize:"3.5rem" ,fontWeight: "700" ,marginTop:"0.9rem"}}>Cancer Connect</Card.Header>
               <div style={{ margin: "21% auto", width: "20rem" }}>
                 <Form.Control
                     type="text"

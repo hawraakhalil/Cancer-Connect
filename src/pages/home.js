@@ -80,7 +80,7 @@ function Home() {
         <header>
   <Container fluid="true" className="p-3" style={{ height: "6.8rem",maxWidth: "100rem", backgroundColor: "#0F52BA" ,padding:"1.1rem"}}>
   <img src={logo1} alt="Logo" className="rounded-circle" style={{ border: "1px solid black" ,borderRadius: "50rem",height: "13rem", width: "13rem",marginLeft:"1%",marginBottom:"-11.5rem",marginTop:"-20rem" , position: "relative", zIndex: "2" }} />
-  <p style={{fontFamily:"Pacifico",marginTop:"-1rem",color:"black", paddingLeft: "0rem",fontWeight:"800",fontSize:"3rem",paddingRight:"0rem",paddingBottom:"0rem",marginLeft:"16rem",marginBottom:"-5.7rem"}}>Cancer Connect</p>
+  <p style={{fontFamily:"Pacifico",marginTop:"-1rem",color:"white", paddingLeft: "0rem",fontWeight:"800",fontSize:"3rem",paddingRight:"0rem",paddingBottom:"0rem",marginLeft:"16rem",marginBottom:"-5.7rem"}}>Cancer Connect</p>
   <Button onClick={handleClick2} style ={{marginTop:"0.8rem",marginLeft:"43rem",width:"10rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Donate</Button>
   <Button onClick={handleClick1} style ={{marginTop:"0.8rem",marginLeft:"2rem",width:"10rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}> About us</Button>
   <Button onClick={handleClick4} style ={{marginTop:"0.8rem",marginLeft:"2rem",width:"10rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Sign in</Button>

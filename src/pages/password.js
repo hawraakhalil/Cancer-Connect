@@ -75,16 +75,34 @@ function Password() {
           style ={{marginLeft:"25rem",marginTop:"1rem",marginBottom:"4.5rem"}}
         />
         
-        <FormControl  sx={{ m: 1 ,width:"50rem"}}>
+        <FormControl  sx={{ m: 1 ,width:"32rem"}}>
           <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             style ={{marginLeft:"24.5rem",marginTop:"-4rem"}}
           />
-          
         </FormControl>
-
+        <TextField
+          required
+          id="outlined-required"
+          label="Card Number"
+          style ={{marginLeft:"25rem",marginTop:"1rem",marginBottom:"4.5rem"}}
+        />
+        <div style={{ display: "flex", alignItems: "center"}}>
+        <TextField
+          required
+          id="outlined-required"
+          label="Expiry Month"
+          style ={{marginLeft:"25rem",marginTop:"1rem",marginBottom:"4.5rem",width:"9rem"}}
+        /><TextField
+        required
+        id="outlined-required"
+        label="Expiry Year"
+        style ={{marginLeft:"2rem",marginTop:"1rem",marginBottom:"4.5rem",width:"9rem"}}
+      />
+      </div>
+        
                 </div>
             </div>
             </div>
