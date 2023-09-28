@@ -5,6 +5,7 @@ dynamodb = boto3.resource('dynamodb')
 table_name = 'Authentication'
 table = dynamodb.Table(table_name)
 
+'''
 def send_email(subject, body, recipient):
     try:
         response = ses.send_email(
@@ -62,3 +63,5 @@ def lambda_handler(event, context):
             "headers" : {"Content-Type":"application/json"},
             "body" : json.dumps({"message" : "Internal server error!"})
         }
+    
+'''
