@@ -169,9 +169,9 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
       <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>{userInfo.Day} {userInfo.Month} {userInfo.Year}</h5>
       <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>Location</h5>
       <div>
-        <h3 style={{color:"black", paddingLeft: "5.9rem",margin:"0",paddingTop:"0.1rem",marginBottom:"1rem"}}>Badges:</h3>
+        <h3 style={{color:"black", paddingLeft: "5.5rem",margin:"0",paddingTop:"0.1rem",marginBottom:"1rem"}}>Badges:</h3>
         {badges.map((badge) => (
-          <div style={{ display: "flex", alignItems: "center" , marginTop:"-1.3rem",marginLeft:"1rem"}} >
+          <div style={{ display: "flex", alignItems: "center" , marginTop:"-1.3rem",marginLeft:"1.5rem"}} >
             <img src={badgess[badge][0]} alt="badge" className="small-image"  style={{ '--small-image-border-color': badgess[badge][2] }} ></img>
             <h4 style={{color:"black", marginLeft: "4.5rem"}}>{badgess[badge][1]} </h4>
           </div>

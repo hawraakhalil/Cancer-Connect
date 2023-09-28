@@ -20,8 +20,8 @@ import avatar5 from './avatar5.png';
 import avatar6 from './avatar6.png';
 import avatar7 from './avatar7.png';
 import avatar8 from './avatar8.png';
-import CheckIcon from '@mui/icons-material/Check';
-import Alert from '@mui/material/Alert';
+import Popup from "./Popup"
+import AddIcon from '@mui/icons-material/Add';
 
 
 
@@ -55,39 +55,46 @@ const badgess =[
   const [likes, setLikes] = useState([]);
   const [alertOpen, setAlertOpen] = useState(false);
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
+
   //recieve user from login page
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const username = urlParams.get('user');
 
   //we are calling the backend function to read the posts from the database
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch('https://6o2k57kjivpml5yanhmtx42nau0cktug.lambda-url.eu-north-1.on.aws/' + username);
-        if (!response.ok) {
-          throw new Error('Failed to fetch posts');
-        }
-        const data = await response.json();
-        const dataArray = data.Items;
-        console.log(dataArray)
-        const LikesArray = data.likes;
-        const likedArray = data.liked_posts;
-        console.log(likedArray)
-        console.log(LikesArray)
-        setPosts(dataArray);
-        setLikedPosts(likedArray);
-        setLikes(LikesArray);
-        setRefresh(false);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-        setError('Failed to fetch posts. Please try again.');
-      }
-    };
-    fetchPosts();
-    
-  }, [refresh]);
 
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch('https://6o2k57kjivpml5yanhmtx42nau0cktug.lambda-url.eu-north-1.on.aws/' + username);
+      if (!response.ok) {
+        throw new Error('Failed to fetch posts');
+      }
+      const data = await response.json();
+      const dataArray = data.Items;
+      console.log(dataArray)
+      const LikesArray = data.likes;
+      const likedArray = data.liked_posts;
+      console.log(likedArray)
+      console.log(LikesArray)
+      setPosts(dataArray);
+      setLikedPosts(likedArray);
+      setLikes(LikesArray);
+      setRefresh(false);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      setError('Failed to fetch posts. Please try again.');
+    }
+  };
+  useEffect(() => {
+    fetchPosts();
+  }, [refresh]);
+  
   //we are calling the backend function to create new posts
   const createPost = async (newPost) => {
     try {
@@ -174,13 +181,15 @@ const badgess =[
     window.location.href = `/profile?user=${user}`;
   };
   //function that closes alert
-  const handleCloseAlert = () => {
-    setAlertOpen(false);
+
+  const refreshFeed = () => {
+    // Call the fetchPosts function to re-fetch the posts
+    fetchPosts();
   };
 
     return (
     <>
-    <header>
+    <header  style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 999 }}>
       <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#0F52BA" ,padding:"1.1rem"}}>
         <img src={logo1} alt="Logo" className="rounded-circle" style={{border: "1px solid black" ,borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-0.3%",marginTop:"-0.4rem" }} />
         <TextField 
@@ -206,7 +215,7 @@ const badgess =[
       <p style={{ marginTop: "1rem" }}>Error: {error}</p> {/* Display the error message */}
     </div>
     ) : (
-    <Container style={{marginTop:"3rem", marginBottom: "3rem"}}>
+    <Container style={{marginTop:"8rem", marginBottom: "3rem",marginLeft:"14rem"}}>
       {posts.map((post, index) => (
       <Card  onClick={() => handleClick2(badgess[post.badges[0]],post.title,post.body,post.username,post.ID,post.timestamp,likedPosts.includes(post.ID) ? 1 : 0,post.comment_count,post.avatar)} key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`} style={{cursor: "pointer",marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#8CC4FF",borderRadius:"2rem",marginTop:"1rem" }}>
         <Card.Body>
@@ -235,43 +244,10 @@ const badgess =[
     )}
    
     <footer className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
-    <Alert
-    icon={<CheckIcon fontSize="inherit" />}
-  onClose={handleCloseAlert}
-  severity="success" // or "error" for an error alert
-  variant="filled"
-  style={{ display: alertOpen ? 'block' : 'none' ,height:"5rem",marginBottom:"-35rem",width:"11rem"}}
->
- Post created Successfully
-</Alert>
-</div>
-      <Container style={{ maxWidth: "100rem", backgroundColor: "#0F52BA" }}>
-        <div>
-          <Form >
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Control type="text" style={{ paddingLeft:"1rem",fontFamily:"Quicksand",borderColor:"#FFFFFF",borderRadius:"1.2rem",width: "71.6rem",marginTop: "0.5rem",marginLeft: "7rem",marginRight:"5rem",height:"2.5rem",fontSize: "1rem",marginBottom:"-0.5rem" }} 
-            placeholder="New Post Title Here" 
-            value={newPostTitle}
-            onChange={(e) => setNewPostTitle(e.target.value)}/>
-            </Form.Group>
-            <br />
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Form.Control
-                  type="text"
-                  style={{ paddingLeft:"1rem",paddingTop:"-2rem",fontFamily:"Quicksand",borderColor:"#FFFFFF",borderRadius:"1.2rem",width: "71.6rem",marginLeft: "7rem",marginRight:"5rem",height:"6rem" ,fontSize: "1rem",marginTop:"-0.3rem",marginBottom:"0.8rem"}}
-                  placeholder="New Post Message Here"
-                  value={newPostBody}
-                  onChange={(e) => setNewPostBody(e.target.value)}  />
-              <Button  className="button" style={{cursor: "pointer", marginTop: "-4rem" ,paddingBottom:"3rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#0F52BA",backgroundColor:"white"}}  onClick={handlePostSubmit} > 
-                <SendIcon style={{height:"7.3rem",width:"5.3rem",color: "#0F52BA" ,marginLeft:"1rem"}}> </SendIcon>
-              </Button>
-              </div>
-             </Form.Group>
-            </Form>
-          </div>
-      </Container>
+    <Button  className="hover-button" style={{marginBottom:"2rem",cursor: "pointer", marginTop: "0rem" ,paddingBottom:"3rem" ,height:"7rem",width:"8rem",marginLeft:"84rem", borderRadius:"2rem",borderColor:"#FADA5E",backgroundColor:"#FADA5E"}}  onClick={togglePopup} > 
+      <AddIcon style={{height:"10rem",width:"7rem",color: "white" ,marginLeft:"0rem",marginTop:"-1.5rem"}}> </AddIcon>
+    </Button>
+      {isPopupOpen && <Popup onClose={() => togglePopup()}  onNewPostCreated={refreshFeed} username={username}/>}
     </footer>
   
   </>
