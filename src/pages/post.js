@@ -146,7 +146,6 @@ const handleLikeClick = (postId,timestamp,username) => {
   return (
     <>
       <header>
-        <p>hi</p>
         <Container fluid="true" className="p-3" style={{ height: "7.5rem", maxWidth: "100rem", backgroundColor: "#0F52BA", padding: "1.1rem", display: "flex" }}>
           <ArrowBackIosIcon style={{ height: "5rem", width: "6rem", cursor: "pointer", color: "#FADA5E" }}
             onClick={handleClick}>
