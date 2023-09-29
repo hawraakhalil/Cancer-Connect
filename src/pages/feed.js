@@ -160,18 +160,14 @@ const badgess =[
       </Container>
     </header>
     <div style={{ display: "flex", alignItems: "center" }}>
-      <Card style={{cursor: "pointer", backgroundColor: "#FADA5E",borderRadius:"2rem",marginTop:"1rem" ,marginLeft:"1rem"}}>
-        <Card.Body >
-          <p>Badges</p>
-        </Card.Body>
-      </Card>
+     
     {error ? (
     <div style={{ textAlign: "center" , marginTop: "10rem" }}>
       <span style={{ fontSize: "2rem" }}>😢</span> {/* Sad face emoji */}
       <p style={{ marginTop: "1rem" }}>Error: {error}</p> {/* Display the error message */}
     </div>
     ) : (
-    <Container style={{marginTop:"8rem", marginBottom: "3rem",marginLeft:"9.5rem"}}>
+    <Container style={{marginTop:"8rem", marginBottom: "3rem",marginLeft:"14.5rem"}}>
       {posts.map((post, index) => (
       <Card  onClick={() => handleClick2(badgess[post.badges[0]],post.title,post.body,post.username,post.ID,post.timestamp,likedPosts.includes(post.ID) ? 1 : 0,post.comment_count,post.avatar)} key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`} style={{cursor: "pointer",marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#8CC4FF",borderRadius:"2rem",marginTop:"1rem" }}>
         <Card.Body>
