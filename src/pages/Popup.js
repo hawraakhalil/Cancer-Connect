@@ -93,4 +93,8 @@ const Popup = ({ onClose,onNewPostCreated,username }) => {
 
 };
 
+<<<<<<< HEAD
 export default Popup;
+=======
+export default Popup;
+>>>>>>> df596f303a04cc06f7c0119a0b8a65acd98bf24e
