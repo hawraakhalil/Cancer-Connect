@@ -1,13 +1,10 @@
-import React , { useState, useEffect,useContext } from 'react';
+import React , { useState, useEffect } from 'react';
 import '../App.css';
 import Container from '@mui/material/Container';
 import Card from 'react-bootstrap/Card'  
-import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import TextField from '@mui/material/TextField';
-import SendIcon from '@mui/icons-material/Send'; 
 import SearchIcon from '@mui/icons-material/Search';
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import logo1 from './logo1.png';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
@@ -20,8 +17,8 @@ import avatar5 from './avatar5.png';
 import avatar6 from './avatar6.png';
 import avatar7 from './avatar7.png';
 import avatar8 from './avatar8.png';
-import CheckIcon from '@mui/icons-material/Check';
-import Alert from '@mui/material/Alert';
+import Popup from "./Popup"
+import AddIcon from '@mui/icons-material/Add';
 
 
 
@@ -49,11 +46,13 @@ const badgess =[
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const [refresh, setRefresh] = useState(false);
-  const [newPostTitle, setNewPostTitle] = useState('');
-  const [newPostBody, setNewPostBody] = useState('');
   const [likedPosts, setLikedPosts] = useState([]);
-  const [likes, setLikes] = useState([]);
-  const [alertOpen, setAlertOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
 
   //recieve user from login page
   const queryString = window.location.search;
@@ -61,76 +60,35 @@ const badgess =[
   const username = urlParams.get('user');
 
   //we are calling the backend function to read the posts from the database
+
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch('https://6o2k57kjivpml5yanhmtx42nau0cktug.lambda-url.eu-north-1.on.aws/' + username);
+      if (!response.ok) {
+        throw new Error('Failed to fetch posts');
+      }
+      const data = await response.json();
+      const dataArray = data.Items;
+      console.log(dataArray)
+      const LikesArray = data.likes;
+      const likedArray = data.liked_posts;
+      console.log(likedArray)
+      console.log(LikesArray)
+      setPosts(dataArray);
+      setLikedPosts(likedArray);
+      setRefresh(false);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      setError('Failed to fetch posts. Please try again.');
+    }
+  };
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch('https://6o2k57kjivpml5yanhmtx42nau0cktug.lambda-url.eu-north-1.on.aws/' + username);
-        if (!response.ok) {
-          throw new Error('Failed to fetch posts');
-        }
-        const data = await response.json();
-        const dataArray = data.Items;
-        console.log(dataArray)
-        const LikesArray = data.likes;
-        const likedArray = data.liked_posts;
-        console.log(likedArray)
-        console.log(LikesArray)
-        setPosts(dataArray);
-        setLikedPosts(likedArray);
-        setLikes(LikesArray);
-        setRefresh(false);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-        setError('Failed to fetch posts. Please try again.');
-      }
-    };
     fetchPosts();
-    
   }, [refresh]);
-
-  //we are calling the backend function to create new posts
-  const createPost = async (newPost) => {
-    try {
-      const response = await fetch('https://3rwy23iemuqdcbph2gzvl5ytra0hxwpb.lambda-url.eu-north-1.on.aws/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({ ...newPost, username }),
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data.message); // Logging the success message
-        setAlertOpen(true);
-      } else {
-        throw new Error('Failed to create post');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const handlePostSubmit = async () => {
-    try {
-      // Make the API call to create the new post
-      if (!newPostBody || !newPostTitle) {
-        console.log("no body or title")
-      }
-      else {
-      await createPost({ title: newPostTitle, body: newPostBody, username });
   
-      // Clear the input fields after successful submission
-      setNewPostTitle('');
-      setNewPostBody('');
-      //to refresh
-      setRefresh(true);
-    }
-    } catch (error) {
-      console.error('Error creating post:', error);
-    }
-  };
-
+  const handleClick = () => {
+    window.location.href = `/home`;
+  }; 
   //calling function that adds likes
   const handleLikeClick = (postId,timestamp,username) => {
     console.log("hi")
@@ -174,15 +132,17 @@ const badgess =[
     window.location.href = `/profile?user=${user}`;
   };
   //function that closes alert
-  const handleCloseAlert = () => {
-    setAlertOpen(false);
+
+  const refreshFeed = () => {
+    // Call the fetchPosts function to re-fetch the posts
+    fetchPosts();
   };
 
     return (
     <>
-    <header>
+    <header  style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 999 }}>
       <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#0F52BA" ,padding:"1.1rem"}}>
-        <img src={logo1} alt="Logo" className="rounded-circle" style={{border: "1px solid black" ,borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-0.3%",marginTop:"-0.4rem" }} />
+        <img src={logo1} alt="Logo" className="rounded-circle logo " style={{border: "1px solid black" ,borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-0.3%",marginTop:"-0.4rem" }}  onClick={(handleClick )}   title="Go to homepage" />
         <TextField 
             id="search"
             variant="outlined"
@@ -199,21 +159,22 @@ const badgess =[
         </Button>
       </Container>
     </header>
-    
+    <div style={{ display: "flex", alignItems: "center" }}>
+     
     {error ? (
     <div style={{ textAlign: "center" , marginTop: "10rem" }}>
       <span style={{ fontSize: "2rem" }}>😢</span> {/* Sad face emoji */}
       <p style={{ marginTop: "1rem" }}>Error: {error}</p> {/* Display the error message */}
     </div>
     ) : (
-    <Container style={{marginTop:"3rem", marginBottom: "3rem"}}>
+    <Container style={{marginTop:"8rem", marginBottom: "3rem",marginLeft:"14.5rem"}}>
       {posts.map((post, index) => (
       <Card  onClick={() => handleClick2(badgess[post.badges[0]],post.title,post.body,post.username,post.ID,post.timestamp,likedPosts.includes(post.ID) ? 1 : 0,post.comment_count,post.avatar)} key={index} className={`mt-4 ${index === posts.length - 1 ? "last-post" : ""} post-card`} style={{cursor: "pointer",marginLeft:"6.2rem",marginRight:"6.2rem", backgroundColor: "#8CC4FF",borderRadius:"2rem",marginTop:"1rem" }}>
         <Card.Body>
           <div className="row">
             <div className="col-sm-6">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <img src={avatars[post.avatar]} className="avatar-image" style = {{'--avatar-image-border-color': badgess[post.badges[0]],marginLeft:"1.2rem",width:"4rem",height:"4rem",borderWidth:"0.3rem",marginTop:"-1rem"}}></img>
+                <img src={avatars[post.avatar]} alt ='avatar' className="avatar-image" style = {{'--avatar-image-border-color': badgess[post.badges[0]],marginLeft:"1.2rem",width:"4rem",height:"4rem",borderWidth:"0.3rem",marginTop:"-1rem"}}></img>
                 <div>
                   <h2 className="card-title" style={{ marginTop: "0.5rem",marginLeft: "1rem",color:"#5E5E5E", paddingTop: "1rem",paddingBottom: "0rem",fontWeight:"bold"}}>{post.title}</h2>
                   <h6 className="card-title" style={{marginTop:"-1.7rem", marginLeft: "1rem",color:"#5E5E5E",fontWeight:"bold"}}>by {post.username}</h6>
@@ -233,45 +194,13 @@ const badgess =[
       ))}
     </Container>
     )}
+    </div>
    
     <footer className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
-    <Alert
-    icon={<CheckIcon fontSize="inherit" />}
-  onClose={handleCloseAlert}
-  severity="success" // or "error" for an error alert
-  variant="filled"
-  style={{ display: alertOpen ? 'block' : 'none' ,height:"5rem",marginBottom:"-35rem",width:"11rem"}}
->
- Post created Successfully
-</Alert>
-</div>
-      <Container style={{ maxWidth: "100rem", backgroundColor: "#0F52BA" }}>
-        <div>
-          <Form >
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Control type="text" style={{ paddingLeft:"1rem",fontFamily:"Quicksand",borderColor:"#FFFFFF",borderRadius:"1.2rem",width: "71.6rem",marginTop: "0.5rem",marginLeft: "7rem",marginRight:"5rem",height:"2.5rem",fontSize: "1rem",marginBottom:"-0.5rem" }} 
-            placeholder="New Post Title Here" 
-            value={newPostTitle}
-            onChange={(e) => setNewPostTitle(e.target.value)}/>
-            </Form.Group>
-            <br />
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Form.Control
-                  type="text"
-                  style={{ paddingLeft:"1rem",paddingTop:"-2rem",fontFamily:"Quicksand",borderColor:"#FFFFFF",borderRadius:"1.2rem",width: "71.6rem",marginLeft: "7rem",marginRight:"5rem",height:"6rem" ,fontSize: "1rem",marginTop:"-0.3rem",marginBottom:"0.8rem"}}
-                  placeholder="New Post Message Here"
-                  value={newPostBody}
-                  onChange={(e) => setNewPostBody(e.target.value)}  />
-              <Button  className="button" style={{cursor: "pointer", marginTop: "-4rem" ,paddingBottom:"3rem" ,height:"7.6rem",width:"9.3rem",marginLeft:"-3rem", borderRadius:"2rem",borderColor:"#0F52BA",backgroundColor:"white"}}  onClick={handlePostSubmit} > 
-                <SendIcon style={{height:"7.3rem",width:"5.3rem",color: "#0F52BA" ,marginLeft:"1rem"}}> </SendIcon>
-              </Button>
-              </div>
-             </Form.Group>
-            </Form>
-          </div>
-      </Container>
+    <Button  className="hover-button" style={{marginBottom:"2rem",cursor: "pointer", marginTop: "0rem" ,paddingBottom:"3rem" ,height:"7rem",width:"8rem",marginLeft:"84rem", borderRadius:"2rem",borderColor:"#FADA5E",backgroundColor:"#FADA5E"}}  onClick={togglePopup} > 
+      <AddIcon style={{height:"10rem",width:"7rem",color: "white" ,marginLeft:"0rem",marginTop:"-1.5rem"}}> </AddIcon>
+    </Button>
+      {isPopupOpen && <Popup onClose={() => togglePopup()}  onNewPostCreated={refreshFeed} username={username}/>}
     </footer>
   
   </>
