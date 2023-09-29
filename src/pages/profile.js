@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
-import SendIcon from '@mui/icons-material/Send'; 
 import Container from '@mui/material/Container';
 import SearchIcon from '@mui/icons-material/Search';
-import Avatar from '@mui/material/Avatar';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import profile from './profile.png';
 import Card from 'react-bootstrap/Card'
-import badge from './badge.png';
 import avatar1 from './avatar1.png';
 import avatar2 from './avatar2.png';
 import avatar3 from './avatar3.png';
@@ -87,19 +83,6 @@ const handleLikeClick = (postId,timestamp,username) => {
       console.error('Error updating likes:', error);
     });
 };
-
-const handleClick2 = (postTitle,postBody,postUser,postID,posttime,postLikes,postComments) => {
-const title = encodeURIComponent(postTitle);
-const body = encodeURIComponent(postBody);
-const user = encodeURIComponent(postUser);
-const ID = encodeURIComponent(postID);
-const timestamp= encodeURIComponent(posttime);
-const likes = encodeURIComponent(postLikes);
-const commCount = encodeURIComponent(postComments);
-window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&timestamp=${timestamp}&likes=${likes}&commCount=${commCount}`;
-}; 
-
-
     //fetching user info:
     useEffect(() => {
       const fetchPosts = async () => {
@@ -141,7 +124,7 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
 <header>
   <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#0F52BA" ,padding:"1.1rem"}}>
     <ArrowBackIosIcon style={{height:"4rem",width:"5rem",cursor: "pointer", color:"#FADA5E" }}
-    onClick={handleClick}>
+    onClick={handleClick} >
      </ArrowBackIosIcon>
     <TextField 
           id="search"
@@ -156,7 +139,7 @@ window.location.href = `/post?title=${title}&body=${body}&user=${user}&ID=${ID}&
         />
   </Container>
   <div class="avatar-container">
-  <img fixed src={selectedAvatar} class="avatar-image" style = {{'--avatar-image-border-color': '#4EA4F3',marginLeft:"4.9rem",marginBottom:"3rem"}}></img>
+  <img fixed src={selectedAvatar} alt="avatar" class="avatar-image" style = {{'--avatar-image-border-color': '#4EA4F3',marginLeft:"4.9rem",marginBottom:"3rem"}}></img>
 </div>
   </header>
   <div className="content-container">
