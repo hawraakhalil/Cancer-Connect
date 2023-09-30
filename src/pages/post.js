@@ -89,7 +89,7 @@ const handleLikeClick = (postId,timestamp,username) => {
 
   //reads comments 
   useEffect(() => {
-    fetch('https://cniwk2kqhbb5cyvwh4smrufsgy0trsdq.lambda-url.eu-north-1.on.aws/' + ID)
+    fetch('https://cniwk2kqhbb5cyvwh4smrufsgy0trsdq.lambda-url.eu-north-1.on.aws/' + ID + username2)
       .then(response => response.json())
       .then(data => {
         console.log(data)

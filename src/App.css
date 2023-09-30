@@ -95,7 +95,7 @@ body {
 
 .container1 {
   display: flex;
-  height: 84.5vh;
+  height: 86.4vh;
   position: relative;
 }
 .section1 {
@@ -121,7 +121,7 @@ body {
 
 .section2 {
   width: 66.67%;
-  background-color: #F2CB2E;
+  background-color: #8CC4FF;
   height: 100%; /* Adjust the height of the section */
   display: flex;
   justify-content: center;
@@ -163,7 +163,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 999;
 }
 
 .popup-content {
@@ -215,3 +215,21 @@ body {
   opacity: 1;
 }
 
+.menu {
+  list-style: none;
+  display: flex;
+  padding:0;
+  flex-direction: column;
+}
+
+.menu-item {
+  padding: 10px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.description {
+  display: block;
+  padding: 10px;
+  border: 1px solid var(--description-border-color);
+}

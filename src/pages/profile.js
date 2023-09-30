@@ -156,7 +156,7 @@ const handleLikeClick = (postId,timestamp,username) => {
         {badges.map((badge) => (
           <div style={{ display: "flex", alignItems: "center" , marginTop:"-1.3rem",marginLeft:"1.5rem"}} >
             <img src={badgess[badge][0]} alt="badge" className="small-image"  style={{ '--small-image-border-color': badgess[badge][2] }} ></img>
-            <h4 style={{color:"black", marginLeft: "4.5rem"}}>{badgess[badge][1]} </h4>
+            <h4 style={{color:"black", marginLeft: "4rem"}}>{badgess[badge][1]} </h4>
           </div>
         ))}
       </div>

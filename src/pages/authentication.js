@@ -5,12 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import Form from 'react-bootstrap/Form';
-import images from './images.png';
-import yellow from './yellow.png';
 import logo1 from './logo1.png';
-
-
-
 
 
 function Authentication() {
@@ -87,7 +82,7 @@ const handleKeyDown = (event) => {
                     style ={{ paddingLeft:"1rem",width:"25rem",height:"3rem",borderRadius:"2rem",borderColor:"#FFFFFF",fontFamily:"Lato",fontWeight:"bold",fontSize:"0.95rem",marginLeft:"-3rem"}}
                     onKeyDown={handleKeyDown}
                   />
-                <Link to="/password" style={{ color: '#000000', textDecoration: 'underline',fontSize:"0.88rem" ,fontFamily:"Lato",display: "flex", justifyContent: "center",marginTop:"0.8rem",fontWeight:"bold", fontStyle: "italic"}}> forgot password?</Link>
+                <Link to="/" style={{ color: '#000000', textDecoration: 'underline',fontSize:"0.88rem" ,fontFamily:"Lato",display: "flex", justifyContent: "center",marginTop:"0.8rem",fontWeight:"bold", fontStyle: "italic"}}> forgot password?</Link>
                 <Button onClick={handleClick} style ={{marginTop:"0.8rem",marginLeft:"5rem",width:"10rem",height:"3.5rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold"}}>Login</Button>
                 <p style={{ fontSize: '0.9rem', marginTop: '1rem', textAlign: 'center' ,marginBottom:'0.4rem'}}>
                   Don't have an account? Create a new one&nbsp;   

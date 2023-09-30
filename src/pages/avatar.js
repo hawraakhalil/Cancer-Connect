@@ -47,16 +47,16 @@ function Avatar() {
          <style>{'body { background-color: #FFF0F9; }'}</style>
          <p style={{color:"#A4D6D3", paddingLeft: "26rem",margin:"0",paddingTop:"1rem",fontWeight:"bold",fontSize:"4rem",marginBottom:"5rem"}}>Choose Your Avatar !</p>
          <div class="avatar-container" style = {{display: "flex", alignItems: "center" }}>
-            <img src={avatar1} alt="Avatar" class="avatar-image"  onClick={(event,) => handleSubmit(1)} style={{borderColor:"#A4D6D3"}}></img>
-            <img src={avatar2} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(2)} style={{borderColor:"#A4D6D3"}}></img>
-            <img src={avatar3} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(3)} style={{borderColor:"#A4D6D3"}}></img>
-            <img src={avatar4} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(4)} style={{borderColor:"#A4D6D3"}}></img>
+            <img src={avatar1} alt="Avatar" class="avatar-image"  onClick={(event,) => handleSubmit(1)} style={{'--avatar-image-border-color': '#4EA4F3'}}></img>
+            <img src={avatar2} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(2)} style={{'--avatar-image-border-color': '#4EA4F3'}}></img>
+            <img src={avatar3} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(3)} style={{'--avatar-image-border-color': '#4EA4F3'}}></img>
+            <img src={avatar4} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(4)} style={{'--avatar-image-border-color': '#4EA4F3'}}></img>
         </div>
         <div class="avatar-container" style = {{display: "flex", alignItems: "center" ,marginTop:"7rem"}}>
-            <img src={avatar5} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(5)} style={{borderColor:"#A4D6D3"}}></img>
-            <img src={avatar6} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(6)} style={{borderColor:"#A4D6D3"}}></img>
-            <img src={avatar7} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(7)} style={{borderColor:"#A4D6D3"}}></img>
-            <img src={avatar8} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(8)} style={{borderColor:"#A4D6D3"}}></img>
+            <img src={avatar5} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(5)} style={{'--avatar-image-border-color': '#4EA4F3'}}></img>
+            <img src={avatar6} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(6)} style={{'--avatar-image-border-color': '#4EA4F3'}}></img>
+            <img src={avatar7} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(7)} style={{'--avatar-image-border-color': '#4EA4F3'}}></img>
+            <img src={avatar8} alt="Avatar" class="avatar-image" onClick={(event) => handleSubmit(8)} style={{'--avatar-image-border-color': '#4EA4F3'}}></img>
         </div>
         </>
     );

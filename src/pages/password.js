@@ -48,9 +48,9 @@ function Password() {
     return (
         <>
         <header>
-        <Container fluid="true" className="p-3" style={{ height: "4.7rem",maxWidth: "100rem", backgroundColor: "#0F52BA" ,padding:"1.1rem"}}>
-  <img src={logo1} alt="Logo" className="rounded-circle" style={{ border: "1px solid black" ,borderRadius: "50rem",height: "13rem", width: "13rem",marginLeft:"1%",marginBottom:"-11.5rem",marginTop:"-20rem" , position: "relative", zIndex: "2" }} />
-  <p style={{fontFamily:"Quicksand",marginTop:"-0.5rem",color:"white", paddingLeft: "0rem",fontWeight:"800",fontSize:"3rem",paddingRight:"0rem",paddingBottom:"0rem",marginLeft:"16rem",marginBottom:"-5rem"}}>Cancer Connect</p>
+        <Container fluid="true" className="p-3" style={{ height: "3.8rem",maxWidth: "100rem", backgroundColor: "#0F52BA" ,padding:"1.1rem"}}>
+  <img src={logo1} alt="Logo" className="rounded-circle" style={{ border: "1px solid black" ,borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-8rem",marginTop:"-2rem" , position: "relative", zIndex: "2" }} />
+  <p style={{fontFamily:"Quicksand",marginTop:"-0.5rem",color:"white", paddingLeft: "0rem",fontWeight:"800",fontSize:"3rem",paddingRight:"0rem",paddingBottom:"0rem",marginLeft:"16rem",marginBottom:"-5.3rem"}}>Cancer Connect</p>
   <Button onClick={handleClick5} style ={{marginTop:"0.8rem",marginLeft:"47rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Home</Button>
   <Button onClick={handleClick2} style ={{marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Donate</Button>
   <Button onClick={handleClick1} style ={{marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}> About us</Button>
