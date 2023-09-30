@@ -46,7 +46,7 @@ const badgess =[
     [badge2,'#A6A6A6',"Awarded to cancer survivors who've completed their treatment"],
     [badge3,'#FFBD59',"Granted to friends and family supporting cancer patients"],
     [badge4,'#7ED957',"For health professionals and medical experts sharing insights"],
-    [badge5,'#38B6FF',"Received after posting 10 times for showing a will to "],
+    [badge5,'#38B6FF',"Received after posting 10 times for active participation "],
     [badge6,'#8C52FF',"Received after 10 comments and 10 likes for supporting others and active engagement in discussions"]
 ]
 const badgesName=[
