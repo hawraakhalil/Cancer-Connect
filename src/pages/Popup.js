@@ -1,15 +1,12 @@
 // Popup.js
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import "../App.css";
-import Container from "@mui/material/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import SendIcon from "@mui/icons-material/Send";
 
 const Popup = ({ onClose, onNewPostCreated, username }) => {
   const [newPostTitle, setNewPostTitle] = useState("");
   const [newPostBody, setNewPostBody] = useState("");
-  const [refresh, setRefresh] = useState(false);
   const [submititng, setSubmitting] = useState(false);
   
   //we are calling the backend function to create new posts

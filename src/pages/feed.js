@@ -168,7 +168,7 @@ const badgesName=[
     <>
     <header  style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 999 }}>
       <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#0F52BA" ,padding:"1.1rem"}}>
-        <img src={logo1} alt="Logo" className="rounded-circle logo " style={{border: "1px solid black" ,borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-0.3%",marginTop:"-0.4rem" }}  onClick={(handleClick )}   title="Go to homepage" />
+        <img src={logo1} alt="Logo" className="rounded-circle logo " style={{ cursor: "pointer",border: "1px solid black" ,borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-0.3%",marginTop:"-0.4rem" }}  onClick={(handleClick )}   title="Go to homepage" />
         <TextField 
             id="search"
             variant="outlined"
@@ -251,7 +251,7 @@ const badgesName=[
     )}
     </div>
    </div>
-    <footer className="footer" style={{ position: "fixed", bottom: 0, width: "100%" }}>
+    <footer className="footer" style={{ position: "fixed", bottom: 0 }}>
     <Button  className="hover-button" style={{marginBottom:"2rem",cursor: "pointer", marginTop: "0rem" ,paddingBottom:"3rem" ,height:"7rem",width:"8rem",marginLeft:"84.6rem", borderRadius:"2rem",borderColor:"#FADA5E",backgroundColor:"#FADA5E"}}  onClick={togglePopup} > 
       <AddIcon style={{height:"10rem",width:"7rem",color: "white" ,marginLeft:"0rem",marginTop:"-1.5rem"}}> </AddIcon>
     </Button>

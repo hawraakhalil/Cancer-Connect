@@ -83,7 +83,7 @@ const handleKeyDown = (event) => {
                     onKeyDown={handleKeyDown}
                   />
                 <Link to="/" style={{ color: '#000000', textDecoration: 'underline',fontSize:"0.88rem" ,fontFamily:"Lato",display: "flex", justifyContent: "center",marginTop:"0.8rem",fontWeight:"bold", fontStyle: "italic"}}> forgot password?</Link>
-                <Button onClick={handleClick} style ={{marginTop:"0.8rem",marginLeft:"5rem",width:"10rem",height:"3.5rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold"}}>Login</Button>
+                <Button onClick={handleClick} style ={{cursor:"pointer",marginTop:"0.8rem",marginLeft:"5rem",width:"10rem",height:"3.5rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold"}}>Login</Button>
                 <p style={{ fontSize: '0.9rem', marginTop: '1rem', textAlign: 'center' ,marginBottom:'0.4rem'}}>
                   Don't have an account? Create a new one&nbsp;   
                   <Link to="/signup" style={{ color: '#FFD300', textDecoration: 'underline' }}>here</Link>.

@@ -4,7 +4,6 @@ import Card from 'react-bootstrap/Card'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import TextField from '@mui/material/TextField';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
@@ -32,11 +31,11 @@ function Post() {
   ];
 
   const [refresh, setRefresh] = useState(false);
-  const [post, setPost] = useState({});
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
   const [comments, setComments] = useState([]);
   const [likes,setLikes] = useState([])
   const [liked,setLiked] = useState([])
+  const [submititng, setSubmitting] = useState(false);
 
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -46,13 +45,9 @@ function Post() {
   const username = urlParams.get('user');
   const ID = urlParams.get('ID');
   const timestamp = urlParams.get("timestamp");
-  const likes2 = urlParams.get("likes");
-  const commCount = urlParams.get("commCount");
   const username2 = urlParams.get("username2");
   const avatar=urlParams.get("avatar");
   const badge = urlParams.get("badge");
- 
-  const [likes1, setLikes1] = useState(likes2);
 
   const handleClick = () => {
     const user = encodeURIComponent(username2);
@@ -95,13 +90,12 @@ const handleLikeClick = (postId,timestamp,username) => {
         console.log(data)
         console.log(data.Items[0].comments_dictionary)
         save(data.Items[0].comments_dictionary,data.Items[0].likes,data.Items[0].liked_or_no); // Save the comments arra
-        setPost(data);
         setRefresh(false);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, [refresh]);
+  }, [refresh,ID,username2]);
     const save = (commentsArray,likes,liked_or_no) => {
     console.log(commentsArray);
     localStorage.setItem('comments', JSON.stringify(commentsArray));
@@ -115,6 +109,8 @@ const handleLikeClick = (postId,timestamp,username) => {
 
   //writes comments
   function submitComment() {
+    if (submititng) return;
+    else setSubmitting(true);
     const commentText = document.getElementById('commentText').value; // Get the comment from the textarea
 
     // Make a fetch request to send the comment to the Lambda function
@@ -136,6 +132,7 @@ const handleLikeClick = (postId,timestamp,username) => {
         console.log('Response from the Lambda function:', data);
         document.getElementById('commentText').value = '';
         setRefresh(true);
+        setSubmitting(true);
       })
       .catch(error => {
         // Handle any error that occurred
@@ -153,7 +150,7 @@ const handleLikeClick = (postId,timestamp,username) => {
           <div className="row">
             <div className="col-sm-6">
             <div style={{ display: "flex", alignItems: "center" }}>
-            <img src={avatars[avatar]} class="avatar-image" style = {{'--avatar-image-border-color': badge,marginLeft:"-1rem",width:"5.5rem",height:"5.5rem",borderWidth:"0.3rem",marginTop:"-1.8rem"}}></img>
+            <img src={avatars[avatar]} class="avatar-image" alt="avatar" style = {{'--avatar-image-border-color': badge,marginLeft:"-1rem",width:"5.5rem",height:"5.5rem",borderWidth:"0.3rem",marginTop:"-1.8rem"}}></img>
               <div>
               <h2 className="card-title" style={{ marginTop: "-0.5rem", marginLeft: "1rem", color: "white", paddingTop: "0rem", paddingBottom: "0rem", fontSize: "2.7rem" }}>{title}</h2>
               <h6 className="card-title" style={{ marginTop: "-2.5rem", marginLeft: "1.2rem", color: "white" }}>by {username} </h6>

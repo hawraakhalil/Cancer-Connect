@@ -2,18 +2,11 @@ import React from 'react';
 import logo1 from './logo1.png';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import donate from './donate.png';
 
 function Password() {
 
@@ -34,28 +27,18 @@ function Password() {
   const handleClick5 = () => {
     window.location.href = `/home`;
   };
-
-    const [showPassword, setShowPassword] = React.useState(false);
   
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-  
-    const handleMouseDownPassword = (event) => {
-      event.preventDefault();
-    };
-  
-
-
     return (
         <>
         <header>
         <Container fluid="true" className="p-3" style={{ height: "3.8rem",maxWidth: "100rem", backgroundColor: "#0F52BA" ,padding:"1.1rem"}}>
   <img src={logo1} alt="Logo" className="rounded-circle" style={{ border: "1px solid black" ,borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-8rem",marginTop:"-2rem" , position: "relative", zIndex: "2" }} />
   <p style={{fontFamily:"Quicksand",marginTop:"-0.5rem",color:"white", paddingLeft: "0rem",fontWeight:"800",fontSize:"3rem",paddingRight:"0rem",paddingBottom:"0rem",marginLeft:"16rem",marginBottom:"-5.3rem"}}>Cancer Connect</p>
-  <Button onClick={handleClick5} style ={{marginTop:"0.8rem",marginLeft:"47rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Home</Button>
-  <Button onClick={handleClick2} style ={{marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Donate</Button>
-  <Button onClick={handleClick1} style ={{marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}> About us</Button>
-  <Button onClick={handleClick4} style ={{marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Sign in</Button>
-  <Button onClick={handleClick3} style ={{marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Sign up</Button>
+  <Button onClick={handleClick5} style ={{cursor: "pointer",marginTop:"0.8rem",marginLeft:"47rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Home</Button>
+  <Button onClick={handleClick2} style ={{cursor: "pointer",marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Donate</Button>
+  <Button onClick={handleClick1} style ={{cursor: "pointer",marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}> About us</Button>
+  <Button onClick={handleClick4} style ={{cursor: "pointer",marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Sign in</Button>
+  <Button onClick={handleClick3} style ={{cursor: "pointer",marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Sign up</Button>
   </Container>
         </header>
         <body>

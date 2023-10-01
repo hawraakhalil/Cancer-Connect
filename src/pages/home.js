@@ -81,11 +81,11 @@ function Home() {
   <Container fluid="true" className="p-3" style={{ height: "6rem",maxWidth: "100rem", backgroundColor: "#0F52BA" ,padding:"1.1rem"}}>
   <img src={logo1} alt="Logo" className="rounded-circle" style={{ border: "1px solid black" ,borderRadius: "50rem",height: "9.7rem", width: "9.7rem",marginLeft:"2%",marginBottom:"-8rem",marginTop:"-2rem" , position: "relative", zIndex: "2" }} />
   <p style={{fontFamily:"Quicksand",marginTop:"-0.5rem",color:"white", paddingLeft: "0rem",fontWeight:"800",fontSize:"3rem",paddingRight:"0rem",paddingBottom:"0rem",marginLeft:"16rem",marginBottom:"-5.3rem"}}>Cancer Connect</p>
-  <Button onClick={handleClick5} style ={{marginTop:"0.8rem",marginLeft:"47rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Home</Button>
-  <Button onClick={handleClick2} style ={{marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Donate</Button>
-  <Button onClick={handleClick1} style ={{marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}> About us</Button>
-  <Button onClick={handleClick4} style ={{marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Sign in</Button>
-  <Button onClick={handleClick3} style ={{marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Sign up</Button>
+  <Button onClick={handleClick5} style ={{cursor: "pointer",marginTop:"0.8rem",marginLeft:"47rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Home</Button>
+  <Button onClick={handleClick2} style ={{cursor: "pointer",marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Donate</Button>
+  <Button onClick={handleClick1} style ={{cursor: "pointer",marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}> About us</Button>
+  <Button onClick={handleClick4} style ={{cursor: "pointer",marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Sign in</Button>
+  <Button onClick={handleClick3} style ={{cursor: "pointer",marginTop:"0.8rem",marginLeft:"1rem",width:"8rem",height:"4rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"10rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1.1rem"}}>Sign up</Button>
   </Container>
   
   </header>
@@ -118,8 +118,8 @@ function Home() {
         <div id="other-section" ref={otherSectionRef}>
       <Container fluid="true" className="p-3" style={{ height: "12rem",maxWidth: "100rem", backgroundColor: "#21292d" ,padding:"0.5rem"}}>
         <div onClick={handleOtherButtonClick}>
-      <img  src={news} alt="Logo" className="rounded-circle" style={{ borderRadius: "50rem",height: "10rem", width: "10rem",marginLeft:"44%",marginBottom:"-3.4rem",marginTop:"-6rem" , position: "relative", zIndex: "2" }} />
-      <MailOutlineIcon style={{height:"5rem",width:"3.5rem",color: "white" ,marginLeft:"-6.8rem",marginTop:"-8rem", position: "relative", zIndex: "2",marginBottom:"1.4rem"}}> </MailOutlineIcon >
+      <img  src={news} alt="Logo" className="rounded-circle" style={{ cursor:"pointer",borderRadius: "50rem",height: "10rem", width: "10rem",marginLeft:"44%",marginBottom:"-3.4rem",marginTop:"-6rem" , position: "relative", zIndex: "2" }} />
+      <MailOutlineIcon style={{cursor:"pointer",height:"5rem",width:"3.5rem",color: "white" ,marginLeft:"-6.8rem",marginTop:"-8rem", position: "relative", zIndex: "2",marginBottom:"1.4rem"}}> </MailOutlineIcon >
       </div>
       <p style={{color:"white", paddingLeft: "28rem",margin:"0",paddingTop:"-4rem",fontWeight:"800",fontSize:"1.5rem",marginBottom:"1.5rem",paddingRight:"5rem", position: "relative", zIndex: "2"}}>Subscribe to our newsletter to get the latest updates</p>
       <TextField
@@ -174,7 +174,7 @@ function Home() {
               }}
             style ={{marginLeft:"5rem"}}
         />
-        <Button onClick={handleButtonClick} type="submit" style ={{marginTop:"0.5rem",width:"5rem",height:"3rem",borderRadius:"2.3rem",fontFamily:"Lato",fontSize:"0.9rem",marginLeft:"2rem"}}>Submit</Button>
+        <Button onClick={handleButtonClick} type="submit" style ={{cursor:"pointer",marginTop:"0.5rem",width:"5rem",height:"3rem",borderRadius:"2.3rem",fontFamily:"Lato",fontSize:"0.9rem",marginLeft:"2rem"}}>Submit</Button>
         </Container>
         </div>
       </footer>

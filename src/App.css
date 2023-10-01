@@ -85,7 +85,7 @@ body {
   position: relative;
   border-radius: 50rem;
   bottom: 0;
-  left: 20.5%;
+  left: 19%;
   border: 3px solid var(--small-image-border-color);
   transform: translateX(-50%);
   width: 3.4rem; /* adjust the width of the smaller image */
@@ -183,7 +183,7 @@ body {
   margin-top: -4rem;
   padding-bottom: 3rem;
   height: 7.6rem;
-  width: 9.3rem;
+  width: 10rem;
   margin-left: -3rem;
   border-radius: 2rem;
   border-color: #0F52BA;
@@ -200,7 +200,8 @@ body {
   content: "Create a new post here!";
   position: absolute;
   bottom: 110%; /* Position the message above the button */
-  left: 92.7%;
+  left: 95.5%;
+  width:6%;
   transform: translateX(-50%);
   background-color: #0F52BA;
   color: white;

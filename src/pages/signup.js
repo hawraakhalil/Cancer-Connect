@@ -295,7 +295,7 @@ function SignUp () {
          />
       </div>
       <div>
-       <Button onClick={handleSubmit} type="submit" style ={{marginTop:"3.7rem",width:"14rem",height:"5rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"2.3rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}>Create Account</Button>
+       <Button onClick={handleSubmit} type="submit" style ={{cursor:"pointer",marginTop:"3.7rem",width:"14rem",height:"5rem",backgroundColor:"#FADA5E",borderColor:"#FADA5E",borderRadius:"2.3rem",fontFamily:"Lato",fontWeight:"bold",fontSize:"1rem"}}>Create Account</Button>
        </div>
        </div>
        {errorMessage && <p style ={{fontSize:"0.9rem",marginTop:"-2rem",marginLeft:"18rem"}}>{errorMessage}</p>}
