@@ -11,6 +11,7 @@ import slide4 from './slide4.png';
 import news from './news.png';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import TextField from '@mui/material/TextField';
+import 'react-slideshow-image/dist/styles.css';
 
 
 function Home() {
@@ -90,8 +91,7 @@ function Home() {
   
   </header>
   <div className="slide-container">
-
-        <Slide>
+        <Slide  autoplay={true} duration={3000}>
          {slideImages.map((slideImage, index)=> (
             <div key={index}>
               <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage})` ,'height' :"38.5rem"}}>
@@ -101,7 +101,7 @@ function Home() {
           ))} 
         </Slide>
       </div>
-      <div id="specific-section" ref={specificSectionRef}>
+      <div id="specificSectionRef" ref={specificSectionRef}>
       <Container fluid="true" className="p-3" style={{ height: "45rem",maxWidth: "100rem", backgroundColor: "#FADA5E" ,padding:"1.1rem"}}>
       <p style={{color:"white", paddingLeft: "5rem",margin:"0",paddingTop:"1.9rem",fontWeight:"800",fontSize:"3.6rem",marginBottom:"3.5rem",paddingRight:"5rem"}}>MISSION AND VISION</p>
       <div >

@@ -25,8 +25,7 @@ import badge5 from './badge5.png';
 import badge6 from './badge6.png';
 import Popup from "./Popup"
 import AddIcon from '@mui/icons-material/Add';
-
-
+import Confetti from "react-confetti";
 
 function Feed() {
   const avatars = [
@@ -65,6 +64,8 @@ const badgesName=[
   const [refresh, setRefresh] = useState(false);
   const [likedPosts, setLikedPosts] = useState([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [showConfetti, setShowConfetti] = React.useState(false);
+  const [showBadgeMessage, setShowBadgeMessage] = useState(false);
 
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
@@ -86,7 +87,9 @@ const badgesName=[
       }
       const data = await response.json();
       const dataArray = data.Items;
+      const BadgesArray = data.badges;
       console.log(dataArray)
+      console.log(BadgesArray);
       const LikesArray = data.likes;
       const likedArray = data.liked_posts;
       console.log(likedArray)
@@ -161,7 +164,16 @@ const badgesName=[
     setActiveItem(activeItem === itemNumber ? null : itemNumber);
   };
 
-
+  const handlePopupClosed = () => {
+    setShowBadgeMessage(true);
+    setShowConfetti(true);
+    // You can set a timeout to hide the message after a certain period
+    setTimeout(() => {
+      setShowBadgeMessage(false);
+      setShowConfetti(false)
+    }, 6000); // Adjust the duration as needed,
+   
+  };
 
 
     return (
@@ -251,11 +263,67 @@ const badgesName=[
     )}
     </div>
    </div>
+   {showConfetti && (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      zIndex: 2000,  // Set a higher zIndex to ensure it's above other elements
+    }}
+  >
+    <Confetti
+      width={window.innerWidth}
+      height={window.innerHeight}
+      numberOfPieces={500} 
+      recycle={false}
+    />
+  </div>
+)}
+
+   {showBadgeMessage && (
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            background: "#FADA5E",
+            padding: "1rem",
+            borderRadius: "0.5rem",
+            color: "#fff",
+            zIndex: 1000,
+            flexDirection: "column", // Change to column layout
+            alignItems: "center",
+            width:"40rem",
+            height:"10rem"
+      
+          }}
+        >
+       
+       <div
+        style={{
+          background: "#FADA5E",
+          padding: "1rem",
+          borderRadius: "0.5rem",
+          color: "#fff",
+          display: "flex",
+          alignItems: "center",
+        }}
+      ></div>
+           <img src={badgess[5][0]} alt="badge" className="smaller-image"  style={{ '--small-image-border-color': badgess[5][1] ,marginBottom:"0rem"}} ></img>
+           <div style={{marginLeft:"2.1rem"}}>
+          Congratulations! You have earned the Milestone Badge!
+          </div>
+        </div>
+      )}
     <footer className="footer" style={{ position: "fixed", bottom: 0 }}>
     <Button  className="hover-button" style={{marginBottom:"2rem",cursor: "pointer", marginTop: "0rem" ,paddingBottom:"3rem" ,height:"7rem",width:"8rem",marginLeft:"84.6rem", borderRadius:"2rem",borderColor:"#FADA5E",backgroundColor:"#FADA5E"}}  onClick={togglePopup} > 
       <AddIcon style={{height:"10rem",width:"7rem",color: "white" ,marginLeft:"0rem",marginTop:"-1.5rem"}}> </AddIcon>
     </Button>
-      {isPopupOpen && <Popup onClose={() => togglePopup()}  onNewPostCreated={refreshFeed} username={username}/>}
+      {isPopupOpen && <Popup onClose={() => togglePopup()}  onNewPostCreated={refreshFeed} onPopupClosed={handlePopupClosed}  username={username}/>}
     </footer>
   
   </>

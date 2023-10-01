@@ -36,6 +36,7 @@ function Post() {
   const [likes,setLikes] = useState([])
   const [liked,setLiked] = useState([])
   const [submititng, setSubmitting] = useState(false);
+  
 
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -200,7 +201,7 @@ const handleLikeClick = (postId,timestamp,username) => {
                   placeholder="New Comment Here" />
               </div>
               <div>
-                <Button style={{ width: "9.3rem", marginLeft: "76.5rem", borderRadius: "2rem", borderColor: "#0F52BAA", backgroundColor: "white" ,marginTop:"-7rem"}} onClick={submitComment} >
+                <Button style={{cursor:"pointer", width: "9.3rem", marginLeft: "76.5rem", borderRadius: "2rem", borderColor: "#0F52BAA", backgroundColor: "white" ,marginTop:"-7rem"}} onClick={submitComment} >
                   <SendIcon style={{ height: "5.8rem", width: "5rem", color: "#0F52BA", marginLeft: "1rem",marginTop:"0.2rem" }}> </SendIcon>
                 </Button>
                 </div>

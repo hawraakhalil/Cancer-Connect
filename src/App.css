@@ -93,6 +93,19 @@ body {
 
 }
 
+.smaller-image {
+  position: relative;
+  border-radius: 50rem;
+  bottom: 0;
+  left:50%;
+  margin-top:-3%;
+  margin-right:10%;
+  border: 3px solid var(--small-image-border-color);
+  transform: translateX(-50%);
+  width: 5.5rem; /* adjust the width of the smaller image */
+  height: 5.5rem; /* adjust the height of the smaller image */
+
+}
 .container1 {
   display: flex;
   height: 86.4vh;

@@ -1,13 +1,15 @@
 // Popup.js
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import "../App.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { badgeClasses } from "@mui/material";
 
-const Popup = ({ onClose, onNewPostCreated, username }) => {
+const Popup = ({ onClose, onNewPostCreated,onPopupClosed, username }) => {
   const [newPostTitle, setNewPostTitle] = useState("");
   const [newPostBody, setNewPostBody] = useState("");
   const [submititng, setSubmitting] = useState(false);
+
   
   //we are calling the backend function to create new posts
   const createPost = async (newPost) => {
@@ -24,9 +26,19 @@ const Popup = ({ onClose, onNewPostCreated, username }) => {
         }
       );
 
-      if (response.ok) {
+      if (response.ok ) {
+        if (response.status === 201) {
         const data = await response.json();
         console.log(data.message); // Logging the success message
+        setTimeout(() => {
+          onPopupClosed();
+        }, 400); // Adjust the delay as needed
+    
+        }
+        else if (response.status === 200) {
+          const data = await response.json();
+          console.log(data.message); // Logging the success message
+        }
       } else {
         throw new Error("Failed to create post");
       }
@@ -44,14 +56,14 @@ const Popup = ({ onClose, onNewPostCreated, username }) => {
       } else {
         await createPost({ title: newPostTitle, body: newPostBody, username });
         onNewPostCreated();
-        
         // Clear the input fields after successful submission
         setNewPostTitle("");
         setNewPostBody("");
         //to refresh
         onClose();
-        setSubmitting(true);
-      }
+        setSubmitting(false);
+ 
+      };
     } catch (error) {
       console.error("Error creating post:", error);
     }
@@ -168,6 +180,7 @@ const Popup = ({ onClose, onNewPostCreated, username }) => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };
