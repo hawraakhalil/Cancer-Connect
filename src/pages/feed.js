@@ -171,7 +171,7 @@ const badgesName=[
     setTimeout(() => {
       setShowBadgeMessage(false);
       setShowConfetti(false)
-    }, 6000); // Adjust the duration as needed,
+    }, 5000); // Adjust the duration as needed,
    
   };
 

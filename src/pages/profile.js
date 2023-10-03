@@ -22,6 +22,7 @@ import badge6 from './badge6.png';
 import '../App.css';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
@@ -83,6 +84,31 @@ const handleLikeClick = (postId,timestamp,username) => {
       console.error('Error updating likes:', error);
     });
 };
+
+//calling delete
+const handleDelete = (ID,timestamp) => {
+  console.log("hi")
+  // Call the Lambda function to increment the like counter
+  fetch('https://y46lubhduhw37taegfujykiht40ttpax.lambda-url.eu-north-1.on.aws/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ID,timestamp}),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        console.error(error);
+      }else {
+        // Trigger a refresh after the like operation is successful
+        setRefresh(true);
+      }
+    })
+    .catch((error) => {
+      console.error('Error deleting:', error);
+    });
+};
+
     //fetching user info:
     useEffect(() => {
       const fetchPosts = async () => {
@@ -175,7 +201,8 @@ const handleLikeClick = (postId,timestamp,username) => {
           <IconButton onClick={(e) => { e.stopPropagation(); handleLikeClick(post.ID, post.timestamp,username);}} style={{marginLeft: "1rem",marginTop:"-1.1rem",fontSize:"2.2rem",fontWeight:"bold",color: post.liked_users.includes(username) ?  "#DC143C" : "grey "}}><FavoriteIcon/>  </IconButton>
         <p className="card-text" style={{marginLeft: "0rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.likes} likes</p>
         <p className="card-text" style = {{marginLeft: "1rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.comment_count} comments</p>
-        <p className="card-text" style = {{marginLeft: "43rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.timestamp.slice(6,8)} - {post.timestamp.slice(4,6)} - {post.timestamp.slice(0,4)} </p>
+        <p className="card-text" style = {{marginLeft: "41rem", paddingTop:"0rem",marginTop:"0rem",fontSize:"1rem",fontWeight:"bold",color:"#FFFFFF"}}>{post.timestamp.slice(6,8)} - {post.timestamp.slice(4,6)} - {post.timestamp.slice(0,4)} </p>
+        <IconButton onClick={(e) => { e.stopPropagation(); handleDelete(post.ID,post.timestamp);}} style={{marginTop:"-1.1rem",fontSize:"2.2rem",fontWeight:"bold",color: "grey "}}><DeleteIcon/>  </IconButton>
       </div>
       </div>
     </Card.Body>

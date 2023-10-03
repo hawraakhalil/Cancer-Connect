@@ -10,8 +10,6 @@ import PasswordChecklist from "react-password-checklist";
 
 
 function SignUp () {
-  const [password, setPassword] = useState("Abc.@678");
-  const [matchPassword, setMatchPassword] = useState("ABC.@678");
   const [phone, setPhone] = useState("");
   const [formData, setFormData] = useState({
     First_name: "",

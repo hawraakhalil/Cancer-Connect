@@ -112,29 +112,28 @@ body {
   position: relative;
 }
 .section1 {
-  width: 50%;
-  background-color: white;
+  width: 33.33%;
+  background-color: #FADA5E;
   height: 100%; /* Adjust the height of the section */
-  z-index: 1;
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.arc {
-  position: absolute;
-  top: 0;
-  left: 30.33%;
-  width: 33.34%;
-  height: 100%; /* Adjust the height of the arc */
-  background: white; /* background color of arc */
-  border-radius: 0 100% 100% 0;
-  z-index: 2;
-}
 
 .section2 {
-  width: 66.67%;
+  width: 33.33%;
   background-color: #8CC4FF;
+  height: 100%; /* Adjust the height of the section */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
+.section3 {
+  width: 33.33%;
+  background-color: #A77BC7;
   height: 100%; /* Adjust the height of the section */
   display: flex;
   justify-content: center;
