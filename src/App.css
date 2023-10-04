@@ -20,8 +20,15 @@
 .last-post {
   margin-bottom: -1rem; /* Adjust the value as needed */
 }
+.last-post2 {
+  margin-bottom: 13rem; /* Adjust the value as needed */
+}
 
-
+.first-post {
+  top: 10px; /* Adjust this value based on your header's height */
+  z-index: 0; /* Ensure it's above other elements */
+  /* ... other styles ... */
+}
 
 body {
   font-family: 'Pacifico', cursive;
@@ -112,19 +119,18 @@ body {
   position: relative;
 }
 .section1 {
-  width: 33.33%;
+  width: 50%;
   background-color: #FADA5E;
   height: 100%; /* Adjust the height of the section */
   z-index: 3;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  z-index: 0;
 }
 
 
 .section2 {
-  width: 33.33%;
-  background-color: #8CC4FF;
+  width: 50%;
+  background-color: black;
   height: 100%; /* Adjust the height of the section */
   display: flex;
   justify-content: center;
@@ -132,12 +138,10 @@ body {
   z-index: 0;
 }
 .section3 {
-  width: 33.33%;
-  background-color: #A77BC7;
+  width: 50%;
+  background-color: #8CC4FF;
   height: 100%; /* Adjust the height of the section */
   display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 0;
 }
 
@@ -177,7 +181,25 @@ body {
   align-items: center;
   z-index: 999;
 }
-
+.popup2 {
+  position: fixed;
+  top: 56.5%;
+  left: 50%;
+  width: 1%;
+  height: 1%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.popup2-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
 .popup-content {
   background-color: white;
   padding: 20px;

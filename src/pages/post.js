@@ -179,7 +179,7 @@ const handleLikeClick = (postId,timestamp,username) => {
 
       <Container style={{ marginTop: "2rem" }}>
         {comments.map((comment, index) => (
-          <Card key={index} className={`mt-4 ${index === comments.length - 1 ? 'last-post' : ''}`} style={{ marginLeft: "-5.5rem", marginRight: "6.2rem", backgroundColor: "#8CC4FF", borderRadius: "2rem", marginTop: "-1.3rem", width: "83rem" }}>
+          <Card key={index} className={`mt-4 ${index === comments.length - 1 ? 'last-post2' : ''}`} style={{ marginLeft: "-5.5rem", marginRight: "6.2rem", backgroundColor: "#8CC4FF", borderRadius: "2rem", marginTop: "-1.3rem", width: "83rem" }}>
             <Card.Body>
               <div className="row">
                 <div className="col-sm-6">

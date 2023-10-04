@@ -176,7 +176,7 @@ const handleDelete = (ID,timestamp) => {
       </div>
       <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.4rem"}}> {Status[badges[0]]}</h5>
       <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>{userInfo.Day} {userInfo.Month} {userInfo.Year}</h5>
-      <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>Location</h5>
+      <h5 style={{color:"#FADA5E", paddingLeft: "7rem",margin:"0",paddingTop:"0.1rem"}}>{userInfo.email}</h5>
       <div>
         <h3 style={{color:"black", paddingLeft: "5.5rem",margin:"0",paddingTop:"0.1rem",marginBottom:"1rem"}}>Badges:</h3>
         {badges.map((badge) => (
