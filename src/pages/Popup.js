@@ -1,16 +1,15 @@
 // Popup.js
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { badgeClasses } from "@mui/material";
 
-const Popup = ({ onClose, onNewPostCreated,onPopupClosed, username }) => {
+const Popup = ({ onClose, onNewPostCreated, onPopupClosed, username }) => {
   const [newPostTitle, setNewPostTitle] = useState("");
   const [newPostBody, setNewPostBody] = useState("");
   const [submititng, setSubmitting] = useState(false);
 
-  
   //we are calling the backend function to create new posts
   const createPost = async (newPost) => {
     try {
@@ -26,16 +25,14 @@ const Popup = ({ onClose, onNewPostCreated,onPopupClosed, username }) => {
         }
       );
 
-      if (response.ok ) {
+      if (response.ok) {
         if (response.status === 201) {
-        const data = await response.json();
-        console.log(data.message); // Logging the success message
-        setTimeout(() => {
-          onPopupClosed();
-        }, 400); // Adjust the delay as needed
-    
-        }
-        else if (response.status === 200) {
+          const data = await response.json();
+          console.log(data.message); // Logging the success message
+          setTimeout(() => {
+            onPopupClosed();
+          }, 400); // Adjust the delay as needed
+        } else if (response.status === 200) {
           const data = await response.json();
           console.log(data.message); // Logging the success message
         }
@@ -62,8 +59,7 @@ const Popup = ({ onClose, onNewPostCreated,onPopupClosed, username }) => {
         //to refresh
         onClose();
         setSubmitting(false);
- 
-      };
+      }
     } catch (error) {
       console.error("Error creating post:", error);
     }
@@ -180,7 +176,6 @@ const Popup = ({ onClose, onNewPostCreated,onPopupClosed, username }) => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };
