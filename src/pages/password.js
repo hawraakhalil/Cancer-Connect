@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo1 from "./logo1.png";
+import logo1 from "../pictures/logo1.png";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import OutlinedInput from "@mui/material/OutlinedInput";

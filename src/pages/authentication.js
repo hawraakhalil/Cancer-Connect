@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import logo1 from "./logo1.png";
+import logo1 from "../pictures/logo1.png";
 
 function Authentication() {
   //variables that will be used

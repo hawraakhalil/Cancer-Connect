@@ -7,15 +7,15 @@ import Button from 'react-bootstrap/Button'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
-import profile from './profile.png';
-import avatar1 from './avatar1.png';
-import avatar2 from './avatar2.png';
-import avatar3 from './avatar3.png';
-import avatar4 from './avatar4.png';
-import avatar5 from './avatar5.png';
-import avatar6 from './avatar6.png';
-import avatar7 from './avatar7.png';
-import avatar8 from './avatar8.png';
+import profile from '../pictures/profile.png';
+import avatar1 from '../pictures/avatar1.png';
+import avatar2 from '../pictures/avatar2.png';
+import avatar3 from '../pictures/avatar3.png';
+import avatar4 from '../pictures/avatar4.png';
+import avatar5 from '../pictures/avatar5.png';
+import avatar6 from '../pictures/avatar6.png';
+import avatar7 from '../pictures/avatar7.png';
+import avatar8 from '../pictures/avatar8.png';
 function Post() {
  
   const avatars = [
