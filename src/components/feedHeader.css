@@ -1,0 +1,155 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  
+  /* Header Styles */
+  .header-feed {
+    height: auto; /* Adjust height to be dynamic */
+    max-width: 100%;
+    background-color: #0F52BA;
+    display: flex; /* Use flexbox for layout */
+
+    justify-content: space-between;
+    padding: 0.3rem 1rem; /* Add padding to avoid content touching edges */
+    box-sizing: border-box;
+
+  }
+  
+  /* Container Styles */
+  .container-feed {
+    height: 6rem;
+    max-width: 100rem;
+    background-color: #0F52BA;
+    padding: 1rem;
+    margin: 0 auto; /* Center the container */
+    box-sizing: border-box; /* Include padding in width */
+  }
+  
+  /* Logo Styles */
+  .logo-feed {
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 50rem;
+    height: 9.7rem;
+    width: 9.7rem;
+
+
+  }
+  
+  /* TextField Styles */
+  .textfield-feed {
+    background-color: white;
+    border-radius: 50rem;
+    border-color: white;
+    width:70%;
+    
+    height: auto;
+  }
+  
+  /* Search Icon Styles */
+  .search-icon-feed {
+    color: #4EA4F3;
+  }
+  
+  
+  /* Responsive Styles */
+  @media (max-width: 1200px) {
+    .container-feed {
+      padding: 1rem;
+    }
+  
+    .logo-feed {
+      height: 8rem;
+      width: 8rem;
+      margin-left: 1.5%;
+    }
+  
+    .textfield-feed {
+      width: 70%;
+      margin-left: 3%;
+    }
+  
+    .button-feed {
+      width: 7rem;
+      height: 3rem;
+      margin-left: 2.5rem;
+   
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .container-feed {
+      height: autp;
+      padding: 0.8rem;
+    }
+  
+    .logo-feed {
+      height: 7rem;
+      width: 7rem;
+    }
+  
+    .textfield-feed {
+      width: 55%;
+      margin-left: 2.5%;
+    }
+  
+    .button-feed {
+      width: 6rem;
+      height: 2.7rem;
+      margin-left: 2rem;
+      top: -6rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container-feed {
+      height: auto;
+      padding: 0.5rem;
+    }
+  
+    .logo-feed {
+      height: 6rem;
+      width: 6rem;
+    }
+  
+    .textfield-feed {
+      width: 55%;
+      margin-left: 2%;
+    }
+  
+    .button-feed {
+      width: 5rem;
+      height: 2.5rem;
+      margin-left: 1.5rem;
+      top: -5.5rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .container-feed {
+      height: auto;
+      padding: 0.3rem;
+    }
+  
+    .logo-feed {
+      height: 5rem;
+      width: 5rem;
+      margin-left: 1%;
+    }
+  
+    .textfield-feed {
+      width: 50%;
+
+    }
+  
+    .button-feed {
+      width: 4.5rem;
+      height: 2rem;
+      margin-left: 1rem;
+      top: -5rem;
+    }
+  }
+  

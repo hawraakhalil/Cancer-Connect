@@ -1,19 +1,16 @@
-import React, { useState, useContext } from "react";
-import "../App.css";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Form from "react-bootstrap/Form";
+import React, { useState } from "react";
+import { Container, Card, Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import logo1 from "../pictures/logo1.png";
+import "./authentication.css"; // Import the CSS file
 
 function Authentication() {
-  //variables that will be used
+  // Variables that will be used
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  //call the function that checks if username and password are in the database to allow entry
+  // Call the function that checks if username and password are in the database to allow entry
   const handleClick = async () => {
     try {
       if (username && password) {
@@ -57,153 +54,52 @@ function Authentication() {
       handleClick();
     }
   };
+
   return (
     <>
-      <style>{"body { background-color: #FFFFE0; }"}</style>
-      <Container
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <Card
-          style={{
-            width: "35rem",
-            height: "33rem",
-            backgroundColor: "#0F52BA",
-            borderRadius: "5rem",
-          }}
-        >
+      <Container className="auth-container">
+        <Card className="auth-card">
           <img
             src={logo1}
             alt="Logo"
-            className="rounded-circle"
-            style={{
-              border: "1px solid black",
-              borderRadius: "50rem",
-              height: "8rem",
-              width: "8rem",
-              marginLeft: "38%",
-              marginTop: "1rem",
-            }}
+            className="auth-logo"
           />
-          <Card.Body style={{ marginTop: "-11rem" }}>
-            <Card.Header
-              as="h5"
-              style={{
-                fontFamily: "Quicksand",
-                color: "white",
-                position: "relative",
-                top: "10rem",
-                left: "4.7rem",
-                fontSize: "3.5rem",
-                fontWeight: "700",
-                marginTop: "0.9rem",
-              }}
-            >
+          <Card.Body className="auth-card-body">
+            <Card.Header className="auth-card-header">
               Cancer Connect
             </Card.Header>
-            <div style={{ margin: "21% auto", width: "20rem" }}>
+            <div className="auth-form-container">
               <Form.Control
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="  Username"
-                style={{
-                  paddingLeft: "1rem",
-                  marginTop: "20%",
-                  width: "25rem",
-                  height: "3rem",
-                  marginBottom: "0.7rem",
-                  borderColor: "#FFFFFF",
-                  borderRadius: "2rem",
-                  fontFamily: "Lato",
-                  fontWeight: "bold",
-                  fontSize: "0.95rem",
-                  marginLeft: "-3rem",
-                }}
+                placeholder="Username"
+                className="auth-form-control"
                 onKeyDown={handleKeyDown}
               />
-
               <Form.Control
-                type="Password"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="  Password"
-                style={{
-                  paddingLeft: "1rem",
-                  width: "25rem",
-                  height: "3rem",
-                  borderRadius: "2rem",
-                  borderColor: "#FFFFFF",
-                  fontFamily: "Lato",
-                  fontWeight: "bold",
-                  fontSize: "0.95rem",
-                  marginLeft: "-3rem",
-                }}
+                placeholder="Password"
+                className="auth-form-control"
                 onKeyDown={handleKeyDown}
               />
-              <Link
-                to="/"
-                style={{
-                  color: "#000000",
-                  textDecoration: "underline",
-                  fontSize: "0.88rem",
-                  fontFamily: "Lato",
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: "0.8rem",
-                  fontWeight: "bold",
-                  fontStyle: "italic",
-                }}
-              >
-                {" "}
+              <Link to="/" className="auth-forgot-password">
                 forgot password?
               </Link>
-              <Button
-                onClick={handleClick}
-                style={{
-                  cursor: "pointer",
-                  marginTop: "0.8rem",
-                  marginLeft: "5rem",
-                  width: "10rem",
-                  height: "3.5rem",
-                  backgroundColor: "#FADA5E",
-                  borderColor: "#FADA5E",
-                  borderRadius: "10rem",
-                  fontFamily: "Lato",
-                  fontWeight: "bold",
-                }}
-              >
+              <Button onClick={handleClick} className="auth-button">
                 Login
               </Button>
-              <p
-                style={{
-                  fontSize: "0.9rem",
-                  marginTop: "1rem",
-                  textAlign: "center",
-                  marginBottom: "0.4rem",
-                }}
-              >
+              <p className="auth-signup-text">
                 Don't have an account? Create a new one&nbsp;
-                <Link
-                  to="/signup"
-                  style={{ color: "#FFD300", textDecoration: "underline" }}
-                >
+                <Link to="/signup" className="auth-signup-link">
                   here
                 </Link>
                 .
               </p>
               {errorMessage && (
-                <p
-                  style={{
-                    fontSize: "0.9rem",
-                    marginTop: "0.1rem",
-                    textAlign: "center",
-                  }}
-                >
+                <p className="auth-error-message">
                   {errorMessage}
                 </p>
               )}

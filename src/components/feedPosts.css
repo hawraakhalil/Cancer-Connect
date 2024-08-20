@@ -1,0 +1,354 @@
+/* General styles */
+.container-fepost {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  /* Layout styles for larger screens */
+  .layout-fepost {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .sidebar-fepost {
+    position: sticky;
+    margin-top: 1rem;
+    z-index: 0;
+    width: 100%;
+    max-width: 15rem;
+  }
+  
+  .sidebar-title-fepost {
+    color: black;
+    margin-bottom: 1rem;
+  }
+  
+  .menu-fepost {
+    border-radius: 20px;
+    background-color: #FADA5E;
+    border: 2px solid white;
+    font-family: Quicksand, sans-serif;
+    font-weight: bold;
+    color: white;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .menu-item-fepost {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .description-fepost {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+/* Styles for small images */
+.small-image-fepost {
+    position: relative;
+    border-radius: 50rem; /* Adjust border-radius to make the image circular */
+    bottom: 0;
+    left: 14%;
+    border: 3px solid var(--small-image-border-color); /* Border color using a CSS variable */
+    transform: translateX(-50%);
+    width: 3.4rem; /* Adjust width */
+    height: 3.4rem; /* Adjust height */
+  }
+  
+  /* Styles for smaller images */
+  .smaller-image-fepost {
+    position: relative;
+    border-radius: 50rem; /* Adjust border-radius to make the image circular */
+    bottom: 0;
+    left: 50%;
+    margin-top: -3%; /* Adjust margin as needed */
+    margin-right: 10%;
+    border: 3px solid var(--small-image-border-color); /* Border color using a CSS variable */
+    transform: translateX(-50%);
+    width: 5.5rem; /* Adjust width */
+    height: 5.5rem; /* Adjust height */
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .small-image-fepost {
+      width: 2.5rem; /* Smaller size on smaller screens */
+      height: 2.5rem; /* Smaller size on smaller screens */ 
+     left: 5%; /* Adjust positioning for smaller screens */
+    }
+  
+    .smaller-image-fepost {
+      width: 4rem; /* Smaller size on smaller screens */
+      height: 4rem; /* Smaller size on smaller screens */
+      left: 45%; /* Adjust positioning for smaller screens */
+      margin-top: -2%; /* Adjust margin for smaller screens */
+      margin-right: 5%; /* Adjust margin for smaller screens */
+    }
+  }
+  
+  
+  .description-text-fepost {
+    font-size: 1.1rem;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Content styles */
+  .content-fepost {
+    flex: 1;
+    margin: 1rem 0;
+  }
+  
+  /* Adjustments for the post card */
+  .post-card-fepost {
+    cursor: pointer;
+    background-color: #8CC4FF;
+    border-radius: 2rem;
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 61rem;
+  }
+  
+  /* Card header and footer styles */
+  .card-header-fepost {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .avatar-container-fepost {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .avatar-image-fepost {
+    border-radius: 50%;
+    border: 0.3rem solid var(--avatar-image-border-color);
+    height: 4rem;
+    width: 4rem;
+    margin-left: 1.2rem;
+    margin-top: -1rem;
+  }
+  
+  .avatar-image-fepost:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-title-fepost {
+    color: #5E5E5E;
+    font-weight: bold;
+    margin: 0.2rem 0.2rem; /* Reduced margin to bring closer */
+  }
+  
+  .card-subtitle-fepost {
+    color: #5E5E5E;
+    font-weight: bold;
+    margin: 0 0.2rem; /* Removed margin to reduce spacing */
+    font-size: 0.9rem; /* Adjust font size if needed for better alignment */
+  }
+  
+  .card-text-fepost {
+    font-size: 1.05rem;
+    font-weight: bold;
+    padding: 1rem;
+  }
+  
+  .card-footer-fepost {
+    display: flex;
+    justify-content: space-between; /* Distributes space between the items */
+    align-items: center; /* Centers items vertically */
+    padding: 0.5rem 1rem;
+  }
+  
+  .like-button-fepost {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: auto;
+  }
+  
+  .like-button-fepost.liked {
+    color: #DC143C;
+  }
+  .left-section-fepost {
+    display: flex;
+    align-items: center; /* Centers items vertically */
+  }
+  
+  
+  .likes-count-fepost,
+  .comments-count-fepost,
+  .timestamp-fepost {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #FFFFFF;
+  }
+  .likes-count-fepost,
+    .comments-count-fepost {
+    margin-left: 0.5rem; /* Adjust space between likes and comments */
+    }
+
+    /* Optional: Adjust spacing between like button and counts */
+    .like-button-fepost {
+    margin-right: 0.5rem; /* Space between like button and likes count */
+    }
+
+    .timestamp-fepost {
+    margin-left: auto; /* Pushes the timestamp to the far right */
+    }
+  
+  /* Confetti styles */
+  .confetti-container-fepost {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+  }
+  
+  /* Badge message styles */
+  .badge-message-fepost {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #FADA5E;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 40rem;
+    height: auto;
+  }
+  
+  .badge-image-container-fepost {
+    background: #FADA5E;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: #fff;
+  }
+  
+  .smaller-image-fepost {
+    margin-bottom: 0;
+  }
+  
+  .badge-text-fepost {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  /* Responsive Styles */
+  @media (min-width: 1024px) {
+    .sidebar-fepost {
+        margin-top: 2rem;
+      }
+  }
+  
+  @media (max-width: 768px) {
+    .layout-fepost {
+        flex-direction: column;
+      }
+    .sidebar-fepost {
+      position: static;
+      max-width: 100%;
+      
+      margin-bottom: 1rem;
+    }
+  
+    .menu-fepost {
+      width: 100%;
+    }
+  
+    .post-card-fepost {
+      max-width: 100%;
+    }
+  
+    .card-header-fepost {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .avatar-image-fepost {
+      width: 3rem;
+      height: 3rem;
+    }
+  
+    .card-title-fepost, .card-subtitle-fepost {
+      font-size: 1rem;
+    }
+  
+    .card-text-fepost {
+      font-size: 0.95rem;
+    }
+  
+    .like-button-fepost {
+      font-size: 1.25rem;
+    }
+  
+    .likes-count-fepost, .comments-count-fepost, .timestamp-fepost {
+      font-size: 0.9rem;
+    }
+  
+    .badge-message-fepost {
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+   
+  
+    .content-fepost {
+      margin: 0;
+    }
+  
+    .post-card-fepost {
+      width: 100%;
+    }
+  
+    .card-header-fepost {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .avatar-image-fepost {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  
+    .card-title-fepost, .card-subtitle-fepost {
+      font-size: 0.9rem;
+    }
+  
+    .card-text-fepost {
+      font-size: 0.85rem;
+    }
+  
+    .like-button-fepost {
+      font-size: 1.1rem;
+    }
+  
+    .likes-count-fepost, .comments-count-fepost, .timestamp-fepost {
+      font-size: 0.8rem;
+    }
+  
+    .badge-message-fepost {
+      width: 95%;
+    }
+  }
+  

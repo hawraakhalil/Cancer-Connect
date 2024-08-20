@@ -1,0 +1,154 @@
+/* SignUp.css */
+body {
+    background-color: #FFFFE0;
+  }
+  
+  .container-reg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .card-reg {
+    width: 37rem;
+    max-width: 37rem;
+    background-color: #0F52BA;
+    border-radius: 2rem;
+    margin: 0 auto;
+    padding: 1rem;
+ 
+  }
+  
+  .card-body-reg {
+    display: flex;
+    max-height: 50%;
+    align-items: center;
+  }
+  
+  .form-control-reg {
+    border-color: #FFFFFF;
+    border-radius: 1.5rem;
+    font-family: Lato;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+  
+  .input-field-reg {
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+    height: 2rem;
+  }
+  
+  .first-name-reg {
+    width: calc(50% - 1rem);
+    margin-right: 0.5rem;
+  }
+  
+  .last-name-reg {
+    width: calc(50% - 1rem);
+  }
+  
+  .email-reg {
+    width: calc(100% - 2rem);
+    margin: 1rem 0;
+  }
+  
+  .phone-input-reg {
+    width: calc(50% - 1rem);
+    border-radius: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+  }
+  
+  .phone-number-reg {
+    width: calc(100%-2rem);
+    margin-left: 4rem;
+  }
+  
+  .select-reg {
+    margin-top: 1rem;
+    border-radius: 1.5rem;
+    border-color: #FFFFFF;
+    font-family: Lato;
+    font-size: 0.95rem;
+    width: 33%;
+  }
+  
+  .day-reg, .month-reg, .year-reg {
+    width: 33%;
+    margin: 0.5rem 1rem;
+  }
+  
+  .username-reg, .badge-reg, .password-reg, .confirm-password-reg {
+    width: calc(100% - 2rem);
+  }
+  
+  .password-checklist-reg {
+    font-size: 0.8rem;
+    margin-left: 1rem;
+    font-weight: bold;
+    color: #000000;
+  }
+  
+  .button-reg {
+    cursor: pointer;
+    width: calc(100% - 2rem);
+    height: 100%;
+    background-color: #FADA5E;
+    border-color: #FADA5E;
+    border-radius: 2.3rem;
+    font-family: Lato;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .error-message-reg {
+    font-size: 0.9rem;
+    color: red;
+    margin: 1rem 0;
+  }
+  .horizbutton {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  /* Media Queries for responsiveness */
+  @media (max-width: 768px) {
+    .card-reg {
+      width: 100%;
+      padding: 1rem;
+    }
+  
+    .input-field-reg {
+      margin-top: 1.5rem;
+      height: 2.5rem;
+    }
+  
+    
+  
+    .day-reg, .month-reg, .year-reg {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card-reg {
+      width: 100%;
+      padding: 0.5rem;
+    }
+  
+    .button-reg {
+      height: 3.5rem;
+      font-size: 0.9rem;
+    }
+  
+    .password-checklist-reg {
+      font-size: 0.8rem;
+    }
+  }
+  

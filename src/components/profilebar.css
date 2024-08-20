@@ -1,0 +1,100 @@
+/* styles.css */
+
+.avatar-container-profbar {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .avatar-image-profbar {
+    border-radius: 50%;
+    height: 16rem; /* Default size */
+    width: 16rem; /* Default size */
+    border: 0.9rem solid var(--avatar-image-border-color);
+    transition: box-shadow 0.3s ease;
+    border-radius: 50rem;
+    height: 16rem;
+  }
+  
+  .avatar-image-profbar:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .arrow-profbar {
+    height: 5rem;
+    width: 5rem;
+    cursor: pointer;
+    color: #FADA5E;
+  }
+
+  .textfield-profbar {
+    background-color: white;
+    border-radius: 50rem;
+    border-color: white;
+    width: 55%;
+  }
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .avatar-image-profbar {
+      height: 14rem;
+      width: 14rem;
+      margin-left: 4%;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .avatar-image-profbar {
+      height: 12rem;
+      width: 12rem;
+      margin-left: 1%;
+    }
+    .avatar-image-profbar {
+        border: 0.8rem solid var(--avatar-image-border-color);
+      }
+  }
+  
+  @media (max-width: 768px) {
+    .avatar-image-profbar {
+      height: 10rem;
+      width: 10rem;
+      margin-left: 1%;
+    }
+    .arrow-profbar {
+        height: 3rem;
+        width: 3rem;
+      }
+      .avatar-image-profbar {
+        border: 0.7rem solid var(--avatar-image-border-color);
+      }
+  }
+  
+  @media (max-width: 576px) {
+    .avatar-image-profbar {
+      height: 8rem;
+      width: 8rem;
+      margin-left: 1%;
+    }
+    .arrow-profbar {
+        height: 3rem;
+        width: 3rem;
+      }
+      .avatar-image-profbar {
+        border: 0.6rem solid var(--avatar-image-border-color);
+      }
+  }
+
+  @media (max-width: 480px) {
+    .avatar-image-profbar {
+        height: 6rem;
+        width: 6rem;
+        margin-left: 1%;
+      }
+    .arrow-profbar {
+        height: 2rem;
+        width: 2rem;
+      }
+      .avatar-image-profbar {
+        border: 0.5rem solid var(--avatar-image-border-color);
+      }
+  }

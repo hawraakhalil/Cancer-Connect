@@ -1,0 +1,71 @@
+/* styles.css */
+#specificSectionRef {
+    /* Add any specific styles for the section if needed */
+  }
+  
+  .container-about {
+    height: 100%rem;
+    max-width: 100rem;
+    background-color: #FADA5E;
+    padding: 1.1rem;
+  }
+  
+  .header-text {
+    color: white;
+    padding-left: 5rem;
+    margin: 0;
+    padding-top: 1.9rem;
+    font-weight: 800;
+    font-size: 3.6rem;
+    margin-bottom: 3.5rem;
+    padding-right: 5rem;
+  }
+  
+  .subheader-text {
+    color: white;
+    padding-left: 5rem;
+    margin: 0;
+    padding-top: 0; /* Adjusted from -4rem to 0 */
+    font-weight: 800;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    padding-right: 5rem;
+  }
+  
+  .body-text {
+    color: white;
+    padding-left: 5rem;
+    margin: 0;
+    padding-top: 0; /* Adjusted from -4rem to 0 */
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-bottom: 5rem;
+    padding-right: 5rem;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    .header-text {
+      font-size: 2.5rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  
+    .subheader-text {
+      font-size: 2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  
+    .body-text {
+      font-size: 1rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  
+    .container {
+      height: auto;
+      padding: 1rem;
+    }
+  }
+  

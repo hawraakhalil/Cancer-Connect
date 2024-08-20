@@ -1,0 +1,86 @@
+.header-container {
+    height: auto; /* Adjust height to be dynamic */
+    max-width: 100%;
+    background-color: #0F52BA;
+    display: flex; /* Use flexbox for layout */
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem; /* Add padding to avoid content touching edges */
+    box-sizing: border-box;
+}
+
+.logo {
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 7rem; /* Adjust height */
+    width: 7rem; /* Adjust width */
+    
+}
+
+.title {
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    font-weight: 800;
+    font-size: 3rem; /* Adjust font size */
+    margin: 0; /* Remove default margin */
+}
+
+.btn-container {
+    gap: 0;
+}
+
+.btn {
+    cursor: pointer;
+    width: 6rem; /* Adjust width */
+    height: 3rem; /* Adjust height */
+    background-color: #FADA5E;
+    border-color: #FADA5E;
+    border-radius: 10rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 0.9rem; /* Adjust font size */
+    color: #633D03;
+    margin: 0.5rem;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .logo {
+        height: 5rem; /* Smaller logo */
+        width: 5rem; /* Smaller logo */
+    }
+
+    .title {
+        font-size: 1.5rem; /* Smaller title */
+    }
+
+    .btn {
+        width: 5rem; /* Smaller buttons */
+        height: 2.5rem; /* Smaller buttons */
+        font-size: 0.8rem; /* Smaller font size */
+    }
+}
+
+@media (max-width: 576px) {
+    .header-container {
+        flex-direction: column; /* Stack items vertically */
+        text-align: center; /* Center align text and buttons */
+        padding: 1rem; /* Increase padding for smaller screens */
+    }
+
+    .logo {
+        height: 4rem; /* Even smaller logo */
+        width: 4rem; /* Even smaller logo */
+    }
+
+    .title {
+        font-size: 1.2rem; /* Even smaller title */
+        margin-bottom: 1rem; /* Space below the title */
+    }
+
+    .btn {
+        width: 4rem; /* Even smaller buttons */
+        height: 2rem; /* Even smaller buttons */
+        font-size: 0.7rem; /* Even smaller font size */
+    }
+}

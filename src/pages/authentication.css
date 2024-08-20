@@ -1,0 +1,164 @@
+/* authentication.css */
+
+body {
+    background-color: #FFFFE0;
+  }
+  
+  .auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 2rem;
+  }
+  
+  .auth-card {
+    width: 100%;
+    max-height: 90%;
+    max-width: 35rem;
+    background-color: #0F52BA;
+    border-radius: 5rem;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .auth-logo {
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 8rem;
+    width: 8rem;
+    margin-top: 1rem;
+  }
+  
+  .auth-card-header {
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .auth-form-container {
+    width: 100%;
+    max-width: 25rem;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .auth-form-control {
+    padding-left: 1rem;
+    height: 3rem;
+    width: 100%;
+    margin-bottom: 0.7rem;
+    border-color: #FFFFFF;
+    border-radius: 2rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+  
+  .auth-forgot-password {
+    color: #000000;
+    text-decoration: underline;
+    font-size: 0.88rem;
+    font-family: 'Lato', sans-serif;
+    display: block;
+    text-align: center;
+    
+    font-weight: bold;
+    font-style: italic;
+  }
+  
+  .auth-button {
+    cursor: pointer;
+    margin-top: 0.8rem;
+    width: 10rem;
+    height: 3.5rem;
+    background-color: #FADA5E;
+    border-color: #FADA5E;
+    border-radius: 10rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+  }
+  
+  .auth-signup-text {
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 1rem 0;
+  }
+  
+  .auth-signup-link {
+    color: #FFD300;
+    text-decoration: underline;
+  }
+  
+  .auth-error-message {
+    font-size: 0.9rem;
+    text-align: center;
+    color: red;
+  }
+  
+  /* Responsive styles for smaller screens */
+  @media (max-width: 768px) {
+    .auth-container {
+      padding: 1rem;
+    }
+  
+    .auth-card {
+      width: 90%;
+      padding: 1.5rem;
+    }
+  
+    .auth-card-header {
+      font-size: 2rem;
+    }
+  
+    .auth-form-container {
+      max-width: 100%;
+      margin: 1rem auto;
+    }
+  
+    .auth-form-control {
+      font-size: 0.9rem;
+    }
+  
+    .auth-button {
+      width: 8rem;
+      height: 3rem;
+    }
+  
+    .auth-signup-text {
+      font-size: 0.85rem;
+    }
+  
+    .auth-error-message {
+      font-size: 0.85rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .auth-card {
+      padding: 1rem;
+    }
+  
+    .auth-card-header {
+      font-size: 1.5rem;
+    }
+  
+    .auth-form-container {
+      max-width: 90%;
+      padding: 0 1rem;
+    }
+  
+    .auth-button {
+      width: 7rem;
+      height: 2.5rem;
+    }
+  }
+  

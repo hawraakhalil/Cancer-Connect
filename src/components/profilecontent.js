@@ -23,8 +23,9 @@ import "../App.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import "./profilecontent.css"
 
-function Profile() {
+function ProfileContent() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const username = urlParams.get("user");
@@ -154,69 +155,10 @@ function Profile() {
   //the badges text fields
   const selectedAvatar = avatars[userInfo.avatar];
 
-  return (
-    <>
-      <header>
-        <Container
-          fluid="true"
-          className="p-3"
-          style={{
-            height: "6rem",
-            maxWidth: "100rem",
-            backgroundColor: "#0F52BA",
-            padding: "1.1rem",
-            pointerEvents: "auto !important",
-          }}
-        >
-          <ArrowBackIosIcon
-            style={{
-              height: "4rem",
-              width: "5rem",
-              cursor: "pointer",
-              color: "#FADA5E",
-            }}
-            onClick={handleClick}
-          ></ArrowBackIosIcon>
-          <TextField
-            id="search"
-            variant="outlined"
-            placeholder="  Search"
-            InputProps={{
-              startAdornment: <SearchIcon style={{ color: "#4EA4F3" }} />,
-              style: { borderRadius: "50rem" },
-              inputProps: {
-                style: {
-                  color: "#4EA4F3",
-                  fontSize: "1.15rem",
-                  fontFamily: "Quicksand",
-                  fontWeight: "bold",
-                },
-              },
-            }}
-            style={{
-              backgroundColor: "white",
-              borderRadius: "50rem",
-              borderColor: "white",
-              width: "55%",
-              marginLeft: "28%",
-            }}
-          />
-        </Container>
-        <div class="avatar-container">
-          <img
-            fixed
-            src={selectedAvatar}
-            alt="avatar"
-            class="avatar-image"
-            style={{
-              "--avatar-image-border-color": "#4EA4F3",
-              marginLeft: "4.9rem",
-              marginBottom: "3rem",
-            }}
-          ></img>
-        </div>
-      </header>
-      <div className="content-container">
+
+    return (
+        <>
+        <div className="content-container-prof">
         <div className="user-info">
           <h1 style={{ color: "#155A56", paddingLeft: "5.5rem", margin: "0" }}>
             {userInfo.First_name} {userInfo.Last_name}
@@ -421,7 +363,8 @@ function Profile() {
           </Container>
         </div>
       </div>
-    </>
-  );
+        </>
+    );
 }
-export default Profile;
+
+export default ProfileContent

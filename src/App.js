@@ -11,7 +11,7 @@ import Feed from "./pages/feed";
 import Signup from "./pages/signup";
 import Profile from "./pages/profile";
 import Post from "./pages/post";
-import Password from "./pages/password";
+import Donate from "./pages/donate";
 import Avatar from "./pages/avatar";
 import Home from "./pages/home";
 
@@ -28,7 +28,7 @@ function App() {
           <Route path="/profile" exact element={<Profile />} />
           <Route path="/post" exact element={<Post />} />
           <Route path="/avatar" exact element={<Avatar />} />
-          <Route path="/password" exact element={<Password />} />
+          <Route path="/donate" exact element={<Donate />} />
           <Route path="/authentication" exact element={<Authentication />} />
           <Route path="*" exact element={<Navigate to="/" />} />
         </Routes>
