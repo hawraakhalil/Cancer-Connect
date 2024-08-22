@@ -203,16 +203,28 @@ function SignUp() {
                 className="form-control-reg input-field-reg username-reg"
               />
             </Card.Body>
-            <Card.Body>
-              <Form.Control
-                type="text"
-                placeholder="  Badge"
-                name="Badge"
-                value={formData.Badge}
-                onChange={handleInputChange}
-                className="form-control-reg input-field-reg badge-reg"
-              />
-            </Card.Body>
+            <select
+                  id="Badge"
+                  name="Badge"
+                  value={formData.Badge}
+                  onChange={handleInputChange}
+ className="form-control-reg input-field-reg username-reg"
+                >
+                  {" "}
+                  <option value="" disabled selected>
+                    I am a
+                  </option>
+                  {[
+                    "Cancer Patient",
+                    "Cancer Survivor",
+                    "Family member or friend",
+                    "Health Professional",
+                  ].map((month, index) => (
+                    <option key={index + 1} value={index + 1}>
+                      {month}
+                    </option>
+                  ))}
+                </select>
             <Card.Body>
               <Form.Control
                 type="password"

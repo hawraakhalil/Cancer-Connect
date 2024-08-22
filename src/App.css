@@ -164,7 +164,8 @@ body {
 
 .posts {
   flex: 2; /* Adjust to control the width of the posts section */
-  margin-right: 2rem; /* Add margin or adjust as needed */
+  margin-right: 1rem; /* Add margin or adjust as needed */
+  margin-left: 10%;
 }
 .popup {
   position: fixed;

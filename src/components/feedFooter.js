@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
-import"./feedPosts.css";
 import "./feedFooter.css";
 import Container from "@mui/material/Container";
 import Card from "react-bootstrap/Card";
@@ -30,8 +29,7 @@ import AddIcon from "@mui/icons-material/Add";
 import Confetti from "react-confetti";
 
 
-function FeedPosts() {
- 
+function FeedFooter() {
   const avatars = [
     profile,
     avatar1,
@@ -45,25 +43,25 @@ function FeedPosts() {
   ];
   const badgess = [
     [badge1, "", ""],
-    [badge1, "#FF3131", "Earned by those actively battling cancer"],
+    [badge1, "#FF3131", "Earned by those who post live and exclusive content from Palestine"],
     [
       badge2,
-      "#A6A6A6",
-      "Awarded to cancer survivors who've completed their treatment",
+      "#38B6FF",
+      "Awarded to Palestine Unveiled viewers who contribute to the Palestinian cause through learning about it",
     ],
     [
       badge3,
       "#FFBD59",
-      "Granted to friends and family supporting cancer patients",
+      "Granted to those who post and spread awareness outside of Palestine",
     ],
     [
       badge4,
       "#7ED957",
-      "For health professionals and medical experts sharing insights",
+      "Earned by health professionals and medical experts sharing medical insights",
     ],
     [
       badge5,
-      "#38B6FF",
+      "#A6A6A6",
       "Received after posting 10 times for active participation ",
     ],
     [
@@ -74,12 +72,12 @@ function FeedPosts() {
   ];
   const badgesName = [
     [""],
-    ["Fighter"],
-    ["Survivor"],
-    ["Supporter"],
-    ["Expert Contributor"],
+    ["Live Blogger"],
+    ["Viewer"],
+    ["Foreign Supporter"],
+    ["Health Professional"],
     ["Milestone"],
-    ["Caregiver"],
+    ["Ultimate Supporter"],
   ];
 
   //declare variables that we will use
@@ -213,137 +211,7 @@ function FeedPosts() {
     }, 5000); // Adjust the duration as needed,
   };
 
-      return (
-        <>
-        <div className="container-fepost">
-          <div className="layout-fepost">
-            <div className="sidebar-fepost">
-              <h3 className="sidebar-title-fepost">Badges:</h3>
-              <ul className="menu-fepost">
-                {[1, 2, 3, 4, 5, 6].map((itemNumber) => (
-                  <li
-                    key={itemNumber}
-                    className="menu-item-fepost"
-                    onClick={() => toggleDescription(itemNumber)}
-                  >
-                    {badgesName[itemNumber]}
-                    {activeItem === itemNumber && (
-                      <div className="description-fepost">
-                        <img
-                          src={badgess[itemNumber][0]}
-                          alt="badge"
-                          className="small-image-fepost"
-                          style={{ "--small-image-border-color": badgess[itemNumber][1] }}
-                        />
-                        <p className="description-text-fepost">
-                          {badgess[itemNumber][2]}
-                        </p>
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="content-fepost">
-              {error ? (
-                <div className="error-message-fepost">
-                  <span className="error-icon-fepost">😢</span>
-                  <p className="error-text-fepost">Error: {error}</p>
-                </div>
-              ) : (
-                <Container >
-                {posts.map((post, index) => (
-                  <Card 
-                    onClick={() =>
-                      handleClick2(
-                        badgess[post.badges[0]][1],
-                        post.title,
-                        post.body,
-                        post.username,
-                        post.ID,
-                        post.timestamp,
-                        likedPosts.includes(post.ID) ? 1 : 0,
-                        post.comment_count,
-                        post.avatar
-                      )
-                    }
-                    key={index}
-                    className={`mt-4 posts-container-feed ${
-                      index === posts.length - 1 ? "last-post" : ""
-                    } post-card-fepost`} 
-                  >
-                    <Card.Body >
-                      <div className="card-header-fepost">
-                        <div className="avatar-container-fepost">
-                          <img
-                            src={avatars[post.avatar]}
-                            alt="avatar"
-                            className="avatar-image-fepost"
-                            style={{ "--avatar-image-border-color": badgess[post.badges[0]][1] }}
-                          />
-                        </div>
-                        <div className= "close">
-                          <h2 className="card-title-fepost">{post.title}</h2>
-                          <h6 className="card-subtitle-fepost">by {post.username}</h6>
-                        </div>
-                      </div>
-                      <p className="card-text-fepost">{post.body}</p>
-                      <div className="card-footer-fepost">
-                    <div className="left-section-fepost">
-                        <IconButton
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            handleLikeClick(post.ID, post.timestamp, username);
-                        }}
-                        className={`like-button-fepost ${
-                            likedPosts.includes(post.ID) ? 'liked' : ''
-                        }`}
-                        >
-                        <FavoriteIcon />
-                        </IconButton>
-                        <p className="likes-count-fepost">{post.likes} likes</p>
-                        <p className="comments-count-fepost">{post.comment_count} comments</p>
-                    </div>
-                    <p className="timestamp-fepost">
-                        {post.timestamp.slice(6, 8)} - {post.timestamp.slice(4, 6)} - {post.timestamp.slice(0, 4)}
-                    </p>
-                    </div>
-
-                    </Card.Body>
-                  </Card>
-                ))}
-              </Container>
-              )}
-            </div>
-          </div>
-    
-          {showConfetti && (
-            <div className="confetti-container-fepost">
-              <Confetti
-                width={window.innerWidth}
-                height={window.innerHeight}
-                numberOfPieces={500}
-                recycle={false}
-              />
-            </div>
-          )}
-    
-          {showBadgeMessage && (
-            <div className="badge-message-fepost">
-              <div className="badge-image-container-fepost">
-                <img
-                  src={badgess[5][0]}
-                  alt="badge"
-                  className="smaller-image-fepost"
-                  style={{ "--small-image-border-color": badgess[5][1] }}
-                />
-              </div>
-              <div className="badge-text-fepost">
-                Congratulations! You have earned the Milestone Badge!
-              </div>
-            </div>
-          )}
-        </div>
+    return (
         <footer className="footer-popfooter">
             <button className="hover-button-popfooter" onClick={togglePopup}>
                 <AddIcon style={{
@@ -361,8 +229,7 @@ function FeedPosts() {
           />
         )}
         </footer>
-     </>
-      );
-    };
-    
-export default FeedPosts;
+    );
+}
+
+export default FeedFooter;

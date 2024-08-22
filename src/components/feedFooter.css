@@ -1,0 +1,56 @@
+.footer-popfooter {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+  }
+  
+  .hover-button-popfooter {
+    cursor: pointer;
+    height: 7rem;
+    width: 8rem;
+    border-radius: 2rem;
+    border-color: #FADA5E;
+    background-color: #FADA5E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .hover-button-popfooter:hover {
+    background-color: #ffc107; /* Hover effect */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+  }
+
+
+  .add-icon-popfooter{
+    height: 10rem;
+    width: 7rem;
+    color: white;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .footer-popfooter {
+      bottom: 1rem;
+      right: 1rem;
+    }
+  
+    .hover-button-popfooter {
+      height: 5rem;
+      width: 5rem;
+    }
+
+    .add-icon-popfooter {
+        height: 8rem;
+        width: 5rem;
+      }
+  }
+  
+  @media (max-width: 485px) {
+    .add-icon-popfooter {
+        height: 5rem;
+        width: 2rem;
+      }
+  }
+  

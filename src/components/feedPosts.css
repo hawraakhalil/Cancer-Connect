@@ -4,7 +4,7 @@
     flex-direction: column;
     padding: 1rem;
   }
-  
+
   /* Layout styles for larger screens */
   .layout-fepost {
     display: flex;
@@ -35,6 +35,7 @@
     color: white;
     padding: 0;
     list-style: none;
+    
   }
   
   .menu-item-fepost {
@@ -116,8 +117,8 @@
     background-color: #8CC4FF;
     border-radius: 2rem;
     margin-top: 1rem;
-    width: 100%;
-    max-width: 61rem;
+    width: 80%;
+    max-width: 80%;
   }
   
   /* Card header and footer styles */

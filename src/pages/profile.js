@@ -302,7 +302,8 @@ function Profile() {
                   index === posts.length - 1 ? "last-post" : ""
                 }`}
                 style={{
-                  width: "65rem",
+                  width: "100%",
+                  height: "11rem",
                   cursor: "pointer",
                   marginBottom: index === posts.length - 1 ? "3rem" : "39rem",
                   marginTop: "-38rem",
@@ -387,7 +388,7 @@ function Profile() {
                       <p
                         className="card-text"
                         style={{
-                          marginLeft: "41rem",
+                          marginLeft: "40%",
                           paddingTop: "0rem",
                           marginTop: "0rem",
                           fontSize: "1rem",
