@@ -11,7 +11,10 @@
 ## Introduction
 Welcome to Cancer Connect, a social media platform dedicated to cancer patients and survivors. This web application is designed to provide a supportive online community where users can connect, share their experiences, and find encouragement. The platform includes unique features such as customizable avatars, badges based on user roles and engagement, and a dedicated donations page.
 
+## Repository Information
 This project was part of the Amazon Industry Program 2.0 at the American University of Beirut (AUB), where this project secured first place in the competition.
+
+This repository contains the frontend code for the Cancer Connect website, while the backend code is available at [Cancer Connect Lambda Functions](https://github.com/RubaHoussami/Cancer-Connect-Lambda-Functions).
 
 ## Features
 - **Home Page**: Presents the mission and vision of Cancer Connect.
