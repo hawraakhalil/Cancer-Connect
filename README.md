@@ -1,4 +1,4 @@
-# Cancer Connect Website
+# Cancer Connect Website Front-End
 
 ## Table of Contents
 - [Introduction](#introduction)
